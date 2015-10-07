@@ -1,6 +1,7 @@
 /*MAIN FONTS*/
 body {
 
+	background-color: #D2D7D3;
 }
 
 * {
@@ -100,7 +101,7 @@ body {
 	color: #fff;
 	font-weight: bold;
 	padding: 10px;
-	margin-top: -20px;
+	margin-top: -30px;
 }
 
 #login_show{
@@ -121,6 +122,344 @@ body {
 .form-control{
 
 	border-radius: 0px;
+}
+
+#bottom{
+
+	position: fixed;
+	bottom: 10px;
+}
+
+/*END*/
+
+
+/*PROFILE STYLE*/
+
+#main_wrap{
+
+	border-radius: 0px;
+	background-color: rgba(255,255,255,0.5);
+	margin: 0px;
+	padding: 15px;
+}
+
+#cover_photo{
+
+	border-radius: 0px;
+	background-color: #fff;
+	width: 100%;
+	height: 430px;
+	padding: 0px;
+}
+
+#profile_menu{
+
+	background-color: #fff;
+	border-radius: 0px;
+	margin-top: -30px;
+	padding: 0px;
+}
+
+#profile_photo{
+
+	position:absolute;
+	margin-top: -300px;
+	border:2px solid #fff;
+	margin-left: 40%;
+}
+
+#profile_name{
+
+	position:absolute;
+	margin-top: -170px;
+	color: #fff;
+	font-weight: bold;
+	margin-left: 44%;
+}
+
+
+#menu_1{
+
+	border-radius: 0px;
+	background-color: #fff;
+	width: 20%;
+	padding: 0px;
+	float: left;
+	border-right:1px solid grey;
+	height: 53px;
+	padding-top: 20px;
+	font-weight: bold;
+	font-size: 12px;
+}
+#menu_2{
+
+	border-radius: 0px;
+	background-color: #fff;
+	width: 20%;
+	padding: 0px;
+	float: left;
+	border-right:1px solid grey;
+	height: 53px;
+	padding-top: 20px;
+	font-weight: bold;
+	font-size: 12px;
+}
+#menu_3{
+
+	border-radius: 0px;
+	background-color: #fff;
+	width: 20%;
+	padding: 0px;
+	float: left;
+	border-right:1px solid grey;
+	height: 53px;
+	padding-top: 20px;
+	font-weight: bold;
+	font-size: 12px;
+
+}
+#menu_4{
+
+	border-radius: 0px;
+	background-color: #fff;
+	width: 20%;
+	padding: 0px;
+	float: left;
+	border-right:1px solid grey;
+	height: 53px;
+	padding-top: 20px;
+	font-weight: bold;
+	font-size: 12px;
+
+}
+#menu_5{
+
+	border-radius: 0px;
+	background-color: #fff;
+	width: 20%;
+	padding: 0px;
+	float: left;
+	height: 53px;
+	padding-top: 20px;
+	font-weight: bold;
+	font-size: 12px;
+
+}
+
+.clearfix{
+	clear: both;
+}
+
+.active{
+
+	background-color: pink;
+}
+
+#body{
+
+	background-color: #fff;
+	border-radius: 0px;
+	padding: 0px;
+}
+
+#post{
+
+	background-color: #fff;
+	border-radius: 0px;
+	padding: 0px;
+	
+}
+
+#post_feed{
+
+	background-color:transparent;
+	border-radius: 0px;
+	padding: 0px;
+
+}
+
+#side_info{
+
+	background-color: #fff;
+	border-radius: 0px;
+	padding: 20px;
+	
+}
+
+#post_header{
+
+	background-color: #F5F5F5;
+	border-radius: 0px;
+	padding: 10px;
+	border: solid 1px #DDDDDD;
+	margin:0px;
+}
+
+#post_body{
+
+	background-color: #fff;
+	border-radius: 0px;
+	padding: 0px;
+	margin: 0px;
+	border-left: solid 1px #DDDDDD;
+	border-right: solid 1px #DDDDDD;
+}
+
+#post_footer{
+
+	background-color: #F5F5F5;
+	border-radius: 0px;
+	padding: 10px;
+	border: solid 1px #DDDDDD;
+	margin: 0px;
+}
+
+#n_post{
+
+	resize:none;
+	border:none;
+	outline: none;
+	-webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.txtstuff {
+    resize: none; /* remove this if you want the user to be able to resize it in modern browsers */
+    overflow: hidden;
+}
+
+.hiddendiv {
+    display: none;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word; /* future version of deprecated 'word-wrap' */
+}
+
+/* the styles for 'commmon' are applied to both the textarea and the hidden clone */
+/* these must be the same for both */
+.common {
+    width: 500px;
+    min-height: 50px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    overflow: hidden;
+}
+
+.lbr {
+    line-height: 3px;
+}
+
+#np_send{
+
+	border-radius: 0px;
+}
+
+#visib{
+	border-radius: 0px;
+}
+
+#feed_head{
+
+	border-radius: 0px;
+	background-color: #fff;
+	margin: 0px;
+	border: solid 1px #DDDDDD;
+	padding: 15px;
+}
+
+#feed_body{
+
+	border-radius: 0px;
+	background-color: #fff;
+	margin: 0px;
+	border: solid 1px #DDDDDD;
+	border-top: none;
+	border-bottom: none;
+	padding: 15px;
+
+}
+
+#feed_like{
+
+	border-radius: 0px;
+	background-color: #fff;
+	margin: 0px;
+	border: solid 1px #DDDDDD;
+	padding: 15px;
+	border-bottom: none;
+
+}
+
+#feed_comment{
+
+	border-radius: 0px;
+	background-color: #FAFAFA;
+	margin: 0px;
+	border: solid 1px #DDDDDD;
+	padding: 10px;
+
+}
+
+#sharez,#like,#whos,#whol,#option{
+
+	background:none;
+	border: none;
+	font-size: 12px;
+}
+
+#submit,#cancel{
+
+	border-radius: 0px;
+	font-size: 12px;
+}
+
+#comment{
+
+	resize:none;
+}
+
+/*END*/
+
+
+/*MOBILE ADJUST*/
+
+@media screen and (max-width: 360px) {
+    
+    #cover_photo{
+
+    	height: 215px;
+    	
+    }
+
+    #main_cover{
+
+    	height: 105px;
+    }
+
+    #photo1,#photo2,#photo3,#photo4{
+
+    	height: 110px;
+    }
+
+    #profile_photo{
+
+    	height: 60px;
+    	width: 60px;
+    	margin-top: -170px;
+    	margin-left: 32%;
+    }
+
+    #profile_name{
+
+    	margin-top: -110px;
+    	margin-left: 35%;
+    }
+
+    #menu_1,#menu_2,#menu_3,#menu_4,#menu_5{
+
+    	font-size: 8px;
+    }
 }
 
 /*END*/

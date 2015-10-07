@@ -1,5 +1,25 @@
 <body style="background-image:url(<?php echo base_url();?>public/img/index_bg.jpg)">
 
+<nav class="navbar navbar-inverse" id="main_nav">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+      <a class="navbar-brand" href="#"><img src="<?php echo base_url();?>public/img/logo.png" width="24" height="24" class="img-circle" style="border:2px solid #fff;"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="#"></a></li>
+        <li><a href="#"></a></li>
+        <li><a href="#"></a></li> 
+      </ul>
+    </div>
+  </div>
+</nav>
+
 <div class="container-fluid">
 	<div class="row">
 
@@ -110,8 +130,10 @@
 				<td colspan="4">
 					
 				<div class="jumbotron" id="login_show" >
-					
-				<?php echo form_open();?>	
+				
+				<?php echo validation_errors(); ?>
+				<?php echo @$success ;?>
+				<?php echo form_open('login/loginUser');?>	
 				<label>Email Address</label>
 				<input type="email" class="form-control" name="l_email" id="l_email" required >
 				</p>
@@ -132,20 +154,19 @@
 				<td colspan="4">
 					
 				<div class="jumbotron" id="signup_show" style="display:none;">
-
-				<?php echo validation_errors(); ?>				
+					
 				<?php echo form_open('register/signUp');?>	
 				<label>Username</label>
-				<input type="text" class="form-control" name="r_user" id="r_user" required>
+				<input type="text" class="form-control" name="r_user" id="r_user" value="<?php echo set_value('r_user'); ?>" required>
 				</p>
 				<label>Email Address</label>
-				<input type="email" class="form-control" name="r_email" id="r_email" required>
+				<input type="email" class="form-control" name="r_email" id="r_email" value="<?php echo set_value('r_email'); ?>" required>
 				</p>
 				<label>Password</label>
-				<input type="password" class="form-control" name="r_pass" id="r_pass" minlength="6">
+				<input type="password" class="form-control" name="r_pass" id="r_pass" value="<?php echo set_value('r_pass'); ?>" minlength="8">
 				</p>
 				<label>Birthday</label>
-				<input type="date" class="form-control" name="r_date" id="r_date" required>
+				<input type="date" class="form-control" name="r_date" id="r_date" value="<?php echo set_value('r_date'); ?>" required>
 				</p>
 				<button type="submit" class="btn btn-warning" style="border-radius:0px;">Sign up now</button>
 				<?php echo form_close();?>
@@ -172,7 +193,7 @@
 
 <div class="container-fluid" style="margin:0px;padding:0px;">
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-12" id="bottom">
 		<br><br>
 		<table width="100%" border="0">
 			 <tr>
