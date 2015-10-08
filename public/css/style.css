@@ -299,7 +299,7 @@ body {
 
 	background-color: #fff;
 	border-radius: 0px;
-	padding: 0px;
+	padding: 5px;
 	margin: 0px;
 	border-left: solid 1px #DDDDDD;
 	border-right: solid 1px #DDDDDD;
@@ -481,6 +481,22 @@ body {
 	resize:none;
 }
 
+#upload_photo{
+
+	background-color: #fff;
+	padding: 10px;
+	border-radius: 0px;
+	border: solid 1px #DDDDDD;
+	margin-bottom: 5px;
+	display: none;
+}
+
+#ajax_photo{
+
+	border-radius: 0px;
+	display: none;
+}
+
 /*END*/
 
 
@@ -523,5 +539,6 @@ body {
     	font-size: 8px;
     }
 }
+
 
 /*END*/

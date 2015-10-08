@@ -8,6 +8,9 @@ $(function(event){
 			$('#show_video').hide();
 			$('#show_link').hide();
 			$('#show_map').hide();
+			$('#upload_photo').hide();
+			$('#ajax_photo').hide();
+			$('#np_send').show();
 
 		});
 
@@ -18,6 +21,9 @@ $(function(event){
 			$('#show_video').toggle();
 			$('#show_link').hide();
 			$('#show_map').hide();
+			$('#upload_photo').hide();
+			$('#ajax_photo').hide();
+			$('#np_send').show();
 
 		});
 
@@ -28,6 +34,9 @@ $(function(event){
 			$('#show_video').hide();
 			$('#show_map').toggle();
 			$('#show_link').hide();
+			$('#upload_photo').hide();
+			$('#ajax_photo').hide();
+			$('#np_send').show();
 
 		});
 
@@ -38,6 +47,36 @@ $(function(event){
 			$('#show_video').hide();
 			$('#show_map').hide();
 			$('#show_link').toggle();
+			$('#upload_photo').hide();
+			$('#ajax_photo').hide();
+			$('#np_send').show();
+
+		});
+
+	    $('#pho_post').click(function(event){
+
+			event.preventDefault();
+			$('#upload_photo').toggle();
+			$('#ajax_photo').toggle();
+			$('#np_send').hide();
+
+			$('#show_music').hide();
+			$('#show_video').hide();
+			$('#show_map').hide();
+			$('#show_link').hide();
+
+		});
+
+		$('#nor_post').click(function(event){
+
+			event.preventDefault();
+			$('#upload_photo').hide();
+			$('#ajax_photo').hide();
+			$('#np_send').show();
+			$('#show_music').hide();
+			$('#show_video').hide();
+			$('#show_map').hide();
+			$('#show_link').hide();
 
 		});
 

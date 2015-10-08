@@ -62,7 +62,7 @@
 
 			              <a href="" id="nor_post"><img src="<?php echo base_url();?>public/img/posts.png" width="15" height="15" ><small> Status </small></a>	
 			              
-			              <a href="" id="m_post" style="margin-left:10px;"><img src="<?php echo base_url();?>public/img/photo.png" width="19" height="19"> <small> Photo </small></a>
+			              <a href="" id="pho_post" style="margin-left:10px;"><img src="<?php echo base_url();?>public/img/photo.png" width="19" height="19"> <small> Photo </small></a>
 
 					      <a href="" id="v_post" style="margin-left:10px;"><img src="<?php echo base_url();?>public/img/video.png" width="15" height="15" > <small> Video </small></a>
 
@@ -75,7 +75,7 @@
 		            	<div class="jumbotron" id="post_body">
 		            	<table width="100%" border="0">
 		            		<tr>
-		            			<td width="10%" style="padding:5px;"><img src="<?php echo base_url();?>profile_photo/default.jpg" width="30" height="30" class="img-circle"></td>
+		            			<td width="10%" style="padding:5px;"><img src="<?php echo base_url();?>profile_photo/default.jpg" width="30" height="30" class="img-#"></td>
 		            			<td>
 		            			<textarea class="form-control" id="n_post" rows="3"  placeholder="Share what's new"></textarea>
 		            			<input type="hidden" value="<?php echo $row->username;?>" id="user_to">
@@ -105,8 +105,23 @@
 		            		 <textarea id="link" style="width:100%" rows="1" placeholder="Share a link"></textarea>
 		            	</div>
 
+		            	<div class="jumbotron" id="upload_photo">
+
+		            		<form method="post" action="" id="upload_file">
+					        <input type="file" data-filename-placement="inside" name="userfile" id="userfile">
+					        <input type="hidden" value="<?php echo $row->username;?>" id="receiver"> 
+					        
+					       
+
+		            	</div>
+
 
 		            	<div class="jumbotron" id="post_footer">
+
+		            		<button type="submit" class="btn btn-success btn-sm" id="ajax_photo">Post</button>
+
+		            	    </form>
+
 		            		<button class="btn btn-success btn-sm" id="np_send">Post</button>
 		            		<button class="btn btn-default btn-sm" id="visib">Friends</button>
 
@@ -323,6 +338,21 @@
 
 		             <?php echo $feed->body;?>
 
+		             <?php if(!empty($feed->mood) && !empty($feed->feel)){ ?>
+
+		             </p>
+		            ↪ <img src="<?php echo $feed->mood;?>" width="25" height="25" id="img44"> <small> Feeling <?php echo $feed->feel;?></small>
+
+		             <?php } ?>
+
+		             <?php
+
+			         if(!empty($feed->photo)){ ?>
+		  
+			         <img src="<?php echo base_url();?>uploads/<?php echo $feed->photo;?>" width="100%" height="300px;">
+			       
+			         <?php } ?>		       
+
 		             <?php if(!empty($feed->link)){?>
 
 			         <br>
@@ -355,14 +385,6 @@
 	                   <?php } ?>
 
 
-		               <?php if(!empty($feed->mood) && !empty($feed->feel)){ ?>
-
-		               </p>
-		            	↪ <img src="<?php echo $feed->mood;?>" width="25" height="25" id="img44"> <small> Feeling <?php echo $feed->feel;?></small>
-
-		            	<?php } ?>
-
-
 		            	<div id="editpost<?php echo $feed->id;?>" style="display:none;">
 		             	<textarea style="width:100%;" id="edit_post"><?php echo $feed->body;?></textarea>
 
@@ -389,6 +411,21 @@
 		             				<td>
 
 		             				<?php echo $share->body;?>
+
+		             				<?php if(!empty($share->mood) && !empty($share->feel)){ ?>
+
+		            				</p>
+		            			  ↪ <img src="<?php echo $share->mood;?>" width="25" height="25" id="img44"> <small> Feeling <?php echo $share->feel;?></small>
+
+		            				<?php } ?>
+
+		             				 <?php
+
+							         if(!empty($share->photo)){ ?>
+						  
+							         <img src="<?php echo base_url();?>uploads/<?php echo $share->photo;?>" width="90%" height="300px;">
+							       
+							         <?php } ?>	
 
 		             				<?php if(!empty($share->link)){?>
 
@@ -421,13 +458,6 @@
 	                                <iframe width="100%" height="120" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=<?php echo $share->music;?>"></iframe>
 
 	                                <?php } ?>
-
-		             				<?php if(!empty($share->mood) && !empty($share->feel)){ ?>
-
-		            				</p>
-		            			  ↪ <img src="<?php echo $share->mood;?>" width="25" height="25" id="img44"> <small> Feeling <?php echo $share->feel;?></small>
-
-		            				<?php } ?>
 
 		             				</td>
 		             			</tr>
@@ -562,7 +592,49 @@
 
 		     <div class="col-md-4">
 
-		           <div class="jumbotron" id="side_info"></div>
+		           <div class="jumbotron" id="side_info">
+		           	
+					
+
+		           </div>
+
+		           <script type="text/javascript">
+
+
+			        $(function(event) {
+			        $('#upload_file').submit(function(e) {
+
+			        e.preventDefault();
+			        $.ajaxFileUpload({
+			            url             :"<?php echo base_url();?>upload/upload_file", 
+			            secureuri       :false,
+			            fileElementId   :'userfile',
+			            dataType: 'JSON',
+			            data            : {
+
+
+			                'title'     : $('#n_post').val(),
+			                'receiver'  : $('#receiver').val(),	
+							'mood'     	: $("#emo").val(),
+							'feel'     	: $('#emo_f').val(),							
+							
+
+			            },
+			            success : function (){
+			              
+			            $("#post_feed").load(location.href+" #post_feed>*","");  		        
+  		                $('#n_post').val('');
+			         
+			          
+			            }
+			         });
+			        return false;
+			         });
+			         });
+
+        
+
+		           </script>
 			
 		    </div>
 		
