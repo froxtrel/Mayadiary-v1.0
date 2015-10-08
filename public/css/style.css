@@ -401,17 +401,27 @@ body {
 
 }
 
-#sharez,#like,#whos,#whol,#option{
+#sharez,#like,#whos,#whol,#option,#edit_c,#like_c,#delete_com{
 
 	background:none;
 	border: none;
 	font-size: 12px;
 }
 
-#submit,#cancel{
+#edit_c,#like_c{
+
+	font-size: 11px;
+	margin-left: 10px;
+}
+
+#submit,#cancel,#cancel_e,#done_e,#delete_com{
 
 	border-radius: 0px;
 	font-size: 12px;
+}
+
+#delete_com{
+	float: right;
 }
 
 #comment{

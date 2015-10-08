@@ -1,17 +1,17 @@
-$(function(){
+$(function(event){
 
 
 	// POST FEED HANDLER
 
 
-		$(document).on('click','#sharez',function(){
+		$(document).on('click','#sharez',function(event){
 			
 			  var id = $(this).siblings('#feed_id').attr('value');
 			  $('#'+id).hide('slow');
 	
 		 });
 
-		$(document).on('click','#like',function(){
+		$(document).on('click','#like',function(event){
 				
 				var id = $(this).siblings('#feed_id').attr('value');
 				
@@ -36,28 +36,28 @@ $(function(){
 			
 		 });
 
-		$(document).on('click','#noti',function(){
+		$(document).on('click','#noti',function(event){
 				
 				var id = $(this).siblings('#feed_id').attr('value');
 				alert(id);
 			
 		 });
 
-		$(document).on('click','#whos',function(){
+		$(document).on('click','#whos',function(event){
 				
 				var id = $(this).siblings('#feed_id').attr('value');
 				alert(id);
 			
 		 });
 
-		$(document).on('click','#whol',function(){
+		$(document).on('click','#whol',function(event){
 				
 				var id = $(this).siblings('#feed_id').attr('value');
 				alert(id);
 			
 		 });
 
-		$(document).on('click','#submit',function(){
+		$(document).on('click','#submit',function(event){
 				
 				var id  = $(this).siblings('#feed_id').attr('value');
 				var body = $(this).siblings('#comment').val();
@@ -83,7 +83,7 @@ $(function(){
 			
 		 });
 
-		$(document).on('click','#comment',function(){
+		$(document).on('click','#comment',function(event){
 				
 				$(this).attr('rows', '4');
 
@@ -91,19 +91,124 @@ $(function(){
 			
 		 });
 
-		$(document).on('click','#cancel',function(){
+		$(document).on('click','#cancel',function(event){
 				
 			$("#post_feed").load(location.href + " #post_feed");
 			
 		 });
 
+		$(document).on('click','#cancel_e',function(event){
+				
+			$("#post_feed").load(location.href + " #post_feed");
+			
+		 });
+
+		$(document).on('click','#like_c',function(event){
+				
+			var id = $(this).siblings('#comm_id').attr('value');
+				
+				$.ajax({
+
+				type:'POST',
+				url :'http://localhost/Mayadiary-v1.0/comment_like/insertCommentLike',
+				data:{'id':id},
+				datatype:'json',
+				success: function (data) {
+
+			   $("#post_feed").load(location.href + " #post_feed");
+	                 
+	              },
+
+	            error: function (data) {
+	                  
+	            alert('failed');
+
+	              }
+				});
+			
+		 });
+
+		$(document).on('click','#done_e',function(event){
+				
+			var id = $(this).siblings('#comm_id').attr('value');
+			var body = $(this).siblings('#edit_comment').val();
+
+			 $.ajax({
+
+				type:'POST',
+				url :'http://localhost/Mayadiary-v1.0/comment/updateComment',
+				data:{'id':id,'body':body},
+				datatype:'json',
+				success: function (data) {
+
+			    $("#post_feed").load(location.href + " #post_feed");
+	                 
+	              },
+
+	            error: function (data) {
+	                  
+	            alert('failed');
+
+	              }
+				});
+		
+		 });
+
+
+
+
+
+		$(document).on('click','#edit_c',function(event){
+				
+			var id = $(this).siblings('#comm_id').attr('value');
+
+			$('#'+id).toggle();
+			$('#origin'+id).toggle();
+			
+		 });
+
+	    $(document).on('click','#delete_com',function(event){
+				
+			var id = $(this).siblings('#comm_id').attr('value');
+			// alert(id);
+            var result =  window.confirm("Do you really want to delete this?");
+
+            if(result == true){
+
+            $.ajax({
+
+			type:'POST',
+			url :'http://localhost/Mayadiary-v1.0/comment/deleteComment',
+			data:{'id':id},
+			datatype:'json',
+			success: function (data) {
+
+			$("#post_feed").load(location.href + " #post_feed");
+                 
+              },
+
+            error: function (data) {
+                  
+            alert('failed');
+
+              }
+			});
+
+
+            }else{
+
+
+
+            }
+			
+		 });
 
 		// END
 
 
 	  //SUBMIT POST HANDLER
 
-	  	$('#np_send').click(function(){
+	  	$('#np_send').click(function(event){
 
 		var body = $('#n_post').val();
 		var from = $('#user_from').val();

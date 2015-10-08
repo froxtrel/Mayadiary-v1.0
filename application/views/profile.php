@@ -156,7 +156,7 @@
 		            		</td>
 		            		<td width="10%">
 		            		<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >
-		            		<button id="like"><span class="glyphicon glyphicon-thumbs-up"></span> Like</button>
+		            		<button id="like"><span class="glyphicon glyphicon-heart"></span> Like</button>
 		            		</td>
 		            		<td>
 		            		<!-- <input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >
@@ -164,7 +164,7 @@
 		            		<td width="30%"></td>
 		            		<td width="10%">
 		            		<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id">
-		            		<button id="whol"><span class="glyphicon glyphicon-thumbs-up"></span> <?php echo count($like) ;?></button>
+		            		<button id="whol"><span class="glyphicon glyphicon-heart"></span> <?php echo count($like) ;?></button>
 		            		</td>
 		            		<td width="10%">
 		            		<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >
@@ -190,14 +190,49 @@
 
 		           		<tr>
 		             	<td rowspan="2" width="6%"><img src="<?php echo base_url();?>profile_photo/default.jpg" width="30px" height="30px" class="img-circle">	</td>
-		             	<td><b><?php echo ucfirst($comment->added_by);?></b></td>
+		             	<td>
+		             	<b><?php echo ucfirst($comment->added_by);?></b>
+
+		             	<input type="hidden" value="<?php echo $comment->id;?>" id="comm_id">
+		             	<button id="delete_com"><span class="glyphicon glyphicon-remove"></span></button>
+
+		             	</td>
 		             	</tr>
 		             	<tr>
-		             	<td><?php echo $comment->body;?></td>
+		             	<td>
+
+		             	<span id="origin<?php echo $comment->id;?>"><?php echo $comment->body;?></span>	
+
+		             	<div id="<?php echo $comment->id;?>" style="display:none;">
+		             	<textarea style="width:100%;" id="edit_comment"><?php echo $comment->body;?></textarea>
+
+		             	<input type="hidden" value="<?php echo $comment->id;?>" id="comm_id">
+		             	<button class="btn btn-success btn-xs" id="done_e">Done editing</button>
+
+		             	<button class="btn btn-danger btn-xs" id="cancel_e">Cancel</button>
+		             	<div>
+             
+		             
+		             	</td>
 		             	</tr>
 		              	<tr>
 		              	<td width="6%"></td>
-		             	<td><span class="glyphicon glyphicon-time"></span><small> About <?php echo humanTiming(strtotime($comment->date_added));?> ago</small></td>
+		             	<td>
+		             	<span class="glyphicon glyphicon-time"></span><small> About <?php echo humanTiming(strtotime($comment->date_added));?> ago</small>
+
+		             	<?php
+
+			          		$com_like  =  $this->db->get_where('comment_likes',array('comm_id' => $comment->id))->result();
+			          
+		             	?>
+
+		             	<input type="hidden" value="<?php echo $comment->id;?>" id="comm_id">
+		             	<button id="like_c"><span class="glyphicon glyphicon-thumbs-up" ></span> Like <?php echo count($com_like) ;?></button>
+
+		             	<input type="hidden" value="<?php echo $comment->id;?>" id="comm_id">
+		             	<button id="edit_c"><span class="glyphicon glyphicon-pencil" ></span> edit </button>
+
+		             	</td>
 		             </tr>		         
 
 		           	<?php	}

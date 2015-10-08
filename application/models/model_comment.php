@@ -20,4 +20,26 @@ public function insertCom($id,$body){
 
   }
 
+ public function updateCom($id,$body){
+
+        $date = date('Y-m-d H:i:s'); 
+
+        $this->db->where('id',$id);
+        $this->db->set('added_by', $this->session->userdata('username'));
+        $this->db->set('date_added',$date);
+        $this->db->set('body',$body);
+        $this->db->update('comment');
+
+  }
+
+
+  public function deleteCom($id){
+
+  		 $this->db->where('id',$id);
+  		 $this->db->delete('comment');
+
+  }
+
+
+
 }

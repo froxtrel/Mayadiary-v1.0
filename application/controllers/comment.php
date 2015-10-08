@@ -17,6 +17,21 @@ public function __construct(){
 
  	   $this->model_comment->insertCom($id,$body);
 
- }
+    }
+
+  public function updateComment(){
+
+  	   $id   = $this->input->post('id');
+ 	   $body = $this->input->post('body');
+
+ 	   $this->model_comment->updateCom($id,$body);
+  }
+
+  public function deleteComment(){
+
+  	   $id   = $this->input->post('id');
+
+ 	   $this->model_comment->deleteCom($id);
+  }
 	
 }
