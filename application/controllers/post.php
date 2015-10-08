@@ -27,4 +27,13 @@ class Post extends CI_Controller {
 		$this->model_post->delPost($id);
 
 	}
+
+	public function updatePost(){
+
+		$id = $this->input->post('id');
+		$body = $this->input->post('body');
+		$this->model_post->upPost($id,$body);
+
+
+	}
 }

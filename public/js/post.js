@@ -249,6 +249,40 @@ $(function(event){
 		 });
 
 
+	     $(document).on('click','#edit_post_button',function(event){
+				
+			var id = $(this).siblings('#feed_id').attr('value');
+			
+			$('#editpost'+id).slideToggle();
+			
+		 });
+
+		 $(document).on('click','#post_e',function(event){
+				
+			var id = $(this).siblings('#feed_id').attr('value');
+			var body = $(this).siblings('#edit_post').val();
+
+			 $.ajax({
+
+				type:'POST',
+				url :'http://localhost/Mayadiary-v1.0/post/updatePost',
+				data:{'id':id,'body':body},
+				datatype:'json',
+				success: function (data) {
+
+			    $("#post_feed").load(location.href + " #post_feed");
+	                 
+	              },
+
+	            error: function (data) {
+	                  
+	            alert('failed');
+
+	              }
+				});
+		
+		 });
+
 
 
 

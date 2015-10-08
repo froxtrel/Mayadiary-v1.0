@@ -160,7 +160,7 @@
 		            			<tr>
 		            				<td>
 		            				<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >	
-		            				<button style="width:100%;border:none;border-radius:0px;" class="btn btn-default btn-xs"> Edit post</button>
+		            				<button style="width:100%;border:none;border-radius:0px;" class="btn btn-default btn-xs" id="edit_post_button"> Edit post</button>
 		            				</td>
 		            			</tr>
 		            			<tr>
@@ -202,6 +202,17 @@
 
 		            <div class="jumbotron" id="feed_body">
 		            	<?php echo $feed->body;?>
+
+
+		            	<div id="editpost<?php echo $feed->id;?>" style="display:none;">
+		             	<textarea style="width:100%;" id="edit_post"><?php echo $feed->body;?></textarea>
+
+		             	<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id">
+		             	<button class="btn btn-success btn-xs" id="post_e">Done editing</button>
+
+		             	<button class="btn btn-danger btn-xs" id="cancel_pe">Cancel</button>
+		             	</div>
+
 		            </div>
 
 		            <div class="jumbotron" id="feed_like">
@@ -267,7 +278,7 @@
 		             	<button class="btn btn-success btn-xs" id="done_e">Done editing</button>
 
 		             	<button class="btn btn-danger btn-xs" id="cancel_e">Cancel</button>
-		             	<div>
+		             	</div>
              
 		             
 		             	</td>

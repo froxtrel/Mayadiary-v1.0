@@ -32,5 +32,16 @@ class Model_post extends CI_Model {
       $this->db->delete('post');
 
    }
+
+   public function upPost($id,$body){
+
+      $date = date('Y-m-d H:i:s'); 
+
+          $this->db->set('body',$body);
+          $this->db->set('date_added',$date);
+          $this->db->where('id',$id);
+          $this->db->update('post');   
+
+   }
       
 }
