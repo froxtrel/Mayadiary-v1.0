@@ -12,13 +12,15 @@ class Post extends CI_Controller {
 	
 	public function insertPost(){
 
-		 $body = $this->input->post('body');
-		 $from = $this->input->post('from');
-		 $to = $this->input->post('to');
-		 $mood = $this->input->post('mood');
-		 $feel = $this->input->post('feel');
+		 $video = $this->input->post('video');
+		 $music = $this->input->post('music');
+		 $body  = $this->input->post('body');
+		 $from  = $this->input->post('from');
+		 $to    = $this->input->post('to');
+		 $mood  = $this->input->post('mood');
+		 $feel  = $this->input->post('feel');
 
-		 $this->model_post->insertPost($body,$from,$to,$mood,$feel);
+		 $this->model_post->insertPost($body,$from,$to,$mood,$feel,$music,$video);
 
 
 	}

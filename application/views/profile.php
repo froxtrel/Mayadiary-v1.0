@@ -83,12 +83,22 @@
 
 							    <div id="extra"></div>
 							    <input type="hidden" id="emo" value="">
-							    <input type="hidden" id="emo_f" value="">
-							 
+							    <input type="hidden" id="emo_f" value="">				 
 		            			</td>
 		            		</tr>
 		            	</table>
 		            	</div>
+
+		            	<div class="jumbotron" id="show_music">
+		            		 <textarea id="music" style="width:100%" rows="1" placeholder="Share music from souncloud"></textarea>
+		            	</div>
+
+		            	<div class="jumbotron" id="show_video">
+		            		 <textarea id="video" style="width:100%" rows="1" placeholder="Share video from youtube"></textarea>
+		            	</div>
+
+
+
 
 		            	<div class="jumbotron" id="post_footer">
 		            		<button class="btn btn-success btn-sm" id="np_send">Post</button>
@@ -308,6 +318,13 @@
 		            	<?php echo $feed->body;?>
 
 
+	                   <?php if(!empty($feed->music)){ ?>
+
+	                   <iframe width="100%" height="120" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=<?php echo $feed->music;?>"></iframe>
+
+	                   <?php } ?>
+
+
 		            	<?php if(!empty($feed->mood) && !empty($feed->feel)){ ?>
 
 		            	</p>
@@ -342,6 +359,12 @@
 		             				<td>
 
 		             				<?php echo $share->body;?>
+
+		             				<?php if(!empty($share->music)){ ?>
+
+	                                <iframe width="100%" height="120" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=<?php echo $share->music;?>"></iframe>
+
+	                                <?php } ?>
 
 		             				<?php if(!empty($share->mood) && !empty($share->feel)){ ?>
 

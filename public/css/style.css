@@ -312,6 +312,7 @@ body {
 	padding: 10px;
 	border: solid 1px #DDDDDD;
 	margin: 0px;
+	margin-top: -10px;
 }
 
 #n_post{
@@ -468,6 +469,16 @@ body {
     border-right: 1px solid #ccc;
     border-left: 1px solid #ccc;
 
+}
+
+#show_music,#show_video{
+
+	border-radius:0px;margin:0px;padding:0px;display:none;
+}
+
+#music,#video{
+	
+	resize:none;
 }
 
 /*END*/

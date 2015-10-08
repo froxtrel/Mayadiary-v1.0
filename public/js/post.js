@@ -1,6 +1,24 @@
 $(function(event){
 
 
+		$('#mu_post').click(function(event){
+
+			event.preventDefault();
+			$('#show_music').toggle();
+			$('#show_video').hide();
+
+		});
+
+		$('#v_post').click(function(event){
+
+			event.preventDefault();
+			$('#show_music').hide();
+			$('#show_video').toggle();
+
+		});
+
+
+
 	// POST FEED HANDLER
 
 
@@ -323,18 +341,23 @@ $(function(event){
 		var mood = $("#emo").val();
 		var feel = $('#emo_f').val();
 
+		var video   = $('#video').val();
+		var n_video = video.slice(32);
+		var music   = $('#music').val();
+
 		$.ajax({
 
 			type:'POST',
 			url :'http://localhost/Mayadiary-v1.0/post/insertPost',
-			data:{'body':body,'from':from,'to':to,'mood':mood,'feel':feel },
+			data:{'body':body,'from':from,'to':to,'mood':mood,'feel':feel,'video':n_video,'music':music },
 			datatype:'json',
 			success: function (data) {
 
 			$("#post_feed").load(location.href + " #post_feed");
 			$('#n_post').val('');
 			$('#extra').html('');
-
+			$('#music').val('');
+			
 
                  
               },
