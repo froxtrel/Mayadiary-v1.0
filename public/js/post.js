@@ -319,18 +319,23 @@ $(function(event){
 
 		var body = $('#n_post').val();
 		var from = $('#user_from').val();
-		var to = $('#user_to').val();
+		var to   = $('#user_to').val();
+		var mood = $("#emo").val();
+		var feel = $('#emo_f').val();
 
 		$.ajax({
 
 			type:'POST',
 			url :'http://localhost/Mayadiary-v1.0/post/insertPost',
-			data:{'body':body,'from':from,'to':to},
+			data:{'body':body,'from':from,'to':to,'mood':mood,'feel':feel },
 			datatype:'json',
 			success: function (data) {
 
 			$("#post_feed").load(location.href + " #post_feed");
 			$('#n_post').val('');
+			$('#extra').html('');
+
+
                  
               },
 

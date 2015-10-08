@@ -8,10 +8,12 @@ class Model_post extends CI_Model {
         parent::__construct();
     }
 
- public function insertPost($body,$from,$to){
+ public function insertPost($body,$from,$to,$mood,$feel){
 
  		  $date = date('Y-m-d H:i:s'); 
 
+          $this->db->set('mood',$mood);
+          $this->db->set('feel',$feel);
           $this->db->set('body',$body);
           $this->db->set('added_by',$from);
           $this->db->set('user_posted_to',$to);

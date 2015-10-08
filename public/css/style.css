@@ -447,11 +447,28 @@ body {
 
 	border-radius: 4px;
 	padding: 5px;
-	background-color: #ecf0f1;
-	/*border: solid 1px #DDDDDD;*/
+	background-color: #fff;
+	border: solid 1px #DDDDDD;
 
 }
 
+#emotion_t{
+
+	border-radius: 0px;
+	background-color: #fff;
+	padding: 15px;
+}
+
+#feel_here{
+
+	border-radius: 0px;
+    padding: 10px;
+    margin-top: -30px;
+    background-color: #fff;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+
+}
 
 /*END*/
 
