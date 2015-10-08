@@ -471,12 +471,12 @@ body {
 
 }
 
-#show_music,#show_video{
+#show_music,#show_video,#show_map,#show_link{
 
 	border-radius:0px;margin:0px;padding:0px;display:none;
 }
 
-#music,#video{
+#music,#video,#map,#link{
 	
 	resize:none;
 }

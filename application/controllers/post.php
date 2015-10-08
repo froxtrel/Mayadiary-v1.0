@@ -12,6 +12,9 @@ class Post extends CI_Controller {
 	
 	public function insertPost(){
 
+
+		 $map = $this->input->post('map');
+		 $link = $this->input->post('link'); 
 		 $video = $this->input->post('video');
 		 $music = $this->input->post('music');
 		 $body  = $this->input->post('body');
@@ -20,7 +23,7 @@ class Post extends CI_Controller {
 		 $mood  = $this->input->post('mood');
 		 $feel  = $this->input->post('feel');
 
-		 $this->model_post->insertPost($body,$from,$to,$mood,$feel,$music,$video);
+		 $this->model_post->insertPost($body,$from,$to,$mood,$feel,$music,$video,$map,$link);
 
 
 	}

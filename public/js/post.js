@@ -6,6 +6,8 @@ $(function(event){
 			event.preventDefault();
 			$('#show_music').toggle();
 			$('#show_video').hide();
+			$('#show_link').hide();
+			$('#show_map').hide();
 
 		});
 
@@ -14,9 +16,30 @@ $(function(event){
 			event.preventDefault();
 			$('#show_music').hide();
 			$('#show_video').toggle();
+			$('#show_link').hide();
+			$('#show_map').hide();
 
 		});
 
+	   $('#gps').click(function(event){
+
+			event.preventDefault();
+			$('#show_music').hide();
+			$('#show_video').hide();
+			$('#show_map').toggle();
+			$('#show_link').hide();
+
+		});
+
+	   $('#links').click(function(event){
+
+			event.preventDefault();
+			$('#show_music').hide();
+			$('#show_video').hide();
+			$('#show_map').hide();
+			$('#show_link').toggle();
+
+		});
 
 
 	// POST FEED HANDLER
@@ -344,12 +367,14 @@ $(function(event){
 		var video   = $('#video').val();
 		var n_video = video.slice(32);
 		var music   = $('#music').val();
+		var map     = $('#map').val();
+		var link    = $('#link').val();
 
 		$.ajax({
 
 			type:'POST',
 			url :'http://localhost/Mayadiary-v1.0/post/insertPost',
-			data:{'body':body,'from':from,'to':to,'mood':mood,'feel':feel,'video':n_video,'music':music },
+			data:{'body':body,'from':from,'to':to,'mood':mood,'feel':feel,'video':n_video,'music':music,'map':map,'link':link },
 			datatype:'json',
 			success: function (data) {
 
@@ -357,8 +382,9 @@ $(function(event){
 			$('#n_post').val('');
 			$('#extra').html('');
 			$('#music').val('');
-			
-
+			$('#video').val('');
+			$('#map').val('');
+			$('#link').val('');
                  
               },
 

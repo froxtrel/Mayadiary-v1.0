@@ -97,7 +97,13 @@
 		            		 <textarea id="video" style="width:100%" rows="1" placeholder="Share video from youtube"></textarea>
 		            	</div>
 
+		            	<div class="jumbotron" id="show_map">
+		            		 <textarea id="map" style="width:100%" rows="1" placeholder="Add a visited place"></textarea>
+		            	</div>
 
+		            	<div class="jumbotron" id="show_link">
+		            		 <textarea id="link" style="width:100%" rows="1" placeholder="Share a link"></textarea>
+		            	</div>
 
 
 		            	<div class="jumbotron" id="post_footer">
@@ -240,7 +246,7 @@
 		            			<img src="<?php echo base_url();?>profile_photo/default.jpg" width="48px" height="48px" class="img-circle">	
 		            		</td>
 
-		            		<?php if (!empty($feed->shared_id)){ ?>
+		            	   <?php if (!empty($feed->shared_id)){ ?>
 
 		             		<td><b><?php echo ucfirst($feed->added_by);?> </b> ↫ <small>Shared a post</small> 
 
@@ -315,7 +321,24 @@
 
 		            <div class="jumbotron" id="feed_body">
 
-		               <?php echo $feed->body;?>
+		             <?php echo $feed->body;?>
+
+		             <?php if(!empty($feed->link)){?>
+
+			         <br>
+
+			         <center><a href="http://<?php echo $feed->link;?>"><h5><?php echo $feed->link;?></h5></a></center>
+
+			         <?php } ?>
+
+		              <?php
+
+        			  if(!empty($feed->map)){ ?>
+
+        			  <img src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo $feed->map;?>&amp;zoom=15&amp;size=700x200&amp;
+       				  maptype=roadmap&amp;markers=color:red%7C<?php echo $feed->map;?>&amp;sensor=true&amp;scale=2&amp;visual_refresh=true" width="100%" height="200"
+       				  >
+        			  <?php } ?>
 
 		               <?php
 
@@ -332,9 +355,9 @@
 	                   <?php } ?>
 
 
-		            	<?php if(!empty($feed->mood) && !empty($feed->feel)){ ?>
+		               <?php if(!empty($feed->mood) && !empty($feed->feel)){ ?>
 
-		            	</p>
+		               </p>
 		            	↪ <img src="<?php echo $feed->mood;?>" width="25" height="25" id="img44"> <small> Feeling <?php echo $feed->feel;?></small>
 
 		            	<?php } ?>
@@ -366,6 +389,24 @@
 		             				<td>
 
 		             				<?php echo $share->body;?>
+
+		             				<?php if(!empty($share->link)){?>
+
+			         				<br>
+
+			         				<center><a href="http://<?php echo $share->link;?>"><h5><?php echo $share->link;?></h5></a></center>
+
+			         				<?php } ?>
+
+		             				<?php
+
+        			  				if(!empty($share->map)){ ?>
+
+        			  				<img src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo $share->map;?>&amp;zoom=15&amp;size=700x200&amp;
+       				 				 maptype=roadmap&amp;markers=color:red%7C<?php echo $share->map;?>&amp;sensor=true&amp;scale=2&amp;visual_refresh=true" width="100%" height="200"
+       				  				>
+        			  				<?php } ?>
+
 
 		             				<?php
 
