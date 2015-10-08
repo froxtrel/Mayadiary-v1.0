@@ -111,12 +111,14 @@
 
 			        ?>
 
-		            <div class="jumbotron" id="post_feed">
+		           <div class="jumbotron" id="post_feed">
 
 		            <!-- post -->
 		            
-		            <?php
+		           <?php 
 
+		           $limit = $this->session->userdata('limit');
+		           $this->db->limit($limit);
 		           $this->db->order_by('id','desc');
 		           $post =  $this->db->get('post')->result();
 		         
@@ -228,7 +230,6 @@
 		             	foreach($shared as $share){
 		             		}?>
 
-		             	<hr>
 		             	<div class="jumbotron" id="shared_post">
 		             		<table width="100%" border="0">
 		             			<tr>
@@ -363,10 +364,9 @@
 		            <?php } ?>
 
 		            <!-- end -->
-
+		          
 		            </div>
-
-			
+			  <button id="load_more" class="btn btn-warning btn-sm">LOAD MORE</button>
 		     </div>
 
 		     <div class="col-md-4">
@@ -386,4 +386,5 @@
 </div>
 
 </body>
+
 

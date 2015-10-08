@@ -28,7 +28,9 @@ class Model_login extends CI_Model {
         $newdata = array(
                    'username'  => $username->username,
                    'email'     => $email,
-                   'logged_in' => TRUE
+                   'logged_in' => TRUE,
+                   'limit'     =>  '3'
+
                );
 
         $this->session->set_userdata($newdata);
