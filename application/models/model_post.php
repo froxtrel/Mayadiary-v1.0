@@ -43,5 +43,19 @@ class Model_post extends CI_Model {
           $this->db->update('post');   
 
    }
+
+   public function insertShare($id,$body){
+
+          $date = date('Y-m-d H:i:s'); 
+          $from = $this->session->userdata('username');
+
+          $this->db->set('body',$body);
+          $this->db->set('added_by',$from);
+          $this->db->set('shared_id',$id);
+          $this->db->set('date_added',$date);
+          $this->db->insert('post');  
+
+
+   }
       
 }

@@ -443,6 +443,14 @@ body {
 	display: none;
 }
 
+#shared_post{
+
+	border-radius: 4px;
+	padding: 5px;
+	background-color: #ecf0f1;
+	/*border: solid 1px #DDDDDD;*/
+
+}
 
 
 /*END*/

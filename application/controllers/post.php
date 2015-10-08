@@ -36,4 +36,13 @@ class Post extends CI_Controller {
 
 
 	}
+
+	public function insertShared(){
+
+		$id = $this->input->post('id');
+		$body = ' ';
+		$this->model_post->insertShare($id,$body);
+
+
+	}
 }

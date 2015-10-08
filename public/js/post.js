@@ -7,7 +7,25 @@ $(function(event){
 		$(document).on('click','#sharez',function(event){
 			
 			  var id = $(this).siblings('#feed_id').attr('value');
-			  $('#'+id).hide('slow');
+			  
+			  $.ajax({
+
+				type:'POST',
+				url :'http://localhost/Mayadiary-v1.0/post/insertShared',
+				data:{'id':id},
+				datatype:'json',
+				success: function (data) {
+
+				 $("#post_feed").load(location.href + " #post_feed");
+	                 
+	              },
+
+	            error: function (data) {
+	                  
+	            alert('failed');
+
+	              }
+				});
 	
 		 });
 
@@ -98,6 +116,12 @@ $(function(event){
 		 });
 
 		$(document).on('click','#cancel_e',function(event){
+				
+			$("#post_feed").load(location.href + " #post_feed");
+			
+		 });
+
+		$(document).on('click','#cancel_pe',function(event){
 				
 			$("#post_feed").load(location.href + " #post_feed");
 			

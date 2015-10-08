@@ -135,7 +135,16 @@
 		            		<td rowspan="2" width="15%">
 		            			<img src="<?php echo base_url();?>profile_photo/default.jpg" width="48px" height="48px" class="img-circle">	
 		            		</td>
+
+		            		<?php if (!empty($feed->shared_id)){ ?>
+
+		             		<td><b><?php echo ucfirst($feed->added_by);?> </b> ↫ <small>Shared a post</small> 
+
+		             	   <?php }else{ ?>
+
 		            		<td><b><?php echo ucfirst($feed->added_by);?></b> 
+
+		            	   <?php } ;?>
 
 		            		<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >
 		            		<button style="float:right;" id="option"><span class="glyphicon glyphicon-menu-down"></span></button>
@@ -212,6 +221,30 @@
 
 		             	<button class="btn btn-danger btn-xs" id="cancel_pe">Cancel</button>
 		             	</div>
+		             	</p>
+		             	<?php if (!empty($feed->shared_id)){
+
+		             	$shared = $this->db->get_where('post',array('id' => $feed->shared_id))->result();
+		             	foreach($shared as $share){
+		             		}?>
+
+		             	<hr>
+		             	<div class="jumbotron" id="shared_post">
+		             		<table width="100%" border="0">
+		             			<tr>
+		             				<td width="10%"><img src="<?php echo base_url();?>profile_photo/default.jpg" width="35px" height="35px" class="img-circle">	</td>
+		             				<td><b><?php echo ucfirst($share->added_by);?></b> <small> Originally posted this</small></td>
+		             			</tr>
+		             			<tr>
+		             				<td width="10%"></td>
+		             				<td><?php echo $share->body;?></td>
+		             			</tr>
+		             		</table>
+
+		             	</div>
+		             		
+
+		             	<?php } ?>
 
 		            </div>
 
@@ -235,8 +268,15 @@
 		            		<button id="whol">↯ Like <?php echo count($like) ;?></button>
 		            		</td>
 		            		<td width="10%">
+
+		            		<?php
+
+		            			$cshare = $this->db->get_where('post',array('shared_id' => $feed->id ))->result();
+
+		            		?>
+
 		            		<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >
-		            		<button id="whos">↫ Share 1</button>
+		            		<button id="whos">↫ Share <?php echo count($cshare);?></button>
 		            		</td>
 		            	</tr>
 		         
