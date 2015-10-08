@@ -315,8 +315,15 @@
 
 		            <div class="jumbotron" id="feed_body">
 
-		            	<?php echo $feed->body;?>
+		               <?php echo $feed->body;?>
 
+		               <?php
+
+                       if(!empty($feed->video)){ ?>
+
+                       <iframe width="100%" height="315" src="https://www.youtube.com/embed/<?php echo $feed->video;?>" frameborder="1" allowfullscreen></iframe> 
+
+                       <?php } ?>
 
 	                   <?php if(!empty($feed->music)){ ?>
 
@@ -359,6 +366,14 @@
 		             				<td>
 
 		             				<?php echo $share->body;?>
+
+		             				<?php
+
+                                    if(!empty($share->video)){ ?>
+
+                                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/<?php echo $share->video;?>" frameborder="1" allowfullscreen></iframe> 
+
+                                    <?php } ?>
 
 		             				<?php if(!empty($share->music)){ ?>
 
