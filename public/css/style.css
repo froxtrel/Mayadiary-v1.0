@@ -429,6 +429,22 @@ body {
 	resize:none;
 }
 
+.extra_m{
+
+	background-color: #fff;
+	border-radius: 0px;
+	border: solid 1px #DDDDDD;
+	position: absolute;
+	margin-left: 47%;
+	color: black;
+	padding: 10px;
+	width: 200px;
+	padding: 0px;
+	display: none;
+}
+
+
+
 /*END*/
 
 

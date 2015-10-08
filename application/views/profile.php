@@ -135,7 +135,58 @@
 		            		<td rowspan="2" width="15%">
 		            			<img src="<?php echo base_url();?>profile_photo/default.jpg" width="48px" height="48px" class="img-circle">	
 		            		</td>
-		            		<td><b><?php echo ucfirst($feed->added_by);?></b> <button style="float:right;" id="option"><span class="glyphicon glyphicon-menu-down"></span></button></td>
+		            		<td><b><?php echo ucfirst($feed->added_by);?></b> 
+
+		            		<button style="float:right;" id="option"><span class="glyphicon glyphicon-menu-down"></span></button>
+
+		            		<div class="extra_m" id="extra_m<?php echo $feed->id;?>">
+		            		<table width="100%" border="0">
+		            			<tr>
+		            				<td height="10px;"></td>
+		            			</tr>
+		            			<tr>
+		            				<td><button style="width:100%;border:none;border-radius:0px;" class="btn btn-default btn-xs">Report post</button></td>
+		            			</tr>
+		            			<tr>
+		            				<td height="10px;"></td>
+		            			</tr>
+		            			<tr>
+		            				<td><button style="width:100%;border:none;border-radius:0px;" class="btn btn-default btn-xs"> View post</button></td>
+		            			</tr>
+		            			<tr>
+		            				<td height="10px;"></td>
+		            			</tr>
+		            			<tr>
+		            				<td><button style="width:100%;border:none;border-radius:0px;" class="btn btn-default btn-xs"> Edit post</button></td>
+		            			</tr>
+		            			<tr>
+		            				<td height="10px;"></td>
+		            			</tr>
+		            			<tr>
+		            				<td><button style="width:100%;border:none;border-radius:0px;" class="btn btn-default btn-xs"> Remove post</button></td>
+		            			</tr>
+		            			<tr>
+		            				<td height="10px;"></td>
+		            			</tr>
+		            			<tr>
+		            				<td><button style="width:100%;border:none;border-radius:0px;" class="btn btn-default btn-xs"> Boost this post</button></td>
+		            			</tr>
+		            			<tr>
+		            				<td height="10px;"></td>
+		            			</tr>
+		            			<tr>
+		            				<td> <button style="width:100%;border:none;border-radius:0px;" class="btn btn-default btn-xs">Off Notification</button></td>
+		            			</tr>
+		            			<tr>
+		            				<td height="15px;"></td>
+		            			</tr>
+		            		</table>
+		            		<!-- <hr> -->
+
+		            		</div>
+
+
+		            		</td>
 		            	</tr>
 		            	<tr>
 		            		<td><span class="glyphicon glyphicon-time"></span><small> About <?php echo humanTiming(strtotime($feed->date_added));?> ago</small></td>
@@ -164,11 +215,11 @@
 		            		<td width="30%"></td>
 		            		<td width="10%">
 		            		<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id">
-		            		<button id="whol"><span class="glyphicon glyphicon-heart"></span> <?php echo count($like) ;?></button>
+		            		<button id="whol">↯ Like <?php echo count($like) ;?></button>
 		            		</td>
 		            		<td width="10%">
 		            		<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >
-		            		<button id="whos"><span class="glyphicon glyphicon-retweet"></span> 1</button>
+		            		<button id="whos">↫ Share 1</button>
 		            		</td>
 		            	</tr>
 		         
@@ -194,7 +245,7 @@
 		             	<b><?php echo ucfirst($comment->added_by);?></b>
 
 		             	<input type="hidden" value="<?php echo $comment->id;?>" id="comm_id">
-		             	<button id="delete_com"><span class="glyphicon glyphicon-remove"></span></button>
+		             	<button id="delete_com">X </button>
 
 		             	</td>
 		             	</tr>
