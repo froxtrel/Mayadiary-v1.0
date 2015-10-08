@@ -203,6 +203,55 @@ $(function(event){
 			
 		 });
 
+
+	    $(document).on('click','#option',function(event){
+				
+			var id = $(this).siblings('#feed_id').attr('value');
+			
+			$('#extra_m'+id).toggle();
+			
+		 });
+
+
+	     $(document).on('click','#del_p',function(event){
+				
+			var id = $(this).siblings('#feed_id').attr('value');
+            var result =  window.confirm("Do you really want to delete this?");
+
+            if(result == true){
+
+            $.ajax({
+
+			type:'POST',
+			url :'http://localhost/Mayadiary-v1.0/post/deletePost',
+			data:{'id':id},
+			datatype:'json',
+			success: function (data) {
+
+			$("#post_feed").load(location.href + " #post_feed");
+                 
+             },
+
+            error: function (data) {
+                  
+            alert('failed');
+
+              }
+			});
+
+
+            }else{
+
+
+
+            }
+			
+		 });
+
+
+
+
+
 		// END
 
 

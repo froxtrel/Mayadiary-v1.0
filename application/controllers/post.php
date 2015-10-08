@@ -20,4 +20,11 @@ class Post extends CI_Controller {
 
 
 	}
+
+	public function deletePost(){
+
+		$id = $this->input->post('id');
+		$this->model_post->delPost($id);
+
+	}
 }

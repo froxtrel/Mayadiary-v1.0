@@ -137,6 +137,7 @@
 		            		</td>
 		            		<td><b><?php echo ucfirst($feed->added_by);?></b> 
 
+		            		<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >
 		            		<button style="float:right;" id="option"><span class="glyphicon glyphicon-menu-down"></span></button>
 
 		            		<div class="extra_m" id="extra_m<?php echo $feed->id;?>">
@@ -157,13 +158,18 @@
 		            				<td height="10px;"></td>
 		            			</tr>
 		            			<tr>
-		            				<td><button style="width:100%;border:none;border-radius:0px;" class="btn btn-default btn-xs"> Edit post</button></td>
+		            				<td>
+		            				<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >	
+		            				<button style="width:100%;border:none;border-radius:0px;" class="btn btn-default btn-xs"> Edit post</button>
+		            				</td>
 		            			</tr>
 		            			<tr>
 		            				<td height="10px;"></td>
 		            			</tr>
 		            			<tr>
-		            				<td><button style="width:100%;border:none;border-radius:0px;" class="btn btn-default btn-xs"> Remove post</button></td>
+		            				<td>
+		            				<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >
+		            				<button style="width:100%;border:none;border-radius:0px;" class="btn btn-default btn-xs" id="del_p"> Remove post</button></td>
 		            			</tr>
 		            			<tr>
 		            				<td height="10px;"></td>
