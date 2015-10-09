@@ -6,7 +6,7 @@ class Login extends CI_Controller {
 public function __construct(){
         
         parent::__construct();
-         $this->clear_cache();
+        $this->clear_cache();
         $this->load->model('model_login');
     }
 	

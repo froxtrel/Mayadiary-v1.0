@@ -43,7 +43,7 @@ $(function() {
     $('#load_more').click(function() {
 
         $("#post_feed").load(location.href + " #post_feed");
-    });
+ });
 
     $.ajax({
 
