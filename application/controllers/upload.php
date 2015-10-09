@@ -81,6 +81,15 @@
 					$this->db->set('photo',$image_path);
 					$this->db->where('username',$this->session->userdata('username'));
 					$this->db->update('user');
+
+
+					$this->db->set('date_added',$date_added);
+					$this->db->set('noti_body','Change profile picture');
+					$this->db->set('added_by',$this->session->userdata('username'));
+					$this->db->set('profile_picture',$image_path);
+					$this->db->set('noti_type','profile_photo');
+					$this->db->insert('post');
+
 					
 					if(file_exists($image_path))   {
 						$status = "success";

@@ -270,6 +270,12 @@
 
 		             		<td><b><?php echo ucfirst($feed->added_by);?> </b> ↫ <small>Shared a post</small> 
 
+
+		             	  <?php } else if (!empty($feed->profile_picture)){ ?>
+
+		             		<td><b><?php echo ucfirst($feed->added_by);?> </b> ↫ <small>Change profile photo</small> 	
+
+
 		             	   <?php }else{ ?>
 
 		            		<td><b><?php echo ucfirst($feed->added_by);?></b> 
@@ -350,6 +356,16 @@
 
 		             <?php } ?>
 
+
+		             <?php
+
+			         if(!empty($feed->profile_picture)){ ?>
+		  
+			         <img src="<?php echo base_url();?>profile_photo/<?php echo $feed->profile_picture;?>" width="80%" height="auto">
+			       
+			         <?php } ?>	
+
+
 		             <?php
 
 			         if(!empty($feed->photo)){ ?>
@@ -410,7 +426,7 @@
 		             			<tr>
 		             				<td width="10%">
 
-		             				<?php
+		             			  <?php
 
 		             					$this->db->select('photo');
 		             					$this->db->where('username',$share->added_by);
@@ -431,6 +447,16 @@
 
 		             				<?php echo $share->body;?>
 
+		             				<?php
+
+							        if(!empty($share->profile_picture)){ ?>
+
+						  		 ↪  <small>Change profile photo</small>
+
+							        <img src="<?php echo base_url();?>profile_photo/<?php echo $share->profile_picture;?>" width="80%" height="auto">
+							       
+							        <?php } ?>	
+
 		             				<?php if(!empty($share->mood) && !empty($share->feel)){ ?>
 
 		            				</p>
@@ -438,13 +464,13 @@
 
 		            				<?php } ?>
 
-		             				 <?php
+		             				<?php
 
-							         if(!empty($share->photo)){ ?>
+							        if(!empty($share->photo)){ ?>
 						  
-							         <img src="<?php echo base_url();?>uploads/<?php echo $share->photo;?>" width="90%" height="300px;">
+							        <img src="<?php echo base_url();?>uploads/<?php echo $share->photo;?>" width="90%" height="300px;">
 							       
-							         <?php } ?>	
+							        <?php } ?>	
 
 		             				<?php if(!empty($share->link)){?>
 
