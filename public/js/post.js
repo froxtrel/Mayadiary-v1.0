@@ -408,12 +408,13 @@ $(function(event){
 		var music   = $('#music').val();
 		var map     = $('#map').val();
 		var link    = $('#link').val();
+		var type    = $('#sett_v').val();
 
 		$.ajax({
 
 			type:'POST',
 			url :'http://localhost/Mayadiary-v1.0/post/insertPost',
-			data:{'body':body,'from':from,'to':to,'mood':mood,'feel':feel,'video':n_video,'music':music,'map':map,'link':link },
+			data:{'body':body,'from':from,'to':to,'mood':mood,'feel':feel,'video':n_video,'music':music,'map':map,'link':link,'type':type },
 			datatype:'json',
 			success: function (data) {
 

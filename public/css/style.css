@@ -525,6 +525,10 @@ body {
 	border-radius: 0px;
 }
 
+.btn-group > button {
+
+	border-radius: 0px;
+}
 
 
 /*END*/

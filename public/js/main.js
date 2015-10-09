@@ -1,6 +1,63 @@
 
 $(function(){
 
+	// VISIBILITY
+
+$('#visib')
+    .click(function (event) {
+
+        $('#btn-list')
+            .slideToggle();
+    });
+
+$('#fr')
+    .click(function (event) {
+
+        event.preventDefault();
+        $('#value')
+            .html('Friends');
+        $('#sett_v')
+            .val('friends');
+
+    });
+
+$('#pub')
+    .click(function (event) {
+
+        event.preventDefault();
+        $('#value')
+            .html('Public');
+        $('#sett_v')
+            .val('public');
+
+    });
+
+$('#onl')
+    .click(function (event) {
+
+        event.preventDefault();
+        $('#value')
+            .html('Only me');
+        $('#sett_v')
+            .val('onlyme');
+
+    });
+
+$('#cus')
+    .click(function (event) {
+
+        event.preventDefault();
+        $('#value')
+            .html('Custom');
+        $('#sett_v')
+            .val('custom');
+
+    });
+
+
+
+	// END
+
 	// BEGIN INDEX JS
 
 	$('#register').click(function(event){

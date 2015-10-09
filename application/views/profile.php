@@ -27,6 +27,16 @@
         <li><a href="#"></a></li> 
       </ul>
       <ul class="nav navbar-nav navbar-right">
+       <?php 
+
+		  $this->db->select('photo');
+		  $this->db->where('username',$this->session->userdata('username'));
+		  $you_p = $this->db->get('user')->result();
+		  foreach($you_p as $youp){}
+
+		  ?>
+        <li><a href="<?php echo base_url();?>profile/userProfile/<?php echo $this->session->userdata('username');?>">
+            <img src="<?php echo base_url();?>profile_photo/<?php echo $youp->photo;?>" width="24" height="24" class="img-circle" style="border:2px solid #fff;"></a></li>
         <li><a href="<?php echo base_url();?>login/logout" style="color:#fff;"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
     </div>
@@ -161,8 +171,23 @@
 
 		            	    </form>
 
-		            		<button class="btn btn-success btn-sm" id="np_send">Post</button>
-		            		<button class="btn btn-default btn-sm" id="visib">Friends</button>
+		            		<button class="btn btn-success btn-sm" id="np_send">Post</button>		
+
+		            		<div class="btn-group">
+
+						    <button type="button" class="btn btn-default btn-sm"><span id="value">Public</span></button>
+						    <input type="hidden" value="public" id="sett_v">
+
+						    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+						    <span class="caret"></span>
+						    </button>
+						    <ul class="dropdown-menu" role="menu">
+						      <li><a href="#" id="pub">Public</a></li>
+						      <li><a href="#" id="fr">Friends</a></li>
+						      <li><a href="#" id="onl">Only me</a></li>
+						      <li><a href="#" id="cus">Custom</a></li>
+						    </ul>
+						    </div>						    
 
 		            		<a href="" id="emotion" style="margin-left:10px" ><img src="<?php echo base_url();?>public/img/smile.png" width="15" height="15"></a>
 		            		
@@ -281,8 +306,10 @@
 
 		           $limit = $this->session->userdata('limit');
 		           $this->db->limit($limit);
-		           $this->db->order_by('id','desc');
-		           $this->db->where('status','on');
+		           $this->db->order_by('id','desc');		  
+		           $this->db->where("(status = 'on' AND added_by = '$row->username') 
+                   OR user_posted_to = '$row->username'");
+
 		           $post =  $this->db->get('post')->result();
 		         
 		           foreach ($post as $feed){ 
@@ -327,7 +354,7 @@
 		             	   <td><b><a href="<?php echo base_url();?>profile/userProfile/<?php echo ucfirst($feed->added_by);?>"><?php echo ucfirst($feed->added_by);?> </a></b> ↫ <small>Change cover photo</small> 	
 
 
-		             	   <?php } else if (!empty($feed->user_posted_to)){ ?>
+		             	   <?php } else if (!empty($feed->user_posted_to AND $feed->user_posted_to!= $this->session->userdata('username'))){ ?>
 
 
 		             	   <td><b><a href="<?php echo base_url();?>profile/userProfile/<?php echo ucfirst($feed->added_by);?>"><?php echo ucfirst($feed->added_by);?></a> </b> ↪ <small>
@@ -338,7 +365,25 @@
 
 		            		<td><b><a href="<?php echo base_url();?>profile/userProfile/<?php echo ucfirst($feed->added_by);?>"><?php echo ucfirst($feed->added_by);?></a></b> 
 
-		            	   <?php } ;?>
+		            			<?php
+
+		            			if($feed->type =='onlyme'){ ?>
+
+		            				↪<small> <span class="glyphicon glyphicon-lock"></span> Only me </small>
+
+		            			<?php }else if($feed->type =='public'){ ?>
+
+		            				↪<small> <span class="glyphicon glyphicon-globe"></span> Public </small>
+
+		            			<?php }else if($feed->type =='friends'){ ?>
+
+		            				↪<small> <span class="glyphicon glyphicon-user"></span> Friends </small>
+
+		            			<?php }else{ ?>
+		            				
+		            				↪<small> <span class="glyphicon glyphicon-cog"></span> Custom </small>
+
+		            	        <?php } };?>
 
 		            		<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >
 		            		<button style="float:right;" id="option"><span class="glyphicon glyphicon-menu-down"></span></button>
@@ -398,7 +443,7 @@
 		            		</td>
 		            	</tr>
 		            	<tr>
-		            		<td><span class="glyphicon glyphicon-time"></span><small> About <?php echo humanTiming(strtotime($feed->date_added));?> ago</small></td>
+		            		<td><small><?php echo humanTiming(strtotime($feed->date_added));?> ago</small></td>
 		            	</tr>
 		            </table>
 		            </div>
