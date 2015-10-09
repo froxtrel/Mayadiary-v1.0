@@ -35,8 +35,9 @@ class Model_post extends CI_Model {
 
    public function delPost($id){
 
+      $this->db->set('status','off');
       $this->db->where('id',$id);
-      $this->db->delete('post');
+      $this->db->update('post');
 
    }
 

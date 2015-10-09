@@ -1,22 +1,19 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Like extends CI_Controller {
-
+class Home extends CI_Controller {
 
 public function __construct(){
         
         parent::__construct();
         $this->clear_cache();
-        $this->load->model('model_like');
     }
-
-
-public function insertLike(){
-
- 	$id = $this->input->post('id');
- 	$this->model_like->insertLike($id);
-
-  }
+	
+public function goHome(){
+		
+		$this->load->view('header');
+		$this->load->view('home');
+		$this->load->view('footer');
+	}
 
 public function clear_cache(){
  	
@@ -25,3 +22,6 @@ public function clear_cache(){
     }
 
 }
+
+/* End of file welcome.php */
+/* Location: ./application/controllers/welcome.php */

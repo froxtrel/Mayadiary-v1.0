@@ -1,5 +1,13 @@
-<?php foreach($user as $row){}?>
+<?php 
+    
+    if($this->session->userdata('logged_in') != 1 ){
 
+       redirect('welcome/index');
+    }
+?>
+
+
+<?php foreach($user as $row){}?>
 
 <nav class="navbar navbar-inverse navbar-fixed-top" id="main_nav">
   <div class="container-fluid">
@@ -16,10 +24,17 @@
         <li><a href="#"></a></li>
         <li><a href="#"></a></li>
         <li><a href="#"></a></li> 
+        <li><a href="#"></a></li> 
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="<?php echo base_url();?>login/logout" style="color:#fff;"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
     </div>
   </div>
 </nav>
+
+
+
 <body>
 <div class="container" style="margin-top:30px;">
 	<div class="row">
@@ -86,7 +101,20 @@
 		            	<div class="jumbotron" id="post_body">
 		            	<table width="100%" border="0">
 		            		<tr>
-		            			<td width="10%" style="padding:5px;"><img src="<?php echo base_url();?>profile_photo/<?php echo $row->photo;?>" width="30" height="30" class="img-#"></td>
+		            			<td width="10%" style="padding:5px;">
+
+		            			<?php 
+
+		            				$this->db->select('photo');
+		            				$this->db->where('username',$this->session->userdata('username'));
+		            				$user_p = $this->db->get('user')->result();
+		            				foreach($user_p as $userp){}
+
+		            			?>
+		            			<img src="<?php echo base_url();?>profile_photo/<?php echo $userp->photo;?>" width="30" height="30" class="img-#">
+
+		            			</td>
+
 		            			<td>
 		            			<textarea class="form-control" id="n_post" rows="3"  placeholder="Share what's new"></textarea>
 		            			<input type="hidden" value="<?php echo $row->username;?>" id="user_to">
@@ -254,6 +282,7 @@
 		           $limit = $this->session->userdata('limit');
 		           $this->db->limit($limit);
 		           $this->db->order_by('id','desc');
+		           $this->db->where('status','on');
 		           $post =  $this->db->get('post')->result();
 		         
 		           foreach ($post as $feed){ 
@@ -269,29 +298,45 @@
 		            <table width="100%" border="0">
 		            	<tr>
 		            		<td rowspan="2" width="15%">
-		            			<img src="<?php echo base_url();?>profile_photo/<?php echo $row->photo;?>" width="48px" height="48px" class="img-circle" id="mini_photo">	
-		            		</td>
 
-		            	    <?php if (!empty($feed->shared_id)){ ?>
+		            		<?php
 
-		             		<td><b><?php echo ucfirst($feed->added_by);?> </b> ↫ <small>Shared a post</small> 
+		            			$this->db->select('photo');
+		            			$this->db->where('username',$feed->added_by);
+		            			$add_p = $this->db->get('user')->result();
+		            			foreach($add_p as $addp){}	
+
+		            		?>
+		            	   <img src="<?php echo base_url();?>profile_photo/<?php echo $addp->photo;?>" width="48px" height="48px" class="img-circle" id="mini_photo">	
+		            	   </td>
+
+		            	   <?php if (!empty($feed->shared_id)){ ?>
+
+		             	   <td><b><a href="<?php echo base_url();?>profile/userProfile/<?php echo ucfirst($feed->added_by);?>"><?php echo ucfirst($feed->added_by);?></a></b> ↫ <small>Shared a post</small> 
 
 
 		             	   <?php } else if (!empty($feed->profile_picture)){ ?>
 
 
-		             		<td><b><?php echo ucfirst($feed->added_by);?> </b> ↫ <small>Change profile photo</small> 
+		             		<td><b><a href="<?php echo base_url();?>profile/userProfile/<?php echo ucfirst($feed->added_by);?>"><?php echo ucfirst($feed->added_by);?></a> </b> ↫ <small>Change profile photo</small> 
 
 
 		             	   <?php } else if (!empty($feed->cover_photo)){ ?>
 
 
-		             	  <td><b><?php echo ucfirst($feed->added_by);?> </b> ↫ <small>Change cover photo</small> 	
+		             	   <td><b><a href="<?php echo base_url();?>profile/userProfile/<?php echo ucfirst($feed->added_by);?>"><?php echo ucfirst($feed->added_by);?> </a></b> ↫ <small>Change cover photo</small> 	
+
+
+		             	   <?php } else if (!empty($feed->user_posted_to)){ ?>
+
+
+		             	   <td><b><a href="<?php echo base_url();?>profile/userProfile/<?php echo ucfirst($feed->added_by);?>"><?php echo ucfirst($feed->added_by);?></a> </b> ↪ <small>
+		             	   <b><a href="<?php echo base_url();?>profile/userProfile/<?php echo ucfirst($feed->user_posted_to);?>"><?php echo $feed->user_posted_to;?></a></b></small> 	
 
 
 		             	   <?php }else{ ?>
 
-		            		<td><b><?php echo ucfirst($feed->added_by);?></b> 
+		            		<td><b><a href="<?php echo base_url();?>profile/userProfile/<?php echo ucfirst($feed->added_by);?>"><?php echo ucfirst($feed->added_by);?></a></b> 
 
 		            	   <?php } ;?>
 
@@ -460,7 +505,8 @@
 		             				<img src="<?php echo base_url();?>profile_photo/<?php echo $p_photo->photo;?>" width="35px" height="35px" class="img-circle">
 
 		             				</td>
-		             				<td><b><?php echo ucfirst($share->added_by);?></b> <small> Originally posted this</small></td>
+		             				<td><b><a href="<?php echo base_url();?>profile/userProfile/<?php echo ucfirst($share->added_by);?>"><?php echo ucfirst($share->added_by);?></a></b>
+		             				<small> Originally posted this</small></td>
 		             			</tr>
 		             			<tr>
 		             				<td width="10%"></td>
@@ -588,16 +634,29 @@
 
 		             <?php
 
-		             	$this->db->order_by('id','desc');
+		             	$this->db->order_by('id','asc');
 		          		$com =  $this->db->get_where('comment',array('post_id' => $feed->id))->result();
 
 		          	
 		           		foreach ($com as $comment){  ?>
 
 		           		<tr>
-		             	<td rowspan="2" width="6%"><img src="<?php echo base_url();?>profile_photo/default.jpg" width="30px" height="30px" class="img-circle">	</td>
+		             	<td rowspan="2" width="6%">
+
+		             	<?php
+
+		            			$this->db->select('photo');
+		            			$this->db->where('username',$comment->added_by);
+		            			$com_p = $this->db->get('user')->result();
+		            			foreach($com_p as $comp){}	
+
+		            	?>
+
+		             	<img src="<?php echo base_url();?>profile_photo/<?php echo $comp->photo;?>" width="30px" height="30px" class="img-circle">
+
+		             	</td>
 		             	<td>
-		             	<b id="mini_name"><?php echo ucfirst($comment->added_by);?></b>
+		             	<b id="mini_name"><a href="<?php echo base_url();?>profile/userProfile/<?php echo ucfirst($comment->added_by);?>"><?php echo ucfirst($comment->added_by);?></a></b>
 
 		             	<input type="hidden" value="<?php echo $comment->id;?>" id="comm_id">
 		             	<button id="delete_com">X </button>
@@ -669,7 +728,7 @@
 		     <div class="col-md-4">
 
 		           <div class="jumbotron" id="side_info">
-		           	
+		          		           	
 		           	<div style="display:none;">
 					<form method="post" action="#" id="upload_photoz">
 					<input type="file" data-filename-placement="inside" name="userfile" id="userphoto">
