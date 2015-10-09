@@ -516,6 +516,15 @@ body {
 	background-color: rgba(255,255,255,0.5);
 }
 
+#cover_logo{
+
+	position: absolute;
+	margin-left: 70%;
+	margin-top: -420px;
+	background-color: rgba(255,255,255,0.5);
+	border-radius: 0px;
+}
+
 
 
 /*END*/
@@ -558,6 +567,90 @@ body {
     #menu_1,#menu_2,#menu_3,#menu_4,#menu_5{
 
     	font-size: 8px;
+    }
+
+    #upload_logo{
+
+       margin-left: 35%;
+	   margin-top: -90px;
+    }
+
+    #cover_logo{
+
+    	margin-top: -230px;
+    	margin-left: 44%;
+    }
+
+    #sta,#pho,#vi,#mu{
+
+    	font-size: 10px;
+    }
+
+    #emotion_t{
+
+    	padding: 0px;
+    }
+
+    #whol,#whos{
+
+    	display: none;
+    }
+
+    #feed_like{
+
+    	padding: 0px;
+    	padding-left: 5%;
+    }
+
+    #like{
+
+    	margin-left: 15px;
+    }
+
+    #com_mini{
+
+    	font-size: 10px;
+    }
+
+    .origin {
+
+    	font-size: 11px;
+    	margin-left: 5px;
+    }
+
+    #mini_name {
+
+    	font-size: 12px;
+    	margin-left: 5px;
+    }
+
+    .img-circle {
+
+    	height: 30px;
+    	width: 30px;
+    }
+
+    #min_photo {
+
+    	height: 45px;
+    	width: 45px;
+    }
+
+    .glyphicon-pencil,.glyphicon-thumbs-up{
+
+    	display: none;
+    }
+
+    .extra_m{
+
+    	margin-left: 4%;
+    	border-radius: 5px;
+    	padding: 0px;
+    }
+
+    #feed_body {
+
+    	padding: 1px;
     }
 }
 

@@ -16,6 +16,19 @@ $(function(event) {
 				$('#profile_update').click();
 			
 	});
+
+	 $(document).on('click','#cover_logo',function(event){
+				
+	 			$('#usercover').click();
+			
+	});
+
+
+	 $(document).on('change','#usercover',function(event){
+				
+				$('#cover_update').click();
+			
+	});
  
 
 	// PROFILE PICTURES
@@ -34,6 +47,29 @@ $(function(event) {
                         .load(location.href + " #photos>*", "");
                     $("#post_feed")
                             .load(location.href + " #post_feed>*", "");
+
+
+                }
+            });
+            return false;
+        });
+
+     // COVER PHOto
+   $('#upload_coverz')
+        .submit(function (e) {
+
+            e.preventDefault();
+            $.ajaxFileUpload({
+                url: "http://localhost/Mayadiary-v1.0/upload/upload_cover"
+                , secureuri: false
+                , fileElementId: 'usercover'
+                , dataType: 'JSON'
+                , success: function (data) {
+
+                     $("#covers")
+                         .load(location.href + " #covers>*", "");
+                    $("#post_feed")
+                             .load(location.href + " #post_feed>*", "");
 
 
                 }

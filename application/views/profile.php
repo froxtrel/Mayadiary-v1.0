@@ -28,7 +28,11 @@
 			<div class="jumbotron" id="main_wrap">
 					
 			<div class="jumbotron" id="cover_photo">
-			<img src="<?php echo base_url();?>cover/default.jpg" width="100%" height="220" id="main_cover">	
+
+			<div id="covers">
+			<img src="<?php echo base_url();?>cover/<?php echo $row->cover;?>" width="100%" height="220" id="main_cover">	
+			</div>
+
 			<table width="100%" border="0">
 				<tr>
 					<td width="25%"><img src="<?php echo base_url();?>uploads/1.jpg" width="100%" height="210" id="photo1" class="img"></td>
@@ -43,6 +47,8 @@
 			</div>
 
 			<button id="upload_logo" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-camera"></span></button>
+			<button id="cover_logo" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-camera"></span> Change Cover</button>
+
 
 			<span id="profile_name"><?php echo ucfirst($row->username);?></span>
 
@@ -65,13 +71,13 @@
 
 		            	<div class="jumbotron" id="post_header">
 
-			              <a href="" id="nor_post"><img src="<?php echo base_url();?>public/img/posts.png" width="15" height="15" ><small> Status </small></a>	
+			              <a href="" id="nor_post"><img src="<?php echo base_url();?>public/img/posts.png" width="15" height="15" ><small id="sta"> Status </small></a>	
 			              
-			              <a href="" id="pho_post" style="margin-left:10px;"><img src="<?php echo base_url();?>public/img/photo.png" width="19" height="19"> <small> Photo </small></a>
+			              <a href="" id="pho_post" style="margin-left:10px;"><img src="<?php echo base_url();?>public/img/photo.png" width="19" height="19"> <small id="pho"> Photo </small></a>
 
-					      <a href="" id="v_post" style="margin-left:10px;"><img src="<?php echo base_url();?>public/img/video.png" width="15" height="15" > <small> Video </small></a>
+					      <a href="" id="v_post" style="margin-left:10px;"><img src="<?php echo base_url();?>public/img/video.png" width="15" height="15" > <small id="vi"> Video </small></a>
 
-					      <a href="" id="mu_post" style="margin-left:10px;"><img src="<?php echo base_url();?>public/img/music.png" width="15" height="15"> <small> Music </small></a>
+					      <a href="" id="mu_post" style="margin-left:10px;"><img src="<?php echo base_url();?>public/img/music.png" width="15" height="15"> <small id="mu"> Music </small></a>
 
 
 		            	</div>
@@ -263,17 +269,24 @@
 		            <table width="100%" border="0">
 		            	<tr>
 		            		<td rowspan="2" width="15%">
-		            			<img src="<?php echo base_url();?>profile_photo/<?php echo $row->photo;?>" width="48px" height="48px" class="img-circle">	
+		            			<img src="<?php echo base_url();?>profile_photo/<?php echo $row->photo;?>" width="48px" height="48px" class="img-circle" id="mini_photo">	
 		            		</td>
 
-		            	   <?php if (!empty($feed->shared_id)){ ?>
+		            	    <?php if (!empty($feed->shared_id)){ ?>
 
 		             		<td><b><?php echo ucfirst($feed->added_by);?> </b> ↫ <small>Shared a post</small> 
 
 
-		             	  <?php } else if (!empty($feed->profile_picture)){ ?>
+		             	   <?php } else if (!empty($feed->profile_picture)){ ?>
 
-		             		<td><b><?php echo ucfirst($feed->added_by);?> </b> ↫ <small>Change profile photo</small> 	
+
+		             		<td><b><?php echo ucfirst($feed->added_by);?> </b> ↫ <small>Change profile photo</small> 
+
+
+		             	   <?php } else if (!empty($feed->cover_photo)){ ?>
+
+
+		             	  <td><b><?php echo ucfirst($feed->added_by);?> </b> ↫ <small>Change cover photo</small> 	
 
 
 		             	   <?php }else{ ?>
@@ -356,12 +369,20 @@
 
 		             <?php } ?>
 
+		              <?php
+
+			         if(!empty($feed->cover_photo)){ ?>
+		  
+			         <img class="img-responsive" src="<?php echo base_url();?>cover/<?php echo $feed->cover_photo;?>" width="100%" height="auto">
+			       
+			         <?php } ?>
+
 
 		             <?php
 
 			         if(!empty($feed->profile_picture)){ ?>
 		  
-			         <img src="<?php echo base_url();?>profile_photo/<?php echo $feed->profile_picture;?>" width="80%" height="auto">
+			         <img class="img-responsive" src="<?php echo base_url();?>profile_photo/<?php echo $feed->profile_picture;?>" width="80%" height="auto">
 			       
 			         <?php } ?>	
 
@@ -370,7 +391,7 @@
 
 			         if(!empty($feed->photo)){ ?>
 		  
-			         <img src="<?php echo base_url();?>uploads/<?php echo $feed->photo;?>" width="100%" height="300px;">
+			         <img class="img-responsive" src="<?php echo base_url();?>uploads/<?php echo $feed->photo;?>" width="100%" height="300px;">
 			       
 			         <?php } ?>		       
 
@@ -386,7 +407,7 @@
 
         			  if(!empty($feed->map)){ ?>
 
-        			  <img src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo $feed->map;?>&amp;zoom=15&amp;size=700x300&amp;
+        			  <img class="img-responsive" src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo $feed->map;?>&amp;zoom=15&amp;size=700x300&amp;
        				  maptype=roadmap&amp;markers=color:red%7C<?php echo $feed->map;?>&amp;sensor=true&amp;scale=2&amp;visual_refresh=true" width="100%" height="300"
        				  >
         			  <?php } ?>
@@ -395,13 +416,13 @@
 
                        if(!empty($feed->video)){ ?>
 
-                       <iframe width="100%" height="315" src="https://www.youtube.com/embed/<?php echo $feed->video;?>" frameborder="1" allowfullscreen></iframe> 
+                       <iframe class="embed-responsive-item" width="100%" height="auto" src="https://www.youtube.com/embed/<?php echo $feed->video;?>" frameborder="1" allowfullscreen></iframe> 
 
                        <?php } ?>
 
 	                   <?php if(!empty($feed->music)){ ?>
 
-	                   <iframe width="100%" height="120" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=<?php echo $feed->music;?>"></iframe>
+	                   <iframe class="embed-responsive-item" width="100%" height="auto" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=<?php echo $feed->music;?>"></iframe>
 
 	                   <?php } ?>
 
@@ -449,18 +470,28 @@
 
 		             				<?php
 
+							        if(!empty($share->cover_photo)){ ?>
+
+						  		 ↪  <small>Change cover photo</small>
+
+							        <img class="img-responsive" src="<?php echo base_url();?>cover/<?php echo $share->cover_photo;?>" width="80%" height="auto">
+							       
+							        <?php } ?>	
+
+		             				<?php
+
 							        if(!empty($share->profile_picture)){ ?>
 
 						  		 ↪  <small>Change profile photo</small>
 
-							        <img src="<?php echo base_url();?>profile_photo/<?php echo $share->profile_picture;?>" width="80%" height="auto">
+							        <img class="img-responsive" src="<?php echo base_url();?>profile_photo/<?php echo $share->profile_picture;?>" width="80%" height="auto">
 							       
 							        <?php } ?>	
 
 		             				<?php if(!empty($share->mood) && !empty($share->feel)){ ?>
 
 		            				</p>
-		            			  ↪ <img src="<?php echo $share->mood;?>" width="25" height="25" id="img44"> <small> Feeling <?php echo $share->feel;?></small>
+		            			  ↪ <img class="img-responsive" src="<?php echo $share->mood;?>" width="25" height="25" id="img44"> <small> Feeling <?php echo $share->feel;?></small>
 
 		            				<?php } ?>
 
@@ -468,7 +499,7 @@
 
 							        if(!empty($share->photo)){ ?>
 						  
-							        <img src="<?php echo base_url();?>uploads/<?php echo $share->photo;?>" width="90%" height="300px;">
+							        <img class="img-responsive" src="<?php echo base_url();?>uploads/<?php echo $share->photo;?>" width="90%" height="300px;">
 							       
 							        <?php } ?>	
 
@@ -484,7 +515,7 @@
 
         			  				if(!empty($share->map)){ ?>
 
-        			  				<img src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo $share->map;?>&amp;zoom=15&amp;size=700x300&amp;
+        			  				<img class="img-responsive" src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo $share->map;?>&amp;zoom=15&amp;size=700x300&amp;
        				 				 maptype=roadmap&amp;markers=color:red%7C<?php echo $share->map;?>&amp;sensor=true&amp;scale=2&amp;visual_refresh=true" width="90%" height="300"
        				  				>
         			  				<?php } ?>
@@ -494,13 +525,13 @@
 
                                     if(!empty($share->video)){ ?>
 
-                                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/<?php echo $share->video;?>" frameborder="1" allowfullscreen></iframe> 
+                                    <iframe class="embed-responsive-item" width="100%" height="auto" src="https://www.youtube.com/embed/<?php echo $share->video;?>" frameborder="1" allowfullscreen></iframe> 
 
                                     <?php } ?>
 
 		             				<?php if(!empty($share->music)){ ?>
 
-	                                <iframe width="100%" height="120" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=<?php echo $share->music;?>"></iframe>
+	                                <iframe class="embed-responsive-item" width="100%" height="auto" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=<?php echo $share->music;?>"></iframe>
 
 	                                <?php } ?>
 
@@ -566,7 +597,7 @@
 		           		<tr>
 		             	<td rowspan="2" width="6%"><img src="<?php echo base_url();?>profile_photo/default.jpg" width="30px" height="30px" class="img-circle">	</td>
 		             	<td>
-		             	<b><?php echo ucfirst($comment->added_by);?></b>
+		             	<b id="mini_name"><?php echo ucfirst($comment->added_by);?></b>
 
 		             	<input type="hidden" value="<?php echo $comment->id;?>" id="comm_id">
 		             	<button id="delete_com">X </button>
@@ -576,7 +607,7 @@
 		             	<tr>
 		             	<td>
 
-		             	<span id="origin<?php echo $comment->id;?>"><?php echo $comment->body;?></span>	
+		             	<span id="origin<?php echo $comment->id;?>" class="origin"><?php echo $comment->body;?></span>	
 
 		             	<div id="<?php echo $comment->id;?>" style="display:none;">
 		             	<textarea style="width:100%;" id="edit_comment"><?php echo $comment->body;?></textarea>
@@ -593,7 +624,7 @@
 		              	<tr>
 		              	<td width="6%"></td>
 		             	<td>
-		             	<span class="glyphicon glyphicon-time"></span><small> About <?php echo humanTiming(strtotime($comment->date_added));?> ago</small>
+		             	<span class="glyphicon glyphicon-time" style="font-size:10px;"></span><small id="com_mini"> About <?php echo humanTiming(strtotime($comment->date_added));?> ago</small>
 
 		             	<?php
 
@@ -644,6 +675,14 @@
 					<input type="file" data-filename-placement="inside" name="userfile" id="userphoto">
 					<input type="hidden" value="<?php echo $row->username;?>" id="receiver"> 
 					<button type="submit" id="profile_update">Post</button>
+					</form>
+					</div>    
+
+					<div style="display:none;">
+					<form method="post" action="#" id="upload_coverz">
+					<input type="file" data-filename-placement="inside" name="userfile" id="usercover">
+					<input type="hidden" value="<?php echo $row->username;?>" id="receiver"> 
+					<button type="submit" id="cover_update">Post</button>
 					</form>
 					</div>    
 
