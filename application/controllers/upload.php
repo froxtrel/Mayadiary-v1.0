@@ -54,4 +54,49 @@
 			//echo json_encode(array('status' => $status, 'msg' => $msg));
 		}
 
+
+		function upload_photo(){
+			$status = "";
+			$msg = "";
+			$file_element_name = 'userfile';
+			
+			if ($status != "error"){
+				$config['upload_path'] = './profile_photo/';
+				$config['allowed_types'] = 'gif|jpg|png|';
+				$config['max_size'] = 20480;
+				$config['encrypt_name'] = FALSE;
+				$this->load->library('upload', $config);
+				
+				if (!$this->upload->do_upload($file_element_name))  {
+					$status = 'error';
+					$msg = $this->upload->display_errors('', '');
+
+				} else  {
+
+					$data = $this->upload->data();
+					$image_path = $data['file_name'];
+					$date_added = date('Y/m/d H:i:s');
+
+					$this->db->set('change_photo',$date_added);
+					$this->db->set('photo',$image_path);
+					$this->db->where('username',$this->session->userdata('username'));
+					$this->db->update('user');
+					
+					if(file_exists($image_path))   {
+						$status = "success";
+						$msg = "File successfully uploaded";
+					} else {
+						$status = "error";
+						$msg = "Something went wrong when saving the file, please try again.";
+					}
+
+				}
+
+				@unlink($_FILES[$file_element_name]);
+			}
+
+			//echo json_encode(array('status' => $status, 'msg' => $msg));
+		}
+
+
 }

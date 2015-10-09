@@ -21,24 +21,29 @@
   </div>
 </nav>
 <body>
-<div class="container" style="margin-top:20px;">
+<div class="container" style="margin-top:30px;">
 	<div class="row">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
 			<div class="jumbotron" id="main_wrap">
 					
 			<div class="jumbotron" id="cover_photo">
-			<img src="<?php echo base_url();?>cover/default.jpg" width="100%" height="210" id="main_cover">	
+			<img src="<?php echo base_url();?>cover/default.jpg" width="100%" height="220" id="main_cover">	
 			<table width="100%" border="0">
 				<tr>
-					<td width="25%"><img src="<?php echo base_url();?>uploads/1.jpg" width="100%" height="220" id="photo1"></td>
-					<td width="25%"><img src="<?php echo base_url();?>uploads/2.jpg" width="100%" height="220" id="photo2"></td>
-					<td width="25%"><img src="<?php echo base_url();?>uploads/3.png" width="100%" height="220" id="photo3"></td>
-					<td width="25%"><img src="<?php echo base_url();?>uploads/4.jpg" width="100%" height="220" id="photo4"></td>
+					<td width="25%"><img src="<?php echo base_url();?>uploads/1.jpg" width="100%" height="210" id="photo1" class="img"></td>
+					<td width="25%"><img src="<?php echo base_url();?>uploads/2.jpg" width="100%" height="210" id="photo2" class="img"></td>
+					<td width="25%"><img src="<?php echo base_url();?>uploads/3.png" width="100%" height="210" id="photo3" class="img"></td>
+					<td width="25%"><img src="<?php echo base_url();?>uploads/4.jpg" width="100%" height="210" id="photo4" class="img"></td>
 			</table>
 			</div>
 
-			<img src="<?php echo base_url();?>profile_photo/default.jpg" width="120" height="120" id="profile_photo" class="img-circle">	
+			<div id="photos">
+			<img src="<?php echo base_url();?>profile_photo/<?php echo $row->photo;?>" width="120" height="120" id="profile_photo" class="img-circle">	
+			</div>
+
+			<button id="upload_logo" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-camera"></span></button>
+
 			<span id="profile_name"><?php echo ucfirst($row->username);?></span>
 
 			<div class="jumbotron" id="profile_menu">
@@ -75,7 +80,7 @@
 		            	<div class="jumbotron" id="post_body">
 		            	<table width="100%" border="0">
 		            		<tr>
-		            			<td width="10%" style="padding:5px;"><img src="<?php echo base_url();?>profile_photo/default.jpg" width="30" height="30" class="img-#"></td>
+		            			<td width="10%" style="padding:5px;"><img src="<?php echo base_url();?>profile_photo/<?php echo $row->photo;?>" width="30" height="30" class="img-#"></td>
 		            			<td>
 		            			<textarea class="form-control" id="n_post" rows="3"  placeholder="Share what's new"></textarea>
 		            			<input type="hidden" value="<?php echo $row->username;?>" id="user_to">
@@ -258,7 +263,7 @@
 		            <table width="100%" border="0">
 		            	<tr>
 		            		<td rowspan="2" width="15%">
-		            			<img src="<?php echo base_url();?>profile_photo/default.jpg" width="48px" height="48px" class="img-circle">	
+		            			<img src="<?php echo base_url();?>profile_photo/<?php echo $row->photo;?>" width="48px" height="48px" class="img-circle">	
 		            		</td>
 
 		            	   <?php if (!empty($feed->shared_id)){ ?>
@@ -365,8 +370,8 @@
 
         			  if(!empty($feed->map)){ ?>
 
-        			  <img src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo $feed->map;?>&amp;zoom=15&amp;size=700x200&amp;
-       				  maptype=roadmap&amp;markers=color:red%7C<?php echo $feed->map;?>&amp;sensor=true&amp;scale=2&amp;visual_refresh=true" width="100%" height="200"
+        			  <img src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo $feed->map;?>&amp;zoom=15&amp;size=700x300&amp;
+       				  maptype=roadmap&amp;markers=color:red%7C<?php echo $feed->map;?>&amp;sensor=true&amp;scale=2&amp;visual_refresh=true" width="100%" height="300"
        				  >
         			  <?php } ?>
 
@@ -403,7 +408,21 @@
 		             	<div class="jumbotron" id="shared_post">
 		             		<table width="100%" border="0">
 		             			<tr>
-		             				<td width="10%"><img src="<?php echo base_url();?>profile_photo/default.jpg" width="35px" height="35px" class="img-circle">	</td>
+		             				<td width="10%">
+
+		             				<?php
+
+		             					$this->db->select('photo');
+		             					$this->db->where('username',$share->added_by);
+		             					$p_photo = $this->db->get('user')->result();
+		             					foreach($p_photo as $p_photo){
+
+		             					}
+		             				?>
+
+		             				<img src="<?php echo base_url();?>profile_photo/<?php echo $p_photo->photo;?>" width="35px" height="35px" class="img-circle">
+
+		             				</td>
 		             				<td><b><?php echo ucfirst($share->added_by);?></b> <small> Originally posted this</small></td>
 		             			</tr>
 		             			<tr>
@@ -439,8 +458,8 @@
 
         			  				if(!empty($share->map)){ ?>
 
-        			  				<img src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo $share->map;?>&amp;zoom=15&amp;size=700x200&amp;
-       				 				 maptype=roadmap&amp;markers=color:red%7C<?php echo $share->map;?>&amp;sensor=true&amp;scale=2&amp;visual_refresh=true" width="100%" height="200"
+        			  				<img src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo $share->map;?>&amp;zoom=15&amp;size=700x300&amp;
+       				 				 maptype=roadmap&amp;markers=color:red%7C<?php echo $share->map;?>&amp;sensor=true&amp;scale=2&amp;visual_refresh=true" width="90%" height="300"
        				  				>
         			  				<?php } ?>
 
@@ -594,47 +613,17 @@
 
 		           <div class="jumbotron" id="side_info">
 		           	
-					
+		           	<div style="display:none;">
+					<form method="post" action="#" id="upload_photoz">
+					<input type="file" data-filename-placement="inside" name="userfile" id="userphoto">
+					<input type="hidden" value="<?php echo $row->username;?>" id="receiver"> 
+					<button type="submit" id="profile_update">Post</button>
+					</form>
+					</div>    
 
 		           </div>
 
-		           <script type="text/javascript">
-
-
-			        $(function(event) {
-			        $('#upload_file').submit(function(e) {
-
-			        e.preventDefault();
-			        $.ajaxFileUpload({
-			            url             :"<?php echo base_url();?>upload/upload_file", 
-			            secureuri       :false,
-			            fileElementId   :'userfile',
-			            dataType: 'JSON',
-			            data            : {
-
-
-			                'title'     : $('#n_post').val(),
-			                'receiver'  : $('#receiver').val(),	
-							'mood'     	: $("#emo").val(),
-							'feel'     	: $('#emo_f').val(),							
-							
-
-			            },
-			            success : function (){
-			              
-			            $("#post_feed").load(location.href+" #post_feed>*","");  		        
-  		                $('#n_post').val('');
-			         
-			          
-			            }
-			         });
-			        return false;
-			         });
-			         });
-
-        
-
-		           </script>
+		           
 			
 		    </div>
 		
