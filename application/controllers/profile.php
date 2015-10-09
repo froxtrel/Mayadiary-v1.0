@@ -17,7 +17,9 @@ class Profile extends CI_Controller {
 
 		 	if($data['user'] == '404'){
 
-		 		echo 'Profile not Exists';
+		 		$this->load->view('header');
+				$this->load->view('404');
+				$this->load->view('footer');	
 
 		 	}else{
 
