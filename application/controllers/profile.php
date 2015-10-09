@@ -15,9 +15,18 @@ class Profile extends CI_Controller {
 
 			$data['user'] =  $this->model_profile->getData($user);
 
-			$this->load->view('header');
-			$this->load->view('profile',$data);
-			$this->load->view('footer');	
+		 	if($data['user'] == '404'){
+
+		 		echo 'Profile not Exists';
+
+		 	}else{
+
+			 	$this->load->view('header');
+				$this->load->view('profile',$data);
+				$this->load->view('footer');	
+
+		 	}
+
 
 	}
 

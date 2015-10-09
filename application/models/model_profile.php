@@ -11,7 +11,16 @@ class Model_profile extends CI_Model {
  public function getData($user){
 
           $result = $this->db->get_where('user',array('username' => $user ))->result();
+
+          if(!empty($result)){
+
           return $result;
+
+          }else{
+
+          return '404';
+
+    	  }
 
     } 
       

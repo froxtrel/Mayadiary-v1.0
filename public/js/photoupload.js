@@ -107,6 +107,8 @@ $(function(event) {
 
                         $("#post_feed")
                             .load(location.href + " #post_feed>*", "");
+                        $("#photo_pr")
+                            .load(location.href + " #photo_pr>*", "");
                         $('#n_post')
                             .val('');
 

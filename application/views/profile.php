@@ -58,13 +58,27 @@
 			<img src="<?php echo base_url();?>cover/<?php echo $row->cover;?>" width="100%" height="220" id="main_cover">	
 			</div>
 
+			<div id="photo_pr">
 			<table width="100%" border="0">
 				<tr>
-					<td width="25%"><img src="<?php echo base_url();?>uploads/1.jpg" width="100%" height="210" id="photo1" class="img"></td>
-					<td width="25%"><img src="<?php echo base_url();?>uploads/2.jpg" width="100%" height="210" id="photo2" class="img"></td>
-					<td width="25%"><img src="<?php echo base_url();?>uploads/3.png" width="100%" height="210" id="photo3" class="img"></td>
-					<td width="25%"><img src="<?php echo base_url();?>uploads/4.jpg" width="100%" height="210" id="photo4" class="img"></td>
+
+					<?php
+
+					$this->db->order_by('id','desc');
+					$this->db->limit(5);
+					$this->db->select('photo');
+					$this->db->where('added_by',$row->username);
+					$this->db->where('photo !=',' ');
+					$this->db->where('status','on');
+					$preview = $this->db->get('post')->result();
+					foreach($preview as $photo):?>
+
+					<td width="25%"><img src="<?php echo base_url();?>uploads/<?php echo $photo->photo;?>" width="100%" height="210" id="photo1" class="img"></td>
+
+					<?php endforeach; ?>				
+					
 			</table>
+			</div>
 			</div>
 
 			<div id="photos">
@@ -306,12 +320,13 @@
 
 		           $limit = $this->session->userdata('limit');
 		           $this->db->limit($limit);
-		           $this->db->order_by('id','desc');		  
-		           $this->db->where("(status = 'on' AND added_by = '$row->username') 
-                   OR user_posted_to = '$row->username'");
-
+		           $this->db->order_by('id','desc');		     
+		           $this->db->where('added_by',$row->username);
+		           $this->db->where('user_posted_to',$row->username);  
+		           $this->db->where('status','on'); 
 		           $post =  $this->db->get('post')->result();
-		         
+		           // echo $this->db->last_query();
+
 		           foreach ($post as $feed){ 
 
 		           $like = $this->db->get_where('likes',array('post_id' => $feed->id,'value' => '1' ))->result_array();
