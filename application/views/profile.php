@@ -39,46 +39,39 @@ a{
 
 </style>
 
-<nav class="navbar navbar-inverse navbar-fixed-top" id="main_nav">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span> 
-      </button>
-      <a class="navbar-brand" href="#"><img src="<?php echo base_url();?>public/img/logo.png" width="24" height="24" class="img-circle" style="border:2px solid #fff;"></a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li><a href="#"></a></li>
-        <li><a href="#"></a></li>
-        <li><a href="#"></a></li> 
-        <li><a href="#"></a></li> 
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-       <?php 
-
-		  $this->db->select('photo');
-		  $this->db->where('username',$this->session->userdata('username'));
-		  $you_p = $this->db->get('user')->result();
-		  foreach($you_p as $youp){}
-
-		  ?>
-        <li><a href="<?php echo base_url();?>profile/userProfile/<?php echo $this->session->userdata('username');?>">
-            <img src="<?php echo base_url();?>profile_photo/<?php echo $youp->photo;?>" width="24" height="24" class="img-circle" style="border:2px solid #fff;"></a></li>
-        <li><a href="<?php echo base_url();?>login/logout" style="color:#fff;"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-
-
-<body>
-<div class="container" style="margin-top:60px;">
-	<div class="row">
-		<div class="col-md-1"></div>
+<div id="wrapper">
+  <div class="overlay"></div>
+  
+  <!-- Sidebar -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+    <ul class="nav sidebar-nav">
+      <li class="sidebar-brand"> <a href="#"> MayaDiary </a> </li>
+      <li> <a href="#"><i class="fa fa-fw fa-home"></i> Home</a> </li>
+      <li> <a href="#"><i class="fa fa-fw fa-folder"></i> Page one</a> </li>
+      <li> <a href="#"><i class="fa fa-fw fa-file-o"></i> Second page</a> </li>
+      <li> <a href="#"><i class="fa fa-fw fa-cog"></i> Third page</a> </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> Dropdown <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li class="dropdown-header">Dropdown heading</li>
+          <li><a href="#">Action</a></li>
+          <li><a href="#">Another action</a></li>
+          <li><a href="#">Something else here</a></li>
+          <li><a href="#">Separated link</a></li>
+          <li><a href="#">One more separated link</a></li>
+        </ul>
+      </li>
+      <li> <a href="#"><i class="fa fa-fw fa-bank"></i> Page four</a> </li>
+      <li> <a href="#"><i class="fa fa-fw fa-dropbox"></i> Page 5</a> </li>
+      <li> <a href="#"><i class="fa fa-fw fa-twitter"></i> Last page</a> </li>
+    </ul>
+  </nav>
+  <!-- /#sidebar-wrapper --> 
+  
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+    <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas"><span class="hamb-top"></span> <span class="hamb-middle"></span> <span class="hamb-bottom"></span> </button>
+    <div class="container" style="margin-top:-55px;">
+      <div class="row">
 		<div class="col-md-10">
 			<div class="jumbotron" id="main_wrap">
 
@@ -139,13 +132,13 @@ a{
 
 		    <?php if(empty($row->photo)){ ?>
 
-			<div class="jumbotron" style="background-color:#<?php echo random_color();?>;width:120px;height:120px;color:#fff;border-radius:50%;" id="profile_photo">
+			<div class="jumbotron" style="background-color:#<?php echo random_color();?>;width:120px;height:120px;color:#fff;" id="profile_photo">
 			<?php echo strtoupper(substr($row->username,0,2));?>
 			</div>
 
 		    <?php  }else{  ?>
 
-	        <img src="<?php echo base_url();?>profile_photo/<?php echo $row->photo;?>" width="120" height="120" id="profile_photo" class="img-circle">	
+	        <img src="<?php echo base_url();?>profile_photo/<?php echo $row->photo;?>" width="120" height="120" id="profile_photo" class="img-rounded">	
 
 		    <?php } ?>
 		    
@@ -177,7 +170,7 @@ a{
 				  </button>
 
 				  <ul class="dropdown-menu" role="menu">
-				    <li><a href="#"><span class="glyphicon glyphicon-envelope"></span> Send Messages</a></li>
+				    <li><a href="#" id="open_sms"><span class="glyphicon glyphicon-envelope"></span> Send Messages</a></li>
 
 				    <li>
 
@@ -206,10 +199,12 @@ a{
 	                if (in_array($target, $arr)){ ?>
 
 	                <a href="#" id="unfollow_u"><span class="glyphicon glyphicon-refresh" ></span> Unfollow User</a>
+	                <a href="#" id="follow_u" style="display:none;"><span class="glyphicon glyphicon-refresh" ></span> Follow User</a>
 
 				   <?php }else{ ?>
 
-					<a href="#" id="follow_u"><span class="glyphicon glyphicon-refresh" ></span> Follow User</a>   	 
+					<a href="#" id="follow_u"><span class="glyphicon glyphicon-refresh" ></span> Follow User</a> 
+					<a href="#" id="unfollow_u" style="display:none;"><span class="glyphicon glyphicon-refresh" ></span> Unfollow User</a>  	 
 
 				   <?php } ?>
 
@@ -989,28 +984,66 @@ a{
 	    </div>
 		</div>
 		</div>
-		<div class="col-md-1"></div>
-	</div>
-
+		<div class="col-md-1">
 	
+			<a class="js-open-modal" href="#" data-modal-id="popup"  id="click_me"></a>
+			<a class="js-open-modal" href="#" data-modal-id="popup2" id="success"></a>
 
+		</div>
+
+      </div>
+    </div>
+  </div>
+  <!-- /#page-content-wrapper --> 
+  
 </div>
 
 </body>
+</html>
 
+<!-- PHOTO UPLOAD -->
+<div style="display:none;">
+    <form method="post" action="#" id="upload_photoz" name="upload_photoz">
+      <input type="file" data-filename-placement="inside" name="userfile" id=
+      "userphoto" /> <input type="hidden" value="<?php echo $row->username;?>" id=
+      "receiver" /> <button type="submit" id="profile_update">Post</button>
+    </form>
+  </div>
 
-					<div style="display:none;">
-					<form method="post" action="#" id="upload_photoz">
-					<input type="file" data-filename-placement="inside" name="userfile" id="userphoto">
-					<input type="hidden" value="<?php echo $row->username;?>" id="receiver"> 
-					<button type="submit" id="profile_update">Post</button>
-					</form>
-					</div>    
+  <div style="display:none;">
+    <form method="post" action="#" id="upload_coverz" name="upload_coverz">
+      <input type="file" data-filename-placement="inside" name="userfile" id=
+      "usercover" /> <input type="hidden" value="<?php echo $row->username;?>" id=
+      "receiver" /> <button type="submit" id="cover_update">Post</button>
+    </form>
+  </div>
+<!-- END PHOTO UPLOAD -->
 
-					<div style="display:none;">
-					<form method="post" action="#" id="upload_coverz">
-					<input type="file" data-filename-placement="inside" name="userfile" id="usercover">
-					<input type="hidden" value="<?php echo $row->username;?>" id="receiver"> 
-					<button type="submit" id="cover_update">Post</button>
-					</form>
-					</div>    
+<!-- MESSAGE MODEL BOX -->
+<div id="popup" class="modal-box">  
+  <header style="background-color:#f7f7f7;">
+    <a href="#" class="js-modal-close close">×</a>
+    <h3>Send Message to : <?php echo $row->username;?></h3>
+  </header>
+  <div class="modal-body">
+    <p><textarea rows="4" id="sms_box" placeholder="Write a message"></textarea></p>
+  </div>
+  <footer style="background-color:#f7f7f7;">
+  	<button class="btn btn-success btn-sm" id="send_sms">Send</button>
+    <a href="#" class="js-modal-close" id="close_modal"><button class="btn btn-danger btn-sm">Cancel</button></a>
+  </footer>
+</div>	
+<!-- END MODAL -->
+
+<!-- MODAL 2 -->
+<div id="popup2" class="modal-box">
+  <header> <a href="#" class="js-modal-close close">×</a>
+    <h3><center>Message sent successfully</center></h3>
+  </header>
+  <div class="modal-body">
+  <!-- empty -->
+  </div>
+  <center><a href="#" class="btn btn-small js-modal-close"><button class="btn btn-success btn-sm">Close</button></a></center> 
+</div>
+<!-- END MODAL 2 -->
+

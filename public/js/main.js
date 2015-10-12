@@ -625,9 +625,8 @@ $('#hideinfo')
                 datatype:'json',
                 success: function (data) {
 
-               // $("#refresh_info").load(location.href + " #refresh_info"); 
-               alert(data);           
-             
+                $('#follow_u').toggle();          
+                $('#unfollow_u').toggle();
                      
                 },
 
@@ -657,9 +656,53 @@ $('#hideinfo')
                 datatype:'json',
                 success: function (data) {
 
-               // $("#refresh_info").load(location.href + " #refresh_info"); 
-               alert(data);           
+                $('#follow_u').toggle();          
+                $('#unfollow_u').toggle();          
              
+                     
+                },
+
+                error: function (data) {
+                      
+                alert('failed');
+
+                }
+         });
+      });
+
+        // END
+
+    // MESSAGES HANDLER
+
+         $('#open_sms').click(function(event){
+
+              event.preventDefault();
+              $('#click_me').click();
+
+        });
+    // END
+
+    // SEND MESSAGES HANDELR
+
+            $('#send_sms').click(function(event){
+
+              event.preventDefault();
+              
+              var to   = $('#to').val();
+              var from = $('#from').val();
+              var body = $('#sms_box').val();
+
+               $.ajax({
+
+                type:'POST',
+                url :'http://localhost/Mayadiary-v1.0/inbox/addInbox',
+                data:{'to':to,'from':from,'body':body},
+                datatype:'json',
+                success: function (data) {
+
+                $('#close_modal').click(); 
+                $('#sms_box').val('');      
+                $('#success').click(); 
                      
                 },
 
