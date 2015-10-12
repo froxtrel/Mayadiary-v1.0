@@ -18,6 +18,11 @@ body {
 	margin-left: 10px;
 	
 }
+.maya{
+
+	font-family: 'Covered By Your Grace', cursive;
+	margin-left: 5px;
+}
 
 
 /*INDEX STYLE*/
@@ -568,7 +573,7 @@ body {
 	margin-top: -30px;
 	padding: 15px;
 }
-#t1,#t2,#t3,#t4,#t5,#t6,#t7,#t8,#t9,#t10{
+#t1,#t2,#t3,#t4,#t5,#t6,#t7,#t8,#t9,#t10,#noti_b,#chat_b{
 
 	border:none;
 	background:none;
@@ -672,6 +677,57 @@ body {
 	-webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
+}
+
+#open_chat {
+    background: #f7f7f7;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    color: #999;
+    z-index: 97;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 200px;
+    padding: 5px 10px;
+    cursor: pointer;
+   /* height: 100%;*/
+}
+
+#tag{
+
+	position: absolute;
+	margin-top: -150px;
+	margin-left: 5%;
+}
+
+#photo_head{
+
+	background-color: #fff;
+	border-radius: 10px;
+	margin: 0px;
+	padding: 10px;
+}
+
+#on_off,#double,#normal_p{
+
+	background-color: #fff;
+	padding: 0px;
+	border-radius: 0px;
+}
+#zoom_head,#split_head,#normal_head{
+
+	background-color: #ddd;
+	border-radius: 0px;
+	padding: 10px;
+	margin: 0px;
+}
+#zoom_body,#split_body,#normal_body{
+
+	background-color: #fff;
+	border-radius: 0px;
+	padding: 10px;
+	margin: 0px;
 }
 /*END*/
 

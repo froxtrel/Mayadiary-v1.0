@@ -625,6 +625,7 @@ $('#hideinfo')
                 datatype:'json',
                 success: function (data) {
 
+                $("#f_tag").load(location.href + " #f_tag"); 
                 $('#follow_u').toggle();          
                 $('#unfollow_u').toggle();
                      
@@ -656,6 +657,7 @@ $('#hideinfo')
                 datatype:'json',
                 success: function (data) {
 
+                $("#f_tag").load(location.href + " #f_tag");
                 $('#follow_u').toggle();          
                 $('#unfollow_u').toggle();          
              

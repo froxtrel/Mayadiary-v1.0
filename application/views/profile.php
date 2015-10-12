@@ -45,32 +45,40 @@ a{
   <!-- Sidebar -->
   <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
     <ul class="nav sidebar-nav">
-      <li class="sidebar-brand"> <a href="#"> MayaDiary </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-home"></i> Home</a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-folder"></i> Page one</a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-file-o"></i> Second page</a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-cog"></i> Third page</a> </li>
-      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> Dropdown <span class="caret"></span></a>
-        <ul class="dropdown-menu" role="menu">
-          <li class="dropdown-header">Dropdown heading</li>
-          <li><a href="#">Action</a></li>
-          <li><a href="#">Another action</a></li>
-          <li><a href="#">Something else here</a></li>
-          <li><a href="#">Separated link</a></li>
-          <li><a href="#">One more separated link</a></li>
-        </ul>
-      </li>
-      <li> <a href="#"><i class="fa fa-fw fa-bank"></i> Page four</a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-dropbox"></i> Page 5</a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-twitter"></i> Last page</a> </li>
+      <li class="sidebar-brand"> <a href="#"><img src="<?php echo base_url();?>public/img/logo.png" width="40" height="40" class="img-circle" style="border:2px solid #fff;"> <span class="maya">MayaDiary</span></a> </li>
+      <li> <a href="#"><i class="fa fa-fw fa-home">  		</i> Home  </a> </li>
+      <li> <a href="<?php echo base_url();?>profile/userProfile/<?php echo $this->session->userdata('username');?>"><i class="fa fa-fw fa-user"></i> Profile </a> </li>
+      <li> <a href="<?php echo base_url();?>profile/photoshow/<?php echo $this->session->userdata('username');?>"><i class="fa fa-fw fa-picture-o">  		</i> Photos  </a> </li>
+      <li> <a href="#"><i class="fa fa-fw fa-video-camera">  	</i> Video   </a> </li>
+      <li> <a href="#"><i class="fa fa-fw fa-music">     		</i> Music   </a> </li>
+      <li> <a href="#"><i class="fa fa-fw fa-pencil-square-o">  </i> Blogs   </a> </li>
+      <li> <a href="#"><i class="fa fa-fw fa-bullhorn"> 		</i> Forums  </a> </li>
+      <li> <a href="#"><i class="fa fa-fw fa-users">			</i> Groups  </a> </li>
+      <li> <a href="#"><i class="fa fa-fw fa-gamepad"> 			</i> Games   </a> </li>
+      <li> <a href="#"><i class="fa fa-fw fa-calendar"> 		</i> Events  </a> </li>
+      <li> <a href="#"><i class="fa fa-fw fa-wrench"> 		    </i> Settings  </a> </li>
+      <li> <a href="<?php echo base_url();?>login/logout"><i class="fa fa-fw fa-sign-out"></i> Logout</a> </li>
     </ul>
   </nav>
   <!-- /#sidebar-wrapper --> 
   
   <!-- Page Content -->
   <div id="page-content-wrapper">
-    <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas"><span class="hamb-top"></span> <span class="hamb-middle"></span> <span class="hamb-bottom"></span> </button>
-    <div class="container" style="margin-top:-55px;">
+
+  <span style="position:fixed;color:#fff;margin-left:15px;font-size:20px;">
+
+  <button id="noti_b"><i class="fa fa-fw fa-bell"><span class="badge">0</span></i></button>
+
+  </span>
+
+  <span style="position:fixed;color:#fff;margin-left:15px;font-size:20px;margin-top:50px;">
+
+  <button id="chat_b"><i class="fa fa-fw fa-comment"><span class="badge">0</span></i></button>
+
+  </span>
+
+   <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas"><span class="hamb-top"></span> <span class="hamb-middle"></span> <span class="hamb-bottom"></span></button>
+    <div class="container" style="margin-top:-60px;">
       <div class="row">
 		<div class="col-md-10">
 			<div class="jumbotron" id="main_wrap">
@@ -93,7 +101,7 @@ a{
 
 			<?php if(empty($row->cover)){ ?>
 
-			<div class="jumbotron" style="background-color:#<?php echo random_color();?>;width:100%;height:220px;color:#fff;color:#fff;border-radius:0px;" id="main_cover">
+			<div class="jumbotron" style="background-color:#<?php echo random_color();?>;width:100%;height:220px;color:#fff;color:#fff;border-radius:0px;margin:0px;" id="main_cover">
 			<center>WELCOME TO <img src="<?php echo base_url();?>public/img/logo.png" width="24" height="24" class="img-circle" style="border:2px solid #fff;"> MAYADIARY <?php echo strtoupper($row->username);?></center>
 			</div>
 
@@ -153,10 +161,10 @@ a{
 
 			<div class="jumbotron" id="profile_menu">
 
-				<div class="jumbotron" id="menu_1"><a href=""><center>Timeline</center></a></div>
-				<div class="jumbotron" id="menu_2"><a href=""><center>1 Friends</center></a></div>
-				<div class="jumbotron" id="menu_3"><a href=""><center>1 Followers</center></a></div>
-				<div class="jumbotron" id="menu_4"><a href=""><center>0 Photos</center></a></div>
+				<div class="jumbotron" id="menu_1"><a href=""><center>Post</center></a></div>
+				<div class="jumbotron" id="menu_2"><a href=""><center>Following</center></a></div>
+				<div class="jumbotron" id="menu_3"><a href=""><center>Followers</center></a></div>
+				<div class="jumbotron" id="menu_4"><a href=""><center>Like</center></a></div>
 				<div class="jumbotron" id="menu_5">
 
 				<?php   
@@ -234,6 +242,38 @@ a{
 		  <div class="row">
 
 		     <div class="col-md-8">
+
+		     		<div id="f_tag">
+
+		     		<?php
+
+	                $target = $row->username;
+
+	                $this->db->select('following_array');
+	                $follow   =  $this->db->get_where('user',array('username' => $this->session->userdata('username')));
+	                $g_follow =  $follow->result_array();
+
+	                foreach($g_follow as $fol){
+
+	                $old = $fol['following_array'];
+
+	                }
+
+	                $new = explode(',', $old);
+
+	                for ($i = 0; $i < count($new ); ++$i) {
+
+	                $arr[$i] =  $new[$i];
+
+	                }
+	                
+	                if (in_array($target, $arr)){ ?>
+
+		     		<div id="tag"><span class="label label-success">FOLLOWING</span></div>
+
+		     		<?php };?>
+
+		     		</div>
 
 		            <div class="jumbotron" id="post">
 
@@ -1047,3 +1087,8 @@ a{
 </div>
 <!-- END MODAL 2 -->
 
+<!-- CHAT PANEL -->
+
+<section id="open_chat"><center>CHAT BOX</center></section>
+
+<!-- END -->

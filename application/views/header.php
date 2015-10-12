@@ -22,6 +22,7 @@
      <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/style.css">
      <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
      <link href='https://fonts.googleapis.com/css?family=Covered+By+Your+Grace' rel='stylesheet' type='text/css'>
+     
 
 </head>
 
