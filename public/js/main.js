@@ -607,6 +607,72 @@ $('#hideinfo')
 
                 });
 
+        // FOLLOW HANDLER
+
+            $('#follow_u').click(function(event){
+
+              event.preventDefault();
+              
+              var to   = $('#to').val();
+              var from = $('#from').val();
+
+
+               $.ajax({
+
+                type:'POST',
+                url :'http://localhost/Mayadiary-v1.0/follow/addLink',
+                data:{'to':to,'from':from },
+                datatype:'json',
+                success: function (data) {
+
+               // $("#refresh_info").load(location.href + " #refresh_info"); 
+               alert(data);           
+             
+                     
+                },
+
+                error: function (data) {
+                      
+                alert('failed');
+
+                }
+         });
+      });
+
+        // END
+
+     // UNFOLLOW HANDLER
+
+            $('#unfollow_u').click(function(event){
+
+              event.preventDefault();
+              
+              var target   = $('#to').val();
+
+               $.ajax({
+
+                type:'POST',
+                url :'http://localhost/Mayadiary-v1.0/follow/remove',
+                data:{'target':target},
+                datatype:'json',
+                success: function (data) {
+
+               // $("#refresh_info").load(location.href + " #refresh_info"); 
+               alert(data);           
+             
+                     
+                },
+
+                error: function (data) {
+                      
+                alert('failed');
+
+                }
+         });
+      });
+
+        // END
+
 });
 
 		

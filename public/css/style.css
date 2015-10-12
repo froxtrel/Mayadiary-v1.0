@@ -653,6 +653,15 @@ body {
 	border-radius: 0px;
 	padding: 0px;
 }
+
+#btn_list>button{
+	background: none;
+	border: none;
+	color: #286090;
+	margin-top: -8px;
+	font-weight: bold;
+	font-size: 13px;
+}
 /*END*/
 
 

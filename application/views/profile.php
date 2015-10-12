@@ -164,7 +164,74 @@ a{
 				<div class="jumbotron" id="menu_2"><a href=""><center>1 Friends</center></a></div>
 				<div class="jumbotron" id="menu_3"><a href=""><center>1 Followers</center></a></div>
 				<div class="jumbotron" id="menu_4"><a href=""><center>0 Photos</center></a></div>
-				<div class="jumbotron" id="menu_5"><a href="" id="edit_pro"><center><span class="glyphicon glyphicon-cog"></span> Edit profile</center></a></div>
+				<div class="jumbotron" id="menu_5">
+
+				<?php   
+
+			   if($row->username !== $this->session->userdata('username')){?>
+
+				<center>
+				  <div class="btn-group" id="btn_list">
+				  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+				  <span class="glyphicon glyphicon-refresh"></span> Action <span class="caret"></span>
+				  </button>
+
+				  <ul class="dropdown-menu" role="menu">
+				    <li><a href="#"><span class="glyphicon glyphicon-envelope"></span> Send Messages</a></li>
+
+				    <li>
+
+				  <?php
+
+	                $target = $row->username;
+
+	                $this->db->select('following_array');
+	                $follow   =  $this->db->get_where('user',array('username' => $this->session->userdata('username')));
+	                $g_follow =  $follow->result_array();
+
+	                foreach($g_follow as $fol){
+
+	                $old = $fol['following_array'];
+
+	                }
+
+	                $new = explode(',', $old);
+
+	                for ($i = 0; $i < count($new ); ++$i) {
+
+	                $arr[$i] =  $new[$i];
+
+	                }
+	                
+	                if (in_array($target, $arr)){ ?>
+
+	                <a href="#" id="unfollow_u"><span class="glyphicon glyphicon-refresh" ></span> Unfollow User</a>
+
+				   <?php }else{ ?>
+
+					<a href="#" id="follow_u"><span class="glyphicon glyphicon-refresh" ></span> Follow User</a>   	 
+
+				   <?php } ?>
+
+				    </li>
+
+				    <li><a href="#"><span class="glyphicon glyphicon-ban-circle"></span> Block User</a></li>
+				    <li><a href="#"><span class="glyphicon glyphicon-exclamation-sign"></span> Report User</a></li>
+				  </ul>
+
+				  </div>
+
+				   <input type="hidden" id="to" value="<?php echo $row->username;?>">
+				   <input type="hidden" id="from" value="<?php echo $this->session->userdata('username');?>">
+
+			   </center>
+
+			   <?php }else{ ?>
+
+				<a href="" id="edit_pro"><center><span class="glyphicon glyphicon-cog"></span> Edit profile</center></a>
+
+			   <?php } ?>
+				</div>
 				
 			</div>
 			<div class="clearfix"></div>
