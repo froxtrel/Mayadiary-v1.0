@@ -5,7 +5,8 @@ body {
 }
 
 * {
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Abel', sans-serif;
+	font-weight: bold;
 	margin: 0px;
 	padding: 0px;
 }
@@ -282,7 +283,8 @@ body {
 
 	background-color: #fff;
 	border-radius: 0px;
-	padding: 20px;
+	padding: 0px;
+	border: solid 1px #DDDDDD;
 	
 }
 
@@ -530,7 +532,127 @@ body {
 	border-radius: 0px;
 }
 
+#date_join{
 
+	border-radius: 0px;
+	background-color: #fff;
+	padding: 10px;
+	margin: 0px;
+	border-bottom: solid 1px #DDDDDD;
+}
+
+#profile_setting{
+
+	border-radius: 0px;
+	background-color: #fff;
+	padding: 15px;
+	display: none;
+
+}
+#part_1,#part_2{
+	border-radius: 0px;
+	background-color: #fff;
+	padding: 0px;
+}
+#design_head{
+	border-radius: 0px;
+	color: black;
+	padding: 10px;
+	font-weight: bold;
+}
+
+#design_body{
+
+	background-color: #fff;
+	border-radius: 0px;
+	margin-top: -30px;
+	padding: 15px;
+}
+#t1,#t2,#t3,#t4,#t5,#t6,#t7,#t8,#t9,#t10{
+
+	border:none;
+	background:none;
+}
+
+#profile_cover{
+
+	border-radius: 0px;
+	background-color: #fff;
+	padding: 0px;
+	margin: 0px;
+}
+#profile_view{
+
+	border-radius: 0px;
+	background-color: #fff;
+	padding: 10px;
+	margin: 0px;
+	height: 70px;
+}
+
+#set_photo {
+
+	border:2px solid #fff;
+	position: absolute;
+	margin-top: -30px;
+}
+
+#d_menu1{
+
+	background-color: rgba(255,255,255,0);
+	border-radius: 0px;
+	padding: 0px;
+	margin: 0px;
+	padding-bottom: 20px;
+}
+
+#d_menu1 > button{
+	
+	border-radius: 0px;
+	
+}
+
+#account_set,#verify_set,#blocked_set,#find_set{
+	background-color: #fff;
+	border-radius: 0px;
+	padding: 0px;
+}
+
+#acc_head,#privacy_head,#email_head,#web_head,#verify_head,#block_head,#find_head{
+	background-color: #ECF0F1;
+	border-radius: 0px;
+	padding: 10px;
+	margin: 0px;
+}
+#acc_body{
+	background-color: #fff;
+	border-radius: 0px;
+	padding: 0px;
+	margin: 0px;
+}
+#privacy_body,#email_body,#web_body,#verify_body,#block_body,#find_body{
+
+	background-color: #fff;
+	border-radius: 0px;
+	padding: 15px;
+	margin: 0px;
+
+}
+
+#mini_photo{
+
+	position: absolute;
+	margin-top: -50px;
+	margin-left: -25px;
+	border:2px solid #fff;
+}
+
+#privacy_set,#email_set,#web_set{
+
+	background-color: #fff;
+	border-radius: 0px;
+	padding: 0px;
+}
 /*END*/
 
 

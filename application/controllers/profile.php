@@ -32,6 +32,16 @@ class Profile extends CI_Controller {
 
 	}
 
+	public function profileDesign($user){
+
+		 $data['user'] =  $this->model_profile->getData($user);	
+
+		 $this->load->view('header');
+		 $this->load->view('profile_design',$data);
+		 $this->load->view('footer');	
+
+	}
+
 	public function clear_cache(){
  	
         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");

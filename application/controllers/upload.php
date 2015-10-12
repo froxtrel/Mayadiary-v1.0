@@ -161,5 +161,45 @@
 		}
 
 
+	public function upload_bg(){
+			$status = "";
+			$msg = "";
+			$file_element_name = 'userfile';
+			
+			if ($status != "error"){
+
+				$config['upload_path'] = './themes/';
+				$config['allowed_types'] = 'gif|jpg|png|';
+				$config['max_size'] = 20480;
+				$config['encrypt_name'] = FALSE;
+				$this->load->library('upload', $config);
+
+				
+				if (!$this->upload->do_upload($file_element_name))  {
+
+					echo  $status = 'error';
+					
+
+				 }  else   {
+
+					$data = $this->upload->data();
+					$image= $data['file_name'];
+					$image_path = base_url().'themes/'.$image;
+
+					$this->db->set('theme_path',$image_path);
+					$this->db->where('username',$this->session->userdata('username'));
+					$this->db->update('user');
+
+					echo $image_path;
+
+					
+
+				}
+
+				
+			}
+
+			
+		}
 
 }

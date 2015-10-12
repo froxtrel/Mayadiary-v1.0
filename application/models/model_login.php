@@ -29,12 +29,12 @@ class Model_login extends CI_Model {
                    'username'  => $username->username,
                    'email'     => $email,
                    'logged_in' => TRUE,
-                   'limit'     =>  '3'
+                   'limit'     =>  '10'
 
                );
 
         $this->session->set_userdata($newdata);
-        
+                
         return true;
 
         }

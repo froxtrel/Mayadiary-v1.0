@@ -1,19 +1,19 @@
 
 function count() {
 
-    return count.num = count.num + 3;
+    return count.num = count.num + 10;
 }
 
 // initialize count number
-count.num = 3;
+count.num = 10;
 
+$(function() {
 
-$(window).scroll(function() {
+    $('#load_more').click(function() {
 
-    if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+        $("#post_feed").load(location.href + " #post_feed");
 
-
-        var lim = count();
+    var lim = count();
 
         $.ajax({
 
@@ -34,15 +34,6 @@ $(window).scroll(function() {
 
             }
         });
-
-    }
-});
-
-$(function() {
-
-    $('#load_more').click(function() {
-
-        $("#post_feed").load(location.href + " #post_feed");
  });
 
     $.ajax({

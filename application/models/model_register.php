@@ -16,6 +16,12 @@ class Model_register extends CI_Model {
         $birthday = $this->input->post('r_date');
         $date     = date('Y-m-d H:i:s');
 
+        $this->db->set('body',"Hi everyone im new here..how are you?");
+        $this->db->set('added_by',$username);
+        $this->db->set('user_posted_to',$username);
+        $this->db->set('date_added',$date);
+        $this->db->insert('post');      
+
         $data = array(
 
         'email'        => strtolower($email) ,

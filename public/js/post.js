@@ -58,7 +58,7 @@ $(function(event){
 			event.preventDefault();
 			$('#upload_photo').toggle();
 			$('#ajax_photo').toggle();
-			$('#np_send').hide();
+			$('#np_send').toggle();
 
 			$('#show_music').hide();
 			$('#show_video').hide();
@@ -169,6 +169,7 @@ $(function(event){
 				success: function (data) {
 
 				 $("#post_feed").load(location.href + " #post_feed");
+
 	                 
 	              },
 
@@ -183,9 +184,9 @@ $(function(event){
 
 		$(document).on('click','#comment',function(event){
 				
-				$(this).attr('rows', '4');
+				$(this).attr('rows', '2');
 
-				$(this).mouseleave('rows', '1');
+				// $(this).mouseleave('rows', '1');
 			
 		 });
 
@@ -233,7 +234,7 @@ $(function(event){
 		 });
 
 		$(document).on('click','#done_e',function(event){
-				
+			
 			var id = $(this).siblings('#comm_id').attr('value');
 			var body = $(this).siblings('#edit_comment').val();
 
@@ -266,7 +267,7 @@ $(function(event){
 				
 			var id = $(this).siblings('#comm_id').attr('value');
 
-			$('#'+id).toggle();
+			$('#edit_area'+id).toggle();
 			$('#origin'+id).toggle();
 			
 		 });

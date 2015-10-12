@@ -17,7 +17,7 @@ class Limit extends CI_Controller {
 
 	public function resetLimit(){
 
-		$this->session->set_userdata('limit', 3);
+		$this->session->set_userdata('limit', 10);
 		echo  $this->session->userdata('limit');
 	}
 	

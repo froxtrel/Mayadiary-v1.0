@@ -6,8 +6,38 @@
     }
 ?>
 
+<?php foreach($user as $row){
 
-<?php foreach($user as $row){}?>
+    }
+
+    $path = trim($row->theme_path, '"');
+;?>
+
+<style type="text/css">
+  
+body {
+
+    background-image:url('<?php echo $path;?>');  
+    background-attachment: <?php echo $row->bg_attach;?>;
+    background-color: <?php echo $row->bg_color;?>;
+    background-repeat: <?php echo $row->bg_repeat;?>;
+    background-position: <?php echo $row->bg_position;?>;
+    color:<?php echo $row->page_color;?>;
+    background-size: cover;
+
+}
+
+a{
+  color: <?php echo $row->link_color;?>;
+}
+
+#nav_bar{
+
+    background-color:#2980b9;
+
+}
+
+</style>
 
 <nav class="navbar navbar-inverse navbar-fixed-top" id="main_nav">
   <div class="container-fluid">
@@ -46,16 +76,40 @@
 
 
 <body>
-<div class="container" style="margin-top:30px;">
+<div class="container" style="margin-top:60px;">
 	<div class="row">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
 			<div class="jumbotron" id="main_wrap">
+
+			<?php
+
+		        function random_color_part() {
+						    return str_pad( dechex( mt_rand( 0, 255 ) ), 2, '0', STR_PAD_LEFT);
+				}
+
+				function random_color() {
+						    return random_color_part() . random_color_part() . random_color_part();
+				}
+
+		     ?>
 					
 			<div class="jumbotron" id="cover_photo">
 
 			<div id="covers">
-			<img src="<?php echo base_url();?>cover/<?php echo $row->cover;?>" width="100%" height="220" id="main_cover">	
+
+			<?php if(empty($row->cover)){ ?>
+
+			<div class="jumbotron" style="background-color:#<?php echo random_color();?>;width:100%;height:220px;color:#fff;color:#fff;border-radius:0px;" id="main_cover">
+			<center>WELCOME TO <img src="<?php echo base_url();?>public/img/logo.png" width="24" height="24" class="img-circle" style="border:2px solid #fff;"> MAYADIARY <?php echo strtoupper($row->username);?></center>
+			</div>
+
+		    <?php  }else{  ?>
+
+	       	<img src="<?php echo base_url();?>cover/<?php echo $row->cover;?>" width="100%" height="220" id="main_cover">
+
+		    <?php } ?>
+			
 			</div>
 
 			<div id="photo_pr">
@@ -82,7 +136,20 @@
 			</div>
 
 			<div id="photos">
-			<img src="<?php echo base_url();?>profile_photo/<?php echo $row->photo;?>" width="120" height="120" id="profile_photo" class="img-circle">	
+
+		    <?php if(empty($row->photo)){ ?>
+
+			<div class="jumbotron" style="background-color:#<?php echo random_color();?>;width:120px;height:120px;color:#fff;border-radius:50%;" id="profile_photo">
+			<?php echo strtoupper(substr($row->username,0,2));?>
+			</div>
+
+		    <?php  }else{  ?>
+
+	        <img src="<?php echo base_url();?>profile_photo/<?php echo $row->photo;?>" width="120" height="120" id="profile_photo" class="img-circle">	
+
+		    <?php } ?>
+		    
+		          	
 			</div>
 
 			<button id="upload_logo" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-camera"></span></button>
@@ -97,7 +164,7 @@
 				<div class="jumbotron" id="menu_2"><a href=""><center>1 Friends</center></a></div>
 				<div class="jumbotron" id="menu_3"><a href=""><center>1 Followers</center></a></div>
 				<div class="jumbotron" id="menu_4"><a href=""><center>0 Photos</center></a></div>
-				<div class="jumbotron" id="menu_5"><a href=""><center>0 Blog</center></a></div>
+				<div class="jumbotron" id="menu_5"><a href="" id="edit_pro"><center><span class="glyphicon glyphicon-cog"></span> Edit profile</center></a></div>
 				
 			</div>
 			<div class="clearfix"></div>
@@ -321,8 +388,7 @@
 		           $limit = $this->session->userdata('limit');
 		           $this->db->limit($limit);
 		           $this->db->order_by('id','desc');		     
-		           $this->db->where('added_by',$row->username);
-		           $this->db->where('user_posted_to',$row->username);  
+		           $this->db->where('added_by',$row->username); 
 		           $this->db->where('status','on'); 
 		           $post =  $this->db->get('post')->result();
 		           // echo $this->db->last_query();
@@ -728,7 +794,7 @@
 
 		             	<span id="origin<?php echo $comment->id;?>" class="origin"><?php echo $comment->body;?></span>	
 
-		             	<div id="<?php echo $comment->id;?>" style="display:none;">
+		             	<div id="edit_area<?php echo $comment->id;?>" style="display:none;">
 		             	<textarea style="width:100%;" id="edit_comment"><?php echo $comment->body;?></textarea>
 
 		             	<input type="hidden" value="<?php echo $comment->id;?>" id="comm_id">
@@ -785,31 +851,73 @@
 			  <center><button id="load_more" class="btn btn-warning btn-sm">LOAD MORE</button></center>
 		     </div>
 
-		     <div class="col-md-4">
+		     <div class="col-md-4" id="info_side">
+
+		     	   <div class="jumbotron" id="profile_setting">
+		     		<div class="row">
+		     			<div class="col-md-6"><button class="btn btn-default" id="hideinfo">Cancel</button></div>
+		     			<div class="col-md-6"><button class="btn btn-success" id="update_info">Save Changes</button></div>
+		     		</div>
+		     		</p>
+		     		<input type="text" class="form-control" value="<?php echo $row->username;?>" id="username"></p>  
+		     		<input type="text" class="form-control" value="<?php echo $row->bio;?>" placeholder="Bio" id="bio"></p>   
+		     		<input type="text" class="form-control" value="<?php echo $row->location;?>" placeholder="Location" id="location"></p>  
+		     		<input type="text" class="form-control" value="<?php echo $row->websites;?>" placeholder="Website" id="websites"></p>  
+		     		<input type="text" class="form-control" value="<?php echo $row->facebook;?>" placeholder="Facebook" id="facebook"></p>  	
+		     		<input type="text" class="form-control" value="<?php echo $row->google;?>" placeholder="Google+" id="google"></p>
+		     		<input type="text" class="form-control" value="<?php echo $row->twitter;?>" placeholder="Twitter" id="twitter"></p>
+		     		<a href="<?php echo base_url();?>profile/profileDesign/<?php echo $row->username;?>"><button class="btn btn-primary"><span class="glyphicon glyphicon-wrench"></span> Advance Profile Settings</button></a>
+		     	   </div>
 
 		           <div class="jumbotron" id="side_info">
-		          		           	
-		           	<div style="display:none;">
-					<form method="post" action="#" id="upload_photoz">
-					<input type="file" data-filename-placement="inside" name="userfile" id="userphoto">
-					<input type="hidden" value="<?php echo $row->username;?>" id="receiver"> 
-					<button type="submit" id="profile_update">Post</button>
-					</form>
-					</div>    
 
-					<div style="display:none;">
-					<form method="post" action="#" id="upload_coverz">
-					<input type="file" data-filename-placement="inside" name="userfile" id="usercover">
-					<input type="hidden" value="<?php echo $row->username;?>" id="receiver"> 
-					<button type="submit" id="cover_update">Post</button>
-					</form>
-					</div>    
+		           <div id="refresh_info">
+		           <?php
+
+		           $info = $this->db->get_where('user',array('username' => $row->username))->result();
+		           foreach($info as $i){}
+
+		           ?>
+		           <div class="jumbotron" id="date_join"><center><b><a href=""><?php echo ucfirst($row->username);?></a></b> <small>@<?php echo ucfirst($row->username);?></small></center></div>
+		           <div class="jumbotron" id="date_join">
+		           	
+		           <?php echo $i->bio;?>
 
 		           </div>
 
-		           
-			
-		    </div>
+		           <div class="jumbotron" id="date_join">
+		           <table width="100%" border="0">
+		           		<tr>
+		           			<td><center><span class="glyphicon glyphicon-time"></span></center></a></td>
+		           			<td><center>Joined <?php echo $i->registerdate;?></center></td>
+		           		</tr>
+		           		<tr>
+		           			<td height="10px;"></td>
+		           		</tr>
+		           		<tr>
+		           			<td width="10%"><center><img src="<?php echo base_url();?>public/img/link.png" width="15" height="15"></canter></td>
+		           			<td><center><a href=""><?php echo $i->websites;?></center></a></td>
+		           		</tr>
+		           </table>		           
+		           </div>
+		           <div class="jumbotron" id="date_join">		         	           
+		          
+		           <table width="100%">
+
+		          	<tr>
+		          		<td><a href="http://<?php echo $i->facebook;?>"><center><img src="<?php echo base_url();?>public/img/facebook.png" width="36" height="36"></center></td>
+		          		<td><a href="http://<?php echo $i->google;?>"><center><img src="<?php echo base_url();?>public/img/google.ico" width="32" height="32"></center></td>
+		          		<td><a href="http://<?php echo $i->twitter;?>"><center><img src="<?php echo base_url();?>public/img/twitter.png" width="38" height="38"></center></td>
+		          	</tr>
+		           	
+		           </table>
+
+		           </div>
+
+		           </div>
+
+		           </div>		
+		     </div>
 		
 	    </div>
 		</div>
@@ -824,3 +932,18 @@
 </body>
 
 
+					<div style="display:none;">
+					<form method="post" action="#" id="upload_photoz">
+					<input type="file" data-filename-placement="inside" name="userfile" id="userphoto">
+					<input type="hidden" value="<?php echo $row->username;?>" id="receiver"> 
+					<button type="submit" id="profile_update">Post</button>
+					</form>
+					</div>    
+
+					<div style="display:none;">
+					<form method="post" action="#" id="upload_coverz">
+					<input type="file" data-filename-placement="inside" name="userfile" id="usercover">
+					<input type="hidden" value="<?php echo $row->username;?>" id="receiver"> 
+					<button type="submit" id="cover_update">Post</button>
+					</form>
+					</div>    
