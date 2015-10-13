@@ -46,18 +46,18 @@ a{
   <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
     <ul class="nav sidebar-nav">
       <li class="sidebar-brand"> <a href="#"><img src="<?php echo base_url();?>public/img/logo.png" width="40" height="40" class="img-circle" style="border:2px solid #fff;"> <span class="maya">MayaDiary</span></a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-home">  		</i> Home  </a> </li>
-      <li> <a href="<?php echo base_url();?>profile/userProfile/<?php echo $this->session->userdata('username');?>"><i class="fa fa-fw fa-user"></i> Profile </a> </li>
-      <li> <a href="<?php echo base_url();?>profile/photoshow/<?php echo $this->session->userdata('username');?>"><i class="fa fa-fw fa-picture-o">  		</i> Photos  </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-video-camera">  	</i> Video   </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-music">     		</i> Music   </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-pencil-square-o">  </i> Blogs   </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-bullhorn"> 		</i> Forums  </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-users">			</i> Groups  </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-gamepad"> 			</i> Games   </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-calendar"> 		</i> Events  </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-wrench"> 		    </i> Settings  </a> </li>
-      <li> <a href="<?php echo base_url();?>login/logout"><i class="fa fa-fw fa-sign-out"></i> Logout</a> </li>
+      <li> <a href="<?php echo base_url();?>home/goHome" class="style"><i class="fa fa-fw fa-home">  		</i> Home  </a> </li>
+      <li> <a href="<?php echo base_url();?>profile/userProfile/<?php echo $this->session->userdata('username');?>" class="style"><i class="fa fa-fw fa-user"></i> Profile </a> </li>
+      <li> <a href="<?php echo base_url();?>profile/photoshow/<?php echo $this->session->userdata('username');?>" class="style"><i class="fa fa-fw fa-picture-o">  		</i> Photos  </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-video-camera">  	</i> Video   </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-music">     		</i> Music   </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-pencil-square-o">  </i> Blogs   </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-bullhorn"> 		</i> Forums  </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-users">			</i> Groups  </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-gamepad"> 			</i> Games   </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-calendar"> 		</i> Events  </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-wrench"> 		    </i> Settings  </a> </li>
+      <li> <a href="<?php echo base_url();?>login/logout" class="style"><i class="fa fa-fw fa-sign-out"></i> Logout</a> </li>
     </ul>
   </nav>
   <!-- /#sidebar-wrapper --> 

@@ -13,17 +13,22 @@ body {
 
 #maya {
 
-	font-family: 'Covered By Your Grace', cursive;
+	font-family: 'Oleo Script', cursive;
 	font-size: 80px;
 	margin-left: 10px;
 	
 }
 .maya{
 
-	font-family: 'Covered By Your Grace', cursive;
+	font-family: 'Oleo Script', cursive;
 	margin-left: 5px;
 }
 
+.style{
+
+	font-family: 'Oleo Script', cursive;
+	
+}
 
 /*INDEX STYLE*/
 
@@ -103,7 +108,7 @@ body {
 
 	width: 100%;
 	border-radius: 0px;
-	background-color: #D2527F;
+	background-color: #CF000F;
 	color: #fff;
 	font-weight: bold;
 	padding: 10px;
@@ -729,6 +734,21 @@ body {
 	padding: 10px;
 	margin: 0px;
 }
+#prof_head{
+
+	border-radius: 0px;
+	background-color: #fff;
+	padding: 10px;
+	margin: 0px;
+}
+
+#filter{
+
+	padding: 0px;
+}
+
+
+
 /*END*/
 
 

@@ -1,119 +1,28 @@
 <body style="background-image:url(<?php echo base_url();?>public/img/index_bg.jpg)">
 
-<nav class="navbar navbar-inverse" id="main_nav">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span> 
-      </button>
-      <a class="navbar-brand" href="#"><img src="<?php echo base_url();?>public/img/logo.png" width="24" height="24" class="img-circle" style="border:2px solid #fff;"></a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li><a href="#"></a></li>
-        <li><a href="#"></a></li>
-        <li><a href="#"></a></li> 
-      </ul>
-    </div>
-  </div>
-</nav>
+<style type="text/css">
+  
+body {
+
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+}
+
+</style>
 
 <div class="container-fluid">
 	<div class="row">
 
 		<div class="col-md-1" class="nopadding"></div>
-		<div class="col-md-6" class="nopadding">
+		<div class="col-md-6" class="nopadding" style="margin-top:40px;">
 
-		<center><img src="<?php echo base_url();?>public/img/logo.png" width="100" height="100" class="img-circle" style="border:2px solid #fff;margin-top:-20px;">
-			<b style="color:#fff;"><span id="maya">MayaDiary</span></b></center>
-		
-		
-		<div class="jumbotron" id="about_maya">
-		<table width="100%" border="0">
-
-			<!-- <tr>
-			    <td colspan="2"><span id="welcome"><center>Welcome to our social network</center></span></td>
-			</tr>
-
-			<tr>
-				<td height="35px;"></td>
-				<td></td>
-			</tr> -->
-
-			<tr style="height:80px;">
-				<td width="25%">
-				
-				<div id="share">
-					
-				<center><span class="glyphicon glyphicon-pencil" id="icon1"></span></center>
-
-				</div>
-
-				</td>
-				<td>
-					<span class="maininfo">Share content</span>
-					</p>
-					<span class="info">Share your stories,your advantures and your thoughts</span>
-				</td>	
-			</tr>
-
-			<tr>
-				<td height="15px;"></td>
-				<td></td>
-			</tr>
-
-			<tr style="height:80px;">
-				<td width="25%">
-				
-				<div id="share">
-					
-				<center><span class="glyphicon glyphicon-comment" id="icon2"></span></center>
-
-				</div>	
-
-				</td>
-				<td>
-					<span class="maininfo">Discuss</span>
-					</p>
-					<span class="info">Keep in touch with your friend,chat,mention e.t.c</span>
-				</td>	
-			</tr>
-
-			<tr>
-				<td height="15px;"></td>
-				<td></td>
-			</tr>
-
-
-			<tr style="height:80px;">
-				<td width="25%">
-					
-				<div id="share">
-					
-				<center><span class="glyphicon glyphicon-heart" id="icon3" style="color:#D2527F" ></span></center>
-
-				</div>
-
-				</td>
-				<td>
-					<span class="maininfo">Find people</span>
-					</p>
-					<span class="info">Discover new people,make friend and start sharing</span>
-				</td>	
-			</tr>
-
-			<tr>
-				<td height="15px;"></td>
-				<td></td>
-			</tr>
-
-		</table>
-		</div>	
-
+		<center><img src="<?php echo base_url();?>public/img/logo.png" width="100" height="100" class="img-circle" style="border:2px solid #fff;margin-top:-30px;">
+		<b style="color:#fff;"><span id="maya">MayaDiary</span></b></center>
 		</div>
-		<div class="col-md-5" class="nopadding" >
+
+		<div class="col-md-5" class="nopadding" style="margin-top:50px;">
 		
 		<div class="jumbotron" id="login_maya">	
 
@@ -129,7 +38,7 @@
 			<tr>
 				<td colspan="4">
 					
-				<div class="jumbotron" id="login_show" >
+				<div class="jumbotron" id="login_show" style="background-color:rgba(255,255,255,0.5);margin-top:-20px;">
 				
 				<?php echo validation_errors(); ?>
 				<?php echo @$success ;?>
@@ -153,7 +62,7 @@
 			<tr>
 				<td colspan="4">
 					
-				<div class="jumbotron" id="signup_show" style="display:none;">
+				<div class="jumbotron" id="signup_show" style="display:none;background-color:rgba(255,255,255,0.5);margin-top:-20px;">
 					
 				<?php echo form_open('register/signUp');?>	
 				<label>Username</label>

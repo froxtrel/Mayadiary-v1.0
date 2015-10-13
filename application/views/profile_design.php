@@ -41,22 +41,22 @@ a{
 <div id="wrapper">
   <div class="overlay"></div>
   
- <!-- Sidebar -->
+<!-- Sidebar -->
   <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
     <ul class="nav sidebar-nav">
       <li class="sidebar-brand"> <a href="#"><img src="<?php echo base_url();?>public/img/logo.png" width="40" height="40" class="img-circle" style="border:2px solid #fff;"> <span class="maya">MayaDiary</span></a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-home">        </i> Home  </a> </li>
-      <li> <a href="<?php echo base_url();?>profile/userProfile/<?php echo $this->session->userdata('username');?>"><i class="fa fa-fw fa-user"></i> Profile </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-picture-o">        </i> Photos  </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-video-camera">     </i> Video   </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-music">            </i> Music   </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-pencil-square-o">  </i> Blogs   </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-bullhorn">         </i> Forums  </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-users">            </i> Groups  </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-gamepad">          </i> Games   </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-calendar">         </i> Events  </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-wrench">           </i> Settings  </a> </li>
-      <li> <a href="<?php echo base_url();?>login/logout"><i class="fa fa-fw fa-sign-out"></i> Logout</a> </li>
+      <li> <a href="<?php echo base_url();?>home/goHome" class="style"><i class="fa fa-fw fa-home">     </i> Home  </a> </li>
+      <li> <a href="<?php echo base_url();?>profile/userProfile/<?php echo $this->session->userdata('username');?>" class="style"><i class="fa fa-fw fa-user"></i> Profile </a> </li>
+      <li> <a href="<?php echo base_url();?>profile/photoshow/<?php echo $this->session->userdata('username');?>" class="style"><i class="fa fa-fw fa-picture-o">     </i> Photos  </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-video-camera">   </i> Video   </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-music">        </i> Music   </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-pencil-square-o">  </i> Blogs   </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-bullhorn">     </i> Forums  </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-users">      </i> Groups  </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-gamepad">      </i> Games   </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-calendar">     </i> Events  </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-wrench">         </i> Settings  </a> </li>
+      <li> <a href="<?php echo base_url();?>login/logout" class="style"><i class="fa fa-fw fa-sign-out"></i> Logout</a> </li>
     </ul>
   </nav>
   <!-- /#sidebar-wrapper --> 
@@ -101,28 +101,28 @@ a{
 
                 <div class="jumbotron" id="profile_view">
                     <img src="<?php echo base_url();?>profile_photo/<?php echo $youp->photo;?>" id="set_photo" width="74" height="74" class="img-rounded">
-                    <center><?php echo ucfirst($row->username);?></center>
+                    <center class="style"><?php echo ucfirst($row->username);?></center>
                 </div>
 
             </div>  
 
             <div class="jumbotron" id="d_menu1">
 
-            <button class="btn btn-default" id="acc" style="width:100%"><span style="float:left;">Account</span> <span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
+            <button class="btn btn-default" id="acc" style="width:100%"><span style="float:left;" class="style">Account</span> <span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
 
-            <button class="btn btn-default" id="pri" style="width:100%"><span style="float:left;">Privacy</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
+            <button class="btn btn-default" id="pri" style="width:100%"><span style="float:left;" class="style">Privacy</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
 
-            <button class="btn btn-default" id="em" style="width:100%"><span style="float:left;">Email notification</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
+            <button class="btn btn-default" id="em" style="width:100%"><span style="float:left;"  class="style">Email notification</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
 
-            <button class="btn btn-default" id="web" style="width:100%"><span style="float:left;">Web notification</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
+            <button class="btn btn-default" id="web" style="width:100%"><span style="float:left;"  class="style">Web notification</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
 
-            <button class="btn btn-default" id="find" style="width:100%"><span style="float:left;">Find Friends</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
+            <button class="btn btn-default" id="find" style="width:100%"><span style="float:left;" class="style">Find Friends</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
 
-            <button class="btn btn-default" id="veri" style="width:100%"><span style="float:left;">Verify accounts</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
+            <button class="btn btn-default" id="veri" style="width:100%"><span style="float:left;"  class="style">Verify accounts</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
 
-            <button class="btn btn-default" id="block" style="width:100%"><span style="float:left;">Blocked accounts</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
+            <button class="btn btn-default" id="block" style="width:100%"><span style="float:left;" class="style">Blocked accounts</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
 
-            <button class="btn btn-default" id="part" style="width:100%"><span style="float:left;">Design</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
+            <button class="btn btn-default" id="part" style="width:100%"><span style="float:left;"  class="style">Design</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
             </div> 
 
             <script type="text/javascript">
@@ -143,7 +143,7 @@ a{
             <!-- ACCOUNT SETTINGS -->
             <div class="jumbotron" id="account_set" style="margin-top:25px;display:#;">
                 <div class="jumbotron" id="acc_head">
-                    <center>Account</center>
+                    <center class="style">Account</center>
                 </div>
                 <div class="jumbotron" id="acc_body">
                     <table width="100%" border="0">
@@ -178,7 +178,7 @@ a{
                         </tr>
                     </table>
                     <hr>
-                    <center>Content</center>
+                    <center class="style" >Content</center>
                     <table width="100%" border="0">                     
                         <tr>
                             <td height="25px;"></td>
@@ -343,7 +343,7 @@ a{
 
             <!-- PRIVACY SETTINGS -->
             <div class="jumbotron menu" id="privacy_set" style="margin-top:25px;display:none;">
-            <div class="jumbotron" id="privacy_head"><center>Privacy and confidentiality</center></div>
+            <div class="jumbotron" id="privacy_head"><center class="style" >Privacy and confidentiality</center></div>
             <br>
             <div class="jumbotron" id="privacy_body">
              <table width="90%" border="0">
@@ -470,7 +470,7 @@ a{
 
             <!-- EMAIL NOTIFICATION -->
             <div class="jumbotron menu" id="email_set" style="margin-top:25px;display:none;">
-            <div class="jumbotron" id="email_head"><center>Email notification</center></div>
+            <div class="jumbotron" id="email_head"><center class="style">Email notification</center></div>
             <center>Receive email notifications for:</center>
             <div class="jumbotron" id="email_body">
                 <table width="90%" border="0">
@@ -544,7 +544,7 @@ a{
 
             <!-- WEB NOTIFICATION -->
             <div class="jumbotron menu" id="web_set" style="margin-top:25px;display:none;">
-            <div class="jumbotron" id="web_head"><center>Site notification</center></div>
+            <div class="jumbotron" id="web_head"><center class="style">Site notification</center></div>
             <center>Receive site notifications for:</center>
             <div class="jumbotron" id="web_body">
                 <table width="90%" border="0">
@@ -630,7 +630,7 @@ a{
 
             <!-- FIND FRIENDS -->
             <div class="jumbotron menu" id="find_set" style="margin-top:25px;display:none;min-height:400px;">
-            <div class="jumbotron" id="find_head"><center>Find Friends</center></div>
+            <div class="jumbotron" id="find_head"><center class="style">Find Friends</center></div>
              <div class="jumbotron" id="find_body"></div>
             </div>
             <!-- END FIND FRIENDS -->
@@ -680,7 +680,7 @@ a{
 
             <!-- BLOCKED ACCOUNTS -->
             <div class="jumbotron menu" id="blocked_set" style="margin-top:25px;display:none;min-height:400px;">
-            <div class="jumbotron" id="block_head"><center>Blocked user</center></div>
+            <div class="jumbotron" id="block_head"><center class="style">Blocked user</center></div>
             <div class="jumbotron" id="block_body"></div>
             </div>
             <!-- END LOCKED ACCOUNTS -->
@@ -689,7 +689,7 @@ a{
             <!-- PROFILE DESIGN -->
             <div class="jumbotron menu" id="part_1" style="margin-top:25px;display:none;">
 
-                <div class="jumbotron" id="design_head"><center>Design your page</center></div>
+                <div class="jumbotron" id="design_head"><center class="style">Design your page</center></div>
                 <div class="jumbotron" id="design_body">
                     Choose from themes
                     <hr>

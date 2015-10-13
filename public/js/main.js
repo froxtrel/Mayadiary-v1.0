@@ -718,6 +718,168 @@ $('#hideinfo')
 
         // END
 
+      $('#all_m').click(function(){
+
+          $.ajax({
+
+                type:'POST',
+                url :'http://localhost/Mayadiary-v1.0/changestate/myPhoto',
+                data:{},
+                datatype:'json',
+                success: function (data) {
+
+                location.reload();  
+                     
+                },
+
+                error: function (data) {
+                      
+                alert('failed');
+
+                }
+         });
+
+      });
+
+      $('#all_p').click(function(){
+
+          $.ajax({
+
+                type:'POST',
+                url :'http://localhost/Mayadiary-v1.0/changestate/allPhoto',
+                data:{},
+                datatype:'json',
+                success: function (data) {
+
+                location.reload();  
+                     
+                },
+
+                error: function (data) {
+                      
+                alert('failed');
+
+                }
+         });
+
+      });
+
+      $('#a_p').click(function(){
+
+          $.ajax({
+
+                type:'POST',
+                url :'http://localhost/Mayadiary-v1.0/changestate/allPost',
+                data:{},
+                datatype:'json',
+                success: function (data) {
+
+                $("#post_feed").load(location.href + " #post_feed");   
+                     
+                },
+
+                error: function (data) {
+                      
+                alert('failed');
+
+                }
+         });
+
+      });
+
+      $('#f_p').click(function(){
+
+          $.ajax({
+
+                type:'POST',
+                url :'http://localhost/Mayadiary-v1.0/changestate/folPost',
+                data:{},
+                datatype:'json',
+                success: function (data) {
+
+                $("#post_feed").load(location.href + " #post_feed");  
+                     
+                },
+
+                error: function (data) {
+                      
+                alert('failed');
+
+                }
+         });
+
+      });
+
+      $('#m_p').click(function(){
+
+          $.ajax({
+
+                type:'POST',
+                url :'http://localhost/Mayadiary-v1.0/changestate/musicPost',
+                data:{},
+                datatype:'json',
+                success: function (data) {
+
+                $("#post_feed").load(location.href + " #post_feed");   
+                     
+                },
+
+                error: function (data) {
+                      
+                alert('failed');
+
+                }
+         });
+
+      });
+
+      $('#p_p').click(function(){
+
+          $.ajax({
+
+                type:'POST',
+                url :'http://localhost/Mayadiary-v1.0/changestate/photoPost',
+                data:{},
+                datatype:'json',
+                success: function (data) {
+
+                $("#post_feed").load(location.href + " #post_feed");   
+                     
+                },
+
+                error: function (data) {
+                      
+                alert('failed');
+
+                }
+         });
+
+      });
+
+      $('#v_p').click(function(){
+
+          $.ajax({
+
+                type:'POST',
+                url :'http://localhost/Mayadiary-v1.0/changestate/videoPost',
+                data:{},
+                datatype:'json',
+                success: function (data) {
+
+                $("#post_feed").load(location.href + " #post_feed");  
+                     
+                },
+
+                error: function (data) {
+                      
+                alert('failed');
+
+                }
+         });
+
+      });
+
+
 });
 
 		

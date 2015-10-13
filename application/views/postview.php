@@ -49,18 +49,18 @@ a{
   <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
     <ul class="nav sidebar-nav">
       <li class="sidebar-brand"> <a href="#"><img src="<?php echo base_url();?>public/img/logo.png" width="40" height="40" class="img-circle" style="border:2px solid #fff;"> <span class="maya">MayaDiary</span></a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-home">  		</i> Home  </a> </li>
-      <li> <a href="<?php echo base_url();?>profile/userProfile/<?php echo $this->session->userdata('username');?>"><i class="fa fa-fw fa-user"></i> Profile </a> </li>
-      <li> <a href="<?php echo base_url();?>profile/photoshow/<?php echo $this->session->userdata('username');?>"><i class="fa fa-fw fa-picture-o">  		</i> Photos  </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-video-camera">  	  </i> Video   </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-music">     		    </i> Music   </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-pencil-square-o">  </i> Blogs   </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-bullhorn"> 		    </i> Forums  </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-users">			      </i> Groups  </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-gamepad"> 			    </i> Games   </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-calendar"> 		    </i> Events  </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-wrench"> 		      </i> Settings  </a> </li>
-      <li> <a href="<?php echo base_url();?>login/logout"><i class="fa fa-fw fa-sign-out"></i> Logout</a> </li>
+      <li> <a href="<?php echo base_url();?>home/goHome" class="style"><i class="fa fa-fw fa-home">     </i> Home  </a> </li>
+      <li> <a href="<?php echo base_url();?>profile/userProfile/<?php echo $this->session->userdata('username');?>" class="style"><i class="fa fa-fw fa-user"></i> Profile </a> </li>
+      <li> <a href="<?php echo base_url();?>profile/photoshow/<?php echo $this->session->userdata('username');?>" class="style"><i class="fa fa-fw fa-picture-o">     </i> Photos  </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-video-camera">   </i> Video   </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-music">        </i> Music   </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-pencil-square-o">  </i> Blogs   </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-bullhorn">     </i> Forums  </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-users">      </i> Groups  </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-gamepad">      </i> Games   </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-calendar">     </i> Events  </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-wrench">         </i> Settings  </a> </li>
+      <li> <a href="<?php echo base_url();?>login/logout" class="style"><i class="fa fa-fw fa-sign-out"></i> Logout</a> </li>
     </ul>
   </nav>
   <!-- /#sidebar-wrapper --> 
@@ -101,13 +101,13 @@ a{
 
                 <div class="jumbotron" id="profile_view">
                     <img src="<?php echo base_url();?>profile_photo/<?php echo $youp->photo;?>" id="set_photo" width="74" height="74" class="img-rounded">
-                    <center><?php echo ucfirst($row->username);?></center>
+                    <center class="style"><?php echo ucfirst($row->username);?></center>
                 </div>
 
             </div>    
 
             <div class="jumbotron" id="on_off">
-              <div class="jumbotron" id="zoom_head"><center><small>Zoom Effect</small></center></div>
+              <div class="jumbotron" id="zoom_head"><center><small class="style">Zoom Effect</small></center></div>
               <div class="jumbotron" id="zoom_body">
                 <div class="row">
                   <div class="col-md-6">
@@ -121,7 +121,7 @@ a{
             </div>
 
             <div class="jumbotron" id="double">
-              <div class="jumbotron" id="split_head"><center><small>Split Image</small></center></div>
+              <div class="jumbotron" id="split_head"><center><small class="style">Split Image</small></center></div>
                  <div class="jumbotron" id="split_body">
 
                     <button class="btn btn-success btn-sm" id="split" style="width:100%;">Active</button>                          
@@ -130,7 +130,7 @@ a{
             </div>
 
              <div class="jumbotron" id="normal_p">
-              <div class="jumbotron" id="normal_head"><center><small>Reset All</small></center></div>
+              <div class="jumbotron" id="normal_head"><center><small class="style">Reset All</small></center></div>
                  <div class="jumbotron" id="normal_body">
 
                     <button class="btn btn-success btn-sm" id="default" style="width:100%;">Default</button>                          

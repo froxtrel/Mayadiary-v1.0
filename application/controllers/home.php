@@ -6,12 +6,16 @@ public function __construct(){
         
         parent::__construct();
         $this->clear_cache();
+        $this->load->model('model_profile');
     }
 	
 public function goHome(){
+
+		$user = $this->session->userdata('username');
+		$data['user'] =  $this->model_profile->getData($user);
 		
 		$this->load->view('header');
-		$this->load->view('home');
+		$this->load->view('home',$data);
 		$this->load->view('footer');
 	}
 

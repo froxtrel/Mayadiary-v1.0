@@ -29,7 +29,9 @@ class Model_login extends CI_Model {
                    'username'  => $username->username,
                    'email'     => $email,
                    'logged_in' => TRUE,
-                   'limit'     =>  '10'
+                   'limit'     =>  '10',
+                   'photo'     =>  'A',
+                   'post'      =>  'A'
 
                );
 

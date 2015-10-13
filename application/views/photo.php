@@ -50,22 +50,22 @@ a{
 <div id="wrapper">
   <div class="overlay"></div>
   
-  <!-- Sidebar -->
+   <!-- Sidebar -->
   <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
     <ul class="nav sidebar-nav">
       <li class="sidebar-brand"> <a href="#"><img src="<?php echo base_url();?>public/img/logo.png" width="40" height="40" class="img-circle" style="border:2px solid #fff;"> <span class="maya">MayaDiary</span></a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-home">  		</i> Home  </a> </li>
-      <li> <a href="<?php echo base_url();?>profile/userProfile/<?php echo $this->session->userdata('username');?>"><i class="fa fa-fw fa-user"></i> Profile </a> </li>
-      <li> <a href="<?php echo base_url();?>profile/photoshow/<?php echo $this->session->userdata('username');?>"><i class="fa fa-fw fa-picture-o">  		</i> Photos  </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-video-camera">  	  </i> Video   </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-music">     		    </i> Music   </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-pencil-square-o">  </i> Blogs   </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-bullhorn"> 		    </i> Forums  </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-users">			      </i> Groups  </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-gamepad"> 			    </i> Games   </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-calendar"> 		    </i> Events  </a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa-wrench"> 		      </i> Settings  </a> </li>
-      <li> <a href="<?php echo base_url();?>login/logout"><i class="fa fa-fw fa-sign-out"></i> Logout</a> </li>
+      <li> <a href="<?php echo base_url();?>home/goHome" class="style"><i class="fa fa-fw fa-home">     </i> Home  </a> </li>
+      <li> <a href="<?php echo base_url();?>profile/userProfile/<?php echo $this->session->userdata('username');?>" class="style"><i class="fa fa-fw fa-user"></i> Profile </a> </li>
+      <li> <a href="<?php echo base_url();?>profile/photoshow/<?php echo $this->session->userdata('username');?>" class="style"><i class="fa fa-fw fa-picture-o">     </i> Photos  </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-video-camera">   </i> Video   </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-music">        </i> Music   </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-pencil-square-o">  </i> Blogs   </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-bullhorn">     </i> Forums  </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-users">      </i> Groups  </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-gamepad">      </i> Games   </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-calendar">     </i> Events  </a> </li>
+      <li> <a href="#" class="style"><i class="fa fa-fw fa-wrench">         </i> Settings  </a> </li>
+      <li> <a href="<?php echo base_url();?>login/logout" class="style"><i class="fa fa-fw fa-sign-out"></i> Logout</a> </li>
     </ul>
   </nav>
   <!-- /#sidebar-wrapper --> 
@@ -93,22 +93,44 @@ a{
           <div class="jumbotron" id="photo_head" style="background-color:rgba(255,255,255,0.5)" >
           
           <div class="row">
-            <div class="col-md-3"> <center><button class="btn btn-default">ALL PHOTOS</button> </center></div>
-            <div class="col-md-3"> <center><button class="btn btn-default">MY PHOTOS</button> </center></div>
-            <div class="col-md-3"> <center><button class="btn btn-default">POPULAR</button> </center></div>
-            <div class="col-md-3"> <center><button class="btn btn-default">ALL PHOTOS</button></center> </div>
+            <div class="col-md-3"> <center><button class="btn btn-default style" style="width:100%;" id="all_p">ALL PHOTOS</button> </center></div>
+            <div class="col-md-3"> <center><button class="btn btn-default style" style="width:100%;" id="all_m">MY PHOTOS</button> </center></div>
+            <div class="col-md-3"> <center><button class="btn btn-default style" style="width:100%;">POPULAR</button> </center></div>
+            <!-- <div class="col-md-3"> <center><button class="btn btn-default" style="width:100%;">ALL PHOTOS</button></center> </div> -->
           </div>
 
           </div>        
+
 
           <!-- ALL PHOTO -->
             <div class="gallery" style="background-color:rgba(255,255,255,0.5)">
 
                 <?php
 
+                $status = $this->session->userdata('photo');
+
+                if($status == 'A'){
+
+                $this->db->order_by('id','desc');
                 $this->db->where('photo !=','');
                 $photo = $this->db->get('post')->result();
-                foreach($photo as $image){ ?>
+
+
+                }else if($status == 'M'){
+
+                $this->db->where('added_by',$row->username);
+                $this->db->where('photo !=','');
+                $photo = $this->db->get('post')->result();
+ 
+
+                }else{
+
+                // ORDER BY LIKE
+
+                }
+
+               foreach($photo as $image){ ?>  
+                  
 
                 <a href="<?php echo base_url();?>profile/postview/<?php echo $row->username;?>/<?php echo $image->id;?>">
 
