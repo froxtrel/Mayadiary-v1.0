@@ -34,6 +34,10 @@ public function LoginUser(){
 
 			redirect("home/goHome", 'refresh');
 
+			}else{
+
+			redirect("welcome/index", 'refresh');
+				
 			}
 			
 		}

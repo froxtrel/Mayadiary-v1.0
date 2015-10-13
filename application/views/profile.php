@@ -306,7 +306,7 @@ a{
 
 		            			?>
 		            			<img src="<?php echo base_url();?>profile_photo/<?php echo $userp->photo;?>" width="30" height="30" class="img-#">
-
+		            			<div id="status"></div>
 		            			</td>
 
 		            			<td>

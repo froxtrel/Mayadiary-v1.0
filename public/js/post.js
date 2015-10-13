@@ -411,6 +411,8 @@ $(function(event){
 		var link    = $('#link').val();
 		var type    = $('#sett_v').val();
 
+		$('#status').html("<img src='http://localhost/Mayadiary-v1.0/public/img/loading.gif' width='20' height='20'>");
+
 		$.ajax({
 
 			type:'POST',
@@ -426,6 +428,7 @@ $(function(event){
 			$('#video').val('');
 			$('#map').val('');
 			$('#link').val('');
+			$('#status').html('');
                  
               },
 

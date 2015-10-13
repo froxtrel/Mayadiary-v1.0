@@ -28,8 +28,17 @@ class Model_register extends CI_Model {
         'username'     => strtolower($username) ,
         'password'     => strtolower($password) ,
         'birthday'     => strtolower($birthday) ,
-        'registerdate' => strtolower($date)
-
+        'registerdate' => strtolower($date),
+        'photo'        => 'default.png',
+        'cover'        => 'default.png',
+        'cover'        => 'default.png',
+        'bg_position'  => 'center center',
+        'bg_attach'    =>  'fixed',
+        'bg_repeat'    => 'no-repeat',
+        'theme_path'   => 'http://localhost/Mayadiary-v1.0/themes/default.jpg',
+        'websites'     =>  'www.yousite.com',
+        'bio'          =>  'Say something about you here'
+ 
         );
 
         $this->db->insert('user', $data); 
