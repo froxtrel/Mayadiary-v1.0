@@ -885,6 +885,21 @@ a{
 				  <button type="button" class="btn btn-default style" id="m_p"><span class="glyphicon glyphicon-volume-up" style="float:left;"></span>Music</button>
 				  <button type="button" class="btn btn-default style" id="v_p"><span class="glyphicon glyphicon-film" style="float:left;"></span>Video</button>
 				</div>
+
+				<div class="jumbotron" id="user_activity"> 
+					<div class="jumbotron" id="ac_head"><center class="style">Activity</center></div>
+					<div class="jumbotron style" id="ac_body"></div>
+				</div>
+
+				<div class="jumbotron" id="other_user"> 
+					<div class="jumbotron" id="ou_head"><center class="style">Other people</center></div>
+					<div class="jumbotron style" id="ou_body"></div>
+				</div>
+
+				<div class="jumbotron" id="t_hash"> 
+					<div class="jumbotron" id="hash_head"><center class="style">Trending #</center></div>
+					<div class="jumbotron style" id="hash_body"></div>
+				</div>
 						         	
 		     </div>
 		

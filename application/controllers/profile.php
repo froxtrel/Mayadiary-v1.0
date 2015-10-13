@@ -52,6 +52,17 @@ class Profile extends CI_Controller {
 
 	}
 
+	public function peopleShow($user){
+
+		 $data['user'] =  $this->model_profile->getData($user);	
+
+		 $this->load->view('header');
+		 $this->load->view('people',$data);
+		 $this->load->view('footer');	
+
+	}
+
+
 	public function postview($user,$id){
 
 		 $data['user'] =  $this->model_profile->getData($user);	

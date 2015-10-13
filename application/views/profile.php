@@ -49,6 +49,7 @@ a{
       <li> <a href="<?php echo base_url();?>home/goHome" class="style"><i class="fa fa-fw fa-home">  		</i> Home  </a> </li>
       <li> <a href="<?php echo base_url();?>profile/userProfile/<?php echo $this->session->userdata('username');?>" class="style"><i class="fa fa-fw fa-user"></i> Profile </a> </li>
       <li> <a href="<?php echo base_url();?>profile/photoshow/<?php echo $this->session->userdata('username');?>" class="style"><i class="fa fa-fw fa-picture-o">  		</i> Photos  </a> </li>
+      <li> <a href="<?php echo base_url();?>profile/peopleShow/<?php echo $this->session->userdata('username');?>" class="style"><i class="fa fa-fw fa-users">  	</i> People   </a> </li>
       <li> <a href="#" class="style"><i class="fa fa-fw fa-video-camera">  	</i> Video   </a> </li>
       <li> <a href="#" class="style"><i class="fa fa-fw fa-music">     		</i> Music   </a> </li>
       <li> <a href="#" class="style"><i class="fa fa-fw fa-pencil-square-o">  </i> Blogs   </a> </li>

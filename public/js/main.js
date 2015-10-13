@@ -641,6 +641,7 @@ $('#hideinfo')
 
         // END
 
+
      // UNFOLLOW HANDLER
 
             $('#unfollow_u').click(function(event){

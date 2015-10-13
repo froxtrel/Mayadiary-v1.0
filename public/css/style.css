@@ -747,6 +747,27 @@ body {
 	padding: 0px;
 }
 
+#user_activity,#other_user,#t_hash{
+
+	border-radius: 0px;
+	background-color: #fff;
+	padding: 0px;
+}
+
+#ac_head,#ou_head,#hash_head{
+
+	border-radius: 0px;
+	margin: 0px;
+	padding: 10px;
+}
+#ac_body,#ou_body,#hash_body{
+
+	background-color: #fff;
+	min-height: 250px;
+	overflow: auto;
+	border-radius: 0px;
+	padding: 10px;
+}
 
 
 /*END*/
@@ -875,7 +896,7 @@ body {
     	padding: 1px;
     }
 }
-
+		
 
 /*END*/
 

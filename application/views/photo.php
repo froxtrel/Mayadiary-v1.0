@@ -93,9 +93,9 @@ a{
           <div class="jumbotron" id="photo_head" style="background-color:rgba(255,255,255,0.5)" >
           
           <div class="row">
-            <div class="col-md-3"> <center><button class="btn btn-default style" style="width:100%;" id="all_p">ALL PHOTOS</button> </center></div>
-            <div class="col-md-3"> <center><button class="btn btn-default style" style="width:100%;" id="all_m">MY PHOTOS</button> </center></div>
-            <div class="col-md-3"> <center><button class="btn btn-default style" style="width:100%;">POPULAR</button> </center></div>
+            <div class="col-md-3"> <center><button class="btn btn-default style" style="width:100%;" id="all_p"><span class="glyphicon glyphicon-list-alt"></span> ALL PHOTOS</button> </center></div>
+            <div class="col-md-3"> <center><button class="btn btn-default style" style="width:100%;" id="all_m"><span class="glyphicon glyphicon-picture"></span> MY PHOTOS</button> </center></div>
+            <div class="col-md-3"> <center><button class="btn btn-default style" style="width:100%;" id="pupo"><span class="glyphicon glyphicon-star-empty"></span> POPULAR</button> </center></div>
             <!-- <div class="col-md-3"> <center><button class="btn btn-default" style="width:100%;">ALL PHOTOS</button></center> </div> -->
           </div>
 
@@ -146,7 +146,7 @@ a{
 
                  ?>
 
-                <figure class="picture" data-title="<small>LIKE: <?php echo count($likes);?> | SHARE : <?php echo count($cshare);?>  |  BY : <?php echo strtoupper($image->added_by);?></small>" data-url="<?php echo base_url();?>uploads/<?php echo $image->photo;?>"></figure>
+                <figure class="picture" data-title="<small><span class='glyphicon glyphicon-heart'></span> <?php echo count($likes);?> | <span class='glyphicon glyphicon-retweet'></span> : <?php echo count($cshare);?>  |  <span class='glyphicon glyphicon-user'></span> : <?php echo strtoupper($image->added_by);?></small>" data-url="<?php echo base_url();?>uploads/<?php echo $image->photo;?>"></figure>
 
 
                 </a>
