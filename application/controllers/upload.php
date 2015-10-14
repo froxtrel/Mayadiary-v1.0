@@ -28,7 +28,9 @@
 					$data = $this->upload->data();
 					$image_path = $data['file_name'];
 					$date_added = date('Y/m/d H:i:s');
+					$uid  = rand(0,100000000);
 
+					$this->db->set('uid',$uid);
 					$this->db->set('date_added',$date_added);
 					$this->db->set('body',$_POST['title']);
 					$this->db->set('mood',$_POST['mood']);
@@ -37,6 +39,13 @@
 					$this->db->set('added_by',$this->session->userdata('username'));
 					$this->db->set('photo',$image_path);
 					$this->db->insert('post');
+
+					$this->db->set('owner',$this->session->userdata('username'));
+		            $this->db->set('post_id',$uid);
+		            $this->db->set('type','photo');
+		            $this->db->set('from_who',$this->session->userdata('username'));
+		            $this->db->insert('notification');
+
 					
 					if(file_exists($image_path))   {
 						$status = "success";
@@ -76,19 +85,26 @@
 					$data = $this->upload->data();
 					$image_path = $data['file_name'];
 					$date_added = date('Y/m/d H:i:s');
+					$uid  = rand(0,100000000);
 
 					$this->db->set('change_photo',$date_added);
 					$this->db->set('photo',$image_path);
 					$this->db->where('username',$this->session->userdata('username'));
 					$this->db->update('user');
 
-
+					$this->db->set('uid',$uid);
 					$this->db->set('date_added',$date_added);
 					$this->db->set('noti_body','Change profile picture');
 					$this->db->set('added_by',$this->session->userdata('username'));
 					$this->db->set('profile_picture',$image_path);
 					$this->db->set('noti_type','profile_photo');
 					$this->db->insert('post');
+
+					$this->db->set('owner',$this->session->userdata('username'));
+		            $this->db->set('post_id',$uid);
+		            $this->db->set('type','profile_photo');
+		            $this->db->set('from_who',$this->session->userdata('username'));
+		            $this->db->insert('notification');
 
 					
 					if(file_exists($image_path))   {
@@ -129,19 +145,26 @@
 					$data = $this->upload->data();
 					$image_path = $data['file_name'];
 					$date_added = date('Y/m/d H:i:s');
+					$uid  = rand(0,100000000);
 
 					$this->db->set('change_cover',$date_added);
 					$this->db->set('cover',$image_path);
 					$this->db->where('username',$this->session->userdata('username'));
 					$this->db->update('user');
 
-
+					$this->db->set('uid',$uid);
 					$this->db->set('date_added',$date_added);
 					$this->db->set('noti_body','Change cover photo');
 					$this->db->set('added_by',$this->session->userdata('username'));
 					$this->db->set('cover_photo',$image_path);
 					$this->db->set('noti_type','cover_photo');
 					$this->db->insert('post');
+
+					$this->db->set('owner',$this->session->userdata('username'));
+		            $this->db->set('post_id',$uid);
+		            $this->db->set('type','change_cover');
+		            $this->db->set('from_who',$this->session->userdata('username'));
+		            $this->db->insert('notification');
 
 					
 					if(file_exists($image_path))   {

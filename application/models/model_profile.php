@@ -30,5 +30,12 @@ class Model_profile extends CI_Model {
   		return $this->db->get('post')->result();
 
   }
+
+   public function getPosts($id){
+
+      $this->db->where('uid',$id);
+      return $this->db->get('post')->result();
+
+  }
       
 }

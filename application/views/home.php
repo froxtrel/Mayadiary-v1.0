@@ -886,9 +886,134 @@ a{
 				  <button type="button" class="btn btn-default style" id="v_p"><span class="glyphicon glyphicon-film" style="float:left;"></span>Video</button>
 				</div>
 
+				<script type="text/javascript">
+
+				setInterval(function(){
+				    $("#user_activity").load(location.href + " #user_activity");
+				}, 25000);
+			     
+				</script>
+
 				<div class="jumbotron" id="user_activity"> 
 					<div class="jumbotron" id="ac_head"><center class="style">Activity</center></div>
-					<div class="jumbotron style" id="ac_body"></div>
+					<div class="jumbotron style" id="ac_body">
+						
+					<?php
+
+						$target = $row->username;
+
+		                $this->db->select('following_array');
+		                $follow   =  $this->db->get_where('user',array('username' => $this->session->userdata('username')));
+		                $g_follow =  $follow->result_array();
+
+		                foreach($g_follow as $fol){
+
+		                $old = $fol['following_array'];
+
+		                }
+
+		                $new = explode(',', $old);
+
+		                for ($i = 0; $i < count($new ); ++$i) {
+
+		                $arr[$i] =  $new[$i];
+
+		                }		               
+
+			            $limit = $this->session->userdata('limit');
+			            // $this->db->limit(5);
+			            $this->db->order_by('id','desc');
+
+			            foreach($arr as $fren){
+
+			            $this->db->or_where('owner',$fren);
+			         
+			            }
+
+			            $activity =  $this->db->get('notification')->result();
+
+			            foreach($activity as $active): 
+
+			            if($active->from_who == $this->session->userdata('username')){
+
+			            	$from ="You";
+
+			            }else{
+
+			            	$from = $active->from_who;
+			            }
+			            ?>
+
+			            <?php
+
+			            $this->db->select('photo');
+			            $this->db->where('username',$active->from_who);
+			            $sender = $this->db->get('user')->result();
+			            foreach($sender as $gp){}
+
+			            ?>
+
+			            <table width="100%" border="0">
+						<tr>
+							<td width="20%" rowspan="2"><center><img src="<?php echo base_url();?>profile_photo/<?php echo $gp->photo;?>" width="35px" height="35px;"></center></td>
+							<td>
+
+
+							<a href=""><b><?php echo ucfirst($from);?></b></a>
+
+							<!-- <small><?php echo $active->type;?></small> -->
+							<small style="float:right;"><?php echo humanTiming(strtotime($active->date_added));?> ago</small>
+
+							</td>
+						</tr>
+						<tr>
+
+							<?php
+
+							  if($active->type == 'photo'){ ?>
+
+							  <td> added a new <a href="<?php echo base_url();?>profile/statusView/<?php echo $row->username;?>/<?php echo $active->post_id;?>">photo</a></td>
+
+							  <?php }else if($active->type == 'video'){?>
+
+							  <td> added a new <a href="<?php echo base_url();?>profile/statusView/<?php echo $row->username;?>/<?php echo $active->post_id;?>">video</a></td>
+								
+							  <?php }else if($active->type == 'music'){?>
+
+							  <td> added a new <a href="<?php echo base_url();?>profile/statusView/<?php echo $row->username;?>/<?php echo $active->post_id;?>">music</a></td>
+
+							  <?php }else if($active->type == 'link'){?>
+
+							  <td style="font-size:13px;">like <a href=""><?php echo ucfirst($active->owner);?></a> posted <a href="<?php echo base_url();?>profile/statusView/<?php echo $row->username;?>/<?php echo $active->post_id;?>">links</a></td>
+
+							  <?php }else if($active->type == 'comment'){?>
+
+							  <td style="font-size:13px;">commented on <a href=""><?php echo ucfirst($active->owner);?></a> <a href="<?php echo base_url();?>profile/activityView/<?php echo $row->username;?>/<?php echo $active->post_id;?>">post</a></td>
+
+							  <?php }else if($active->type == 'likes'){?>
+
+							  <td style="font-size:13px;">like <a href=""><?php echo ucfirst($active->owner);?></a> <a href="<?php echo base_url();?>profile/activityView/<?php echo $row->username;?>/<?php echo $active->post_id;?>">post</a></td>
+
+							  <?php }else if($active->type == 'follow'){?>
+
+							  <td style="font-size:13px;">now following <a href=""><?php echo ucfirst($active->owner);?></a></td>
+
+							  <?php }else{?>
+
+
+							  <td><?php echo ucfirst($active->owner);?> updated his <a href="<?php echo base_url();?>profile/statusView/<?php echo $row->username;?>/<?php echo $active->post_id;?>">status</a></td>
+
+							  <?php } ?>
+
+						</tr>
+						<tr>
+							<td height="1px" colspan="2"><hr></td>
+						</tr>
+					    </table>
+
+			            <?php endforeach; ?>
+
+					</div>
 				</div>
 
 				<div class="jumbotron" id="other_user"> 

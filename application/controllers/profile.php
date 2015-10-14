@@ -74,6 +74,30 @@ class Profile extends CI_Controller {
 
 	}
 
+	public function activityView($user,$id){
+
+		 $data['user'] =  $this->model_profile->getData($user);	
+		 $data['post'] =  $this->model_profile->getPost($id);	
+
+		 $this->load->view('header');
+		 $this->load->view('activity_view',$data);
+		 $this->load->view('footer');	
+
+	}
+
+	public function statusView($user,$id){
+
+		 $data['user'] =  $this->model_profile->getData($user);	
+		 $data['post'] =  $this->model_profile->getPosts($id);	
+
+		 $this->load->view('header');
+		 $this->load->view('activity_view',$data);
+		 $this->load->view('footer');	
+
+	}
+
+
+
 
 	public function clear_cache(){
  	

@@ -10,8 +10,10 @@ class Model_post extends CI_Model {
 
  public function insertPost($body,$from,$to,$mood,$feel,$music,$video,$map,$link,$type){
 
- 		  $date = date('Y-m-d H:i:s'); 
+ 		      $date = date('Y/m/d H:i:s'); 
+          $uid  = rand(0,100000000);
 
+          $this->db->set('uid',$uid);
           $this->db->set('type',$type);
           $this->db->set('map',$map);
           $this->db->set('link',$link);
@@ -23,7 +25,32 @@ class Model_post extends CI_Model {
           $this->db->set('added_by',$from);
           $this->db->set('user_posted_to',$to);
           $this->db->set('date_added',$date);
-          $this->db->insert('post');       
+          $this->db->insert('post');  
+
+          if(!empty($music)){
+
+          $post_type = 'music';
+
+          }else if(!empty($video)){
+         
+          $post_type = 'video';
+
+          }else if(!empty($link)){
+
+          $post_type = 'link'; 
+
+          }else{
+
+          $post_type = 'post';
+
+          }
+           
+          $this->db->set('owner',$to);
+          $this->db->set('post_id',$uid);
+          $this->db->set('type',$post_type);
+          $this->db->set('from_who',$from);
+          $this->db->insert('notification');
+          
     } 
 
   public function getAllPost(){
@@ -62,6 +89,17 @@ class Model_post extends CI_Model {
           $this->db->set('shared_id',$id);
           $this->db->set('date_added',$date);
           $this->db->insert('post');  
+
+          $get = $this->db->get_where('post',array('id' => $id ))->result();
+          foreach($get as $owner){
+            
+          $this->db->set('owner',$owner->added_by);
+          $this->db->set('post_id',$id);
+          $this->db->set('type','share');
+          $this->db->set('from_who',$this->session->userdata('username'));
+          $this->db->insert('notification');
+
+          }
 
 
    }

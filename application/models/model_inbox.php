@@ -10,7 +10,7 @@ class Model_inbox extends CI_Model {
 
  public function insertInbox($to,$from,$body){
 
-      $date = date('Y-m-d H:i:s'); 
+      $date = date('Y/m/d H:i:s');
 
       $this->db->set('user_to',$to);
       $this->db->set('user_from',$from);

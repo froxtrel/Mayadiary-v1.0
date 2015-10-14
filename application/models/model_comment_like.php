@@ -16,7 +16,7 @@ class Model_comment_like extends CI_Model {
 
   		$this->db->where('comm_id', $id);
   		$this->db->where('likers', $this->session->userdata('username'));
-        $this->db->delete('comment_likes'); 	
+      $this->db->delete('comment_likes'); 	
 
 
   		}else{

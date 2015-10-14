@@ -984,7 +984,7 @@ a{
 		           <div class="jumbotron" id="date_join"><center><b><a href=""><?php echo ucfirst($row->username);?></a></b> <small>@<?php echo ucfirst($row->username);?></small></center></div>
 		           <div class="jumbotron" id="date_join">
 		           	
-		           <?php echo $i->bio;?>
+		           <center><?php echo $i->bio;?></center>
 
 		           </div>
 

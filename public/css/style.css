@@ -768,6 +768,11 @@ body {
 	border-radius: 0px;
 	padding: 10px;
 }
+#ac_body{
+
+	overflow: auto;
+	height: 200px;
+}
 
 
 /*END*/

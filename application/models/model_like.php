@@ -26,6 +26,17 @@ class Model_like extends CI_Model {
   		$this->db->set('likers',$this->session->userdata('username'));
   		$this->db->insert('likes');
 
+        $get = $this->db->get_where('post',array('id' => $id ))->result();
+        foreach($get as $owner){
+          
+        $this->db->set('owner',$owner->added_by);
+        $this->db->set('post_id',$id);
+        $this->db->set('type','likes');
+        $this->db->set('from_who',$this->session->userdata('username'));
+        $this->db->insert('notification');
+
+        }
+
   		} 		
 
   }

@@ -169,7 +169,6 @@ $(function(event){
 				success: function (data) {
 
 				 $("#post_feed").load(location.href + " #post_feed");
-
 	                 
 	              },
 
