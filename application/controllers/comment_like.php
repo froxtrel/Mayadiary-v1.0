@@ -15,6 +15,8 @@ public function __construct(){
 
  	   $id   = $this->input->post('id');
  	   $this->model_comment_like->insertLike($id);
+ 	   $com_like  =  $this->db->get_where('comment_likes',array('comm_id' =>  $id ))->result();
+ 	   echo count($com_like);
 
  }
 

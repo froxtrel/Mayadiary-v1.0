@@ -134,6 +134,14 @@ $(function(event){
 			
 		 });
 
+		$(document).on('click','#reply',function(event){
+				
+				var id = $(this).siblings('#feed_id').attr('value');
+				$('#feed_comment'+id).slideToggle();
+				$('#comment_spot'+id).slideToggle();
+			
+		 });
+
 		$(document).on('click','#noti',function(event){
 				
 				var id = $(this).siblings('#feed_id').attr('value');
@@ -168,7 +176,8 @@ $(function(event){
 				datatype:'json',
 				success: function (data) {
 
-				 $("#post_feed").load(location.href + " #post_feed");
+				 // $("#post_feed").load(location.href + " #post_feed");
+				 $("#comment_div"+id).load(location.href + " #comment_div"+id);
 	                 
 	              },
 
@@ -219,7 +228,8 @@ $(function(event){
 				datatype:'json',
 				success: function (data) {
 
-			   $("#post_feed").load(location.href + " #post_feed");
+			   $("#comment_div"+id).load(location.href + " #comment_div"+id);
+			   $('#count_like'+id).html(' '+data);
 	                 
 	              },
 
@@ -287,7 +297,8 @@ $(function(event){
 			datatype:'json',
 			success: function (data) {
 
-			$("#post_feed").load(location.href + " #post_feed");
+			// $("#post_feed").load(location.href + " #post_feed");
+			$('.comment_list'+id).hide();
                  
               },
 

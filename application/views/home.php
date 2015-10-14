@@ -448,9 +448,10 @@ a{
 		           
 		           ?>
 
-		            <div id="<?php echo $feed->id;?>">
 
-		            <div class="jumbotron" id="feed_head" style="border-top-right-radius:5px;" >       
+		            <div id="<?php echo $feed->id;?>" style="margin-top:-25px;">
+
+		            <div class="jumbotron" id="feed_head" style="border-bottom:none;">       
 
 		            <table width="100%" border="0">
 		            	<tr>
@@ -494,24 +495,25 @@ a{
 		             	   <?php }else{ ?>
 
 		            		<td><b><a href="<?php echo base_url();?>profile/userProfile/<?php echo ucfirst($feed->added_by);?>"><?php echo ucfirst($feed->added_by);?></a></b> 
+		            			<small style="color:rgb(204,214,221);">@<?php echo ucfirst($feed->added_by);?></small>
 
 		            			<?php
 
 		            			if($feed->type =='onlyme'){ ?>
 
-		            				↪<small> <span class="glyphicon glyphicon-lock"></span> Only me </small>
+		            				. <small> <span class="glyphicon glyphicon-lock"></span> Only me </small>
 
 		            			<?php }else if($feed->type =='public'){ ?>
 
-		            				↪<small> <span class="glyphicon glyphicon-globe"></span> Public </small>
+		            				. <small> <span class="glyphicon glyphicon-globe"></span> Public </small>
 
 		            			<?php }else if($feed->type =='friends'){ ?>
 
-		            				↪<small> <span class="glyphicon glyphicon-user"></span> Friends </small>
+		            				. <small> <span class="glyphicon glyphicon-user"></span> Friends </small>
 
 		            			<?php }else{ ?>
 		            				
-		            				↪<small> <span class="glyphicon glyphicon-cog"></span> Custom </small>
+		            				. <small> <span class="glyphicon glyphicon-cog"></span> Custom </small>
 
 		            	        <?php } };?>
 
@@ -654,7 +656,11 @@ a{
 		             	<button class="btn btn-success btn-xs" id="post_e">Done editing</button>
 
 		             	<button class="btn btn-danger btn-xs" id="cancel_pe">Cancel</button>
+
+
+
 		             	</div>
+
 		             	</p>
 		             	<?php if (!empty($feed->shared_id)){
 
@@ -767,24 +773,25 @@ a{
 
 		            </div>
 
-		            <div class="jumbotron" id="feed_like">
+		            <div class="jumbotron" id="feed_like" style="border-top:none;">
 		            <table width="100%" border="0">
 		            	<tr>
 		            		<td width="10%">
 		            		<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >
-		            		<button id="sharez"><span class="glyphicon glyphicon-retweet"></span> Share</button>
+		            		<button id="sharez"><span class="glyphicon glyphicon-retweet" style="font-size:16px;color:rgb(204,214,221);" ></span> </button>
 		            		</td>
 		            		<td width="10%">
 		            		<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >
-		            		<button id="like"><span class="glyphicon glyphicon-heart"></span> Like</button>
+		            		<button id="like"><span class="glyphicon glyphicon-upload" style="font-size:18px;color:rgb(204,214,221);"></span> </button>
 		            		</td>
 		            		<td>
-		            		<!-- <input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >
-		            		<button id="noti">off notification</button></td> -->
+		            		<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >
+		            		<button id="reply"><span class="glyphicon glyphicon-comment" style="font-size:18px;color:rgb(204,214,221);"></span> </button>
+		            		</td>
 		            		<td width="30%"></td>
 		            		<td width="10%">
 		            		<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id">
-		            		<button id="whol">↯ Like <?php echo count($like) ;?></button>
+		            		<button id="whol"> <?php echo count($like) ;?> POINTS </button>
 		            		</td>
 		            		<td width="10%">
 
@@ -795,7 +802,7 @@ a{
 		            		?>
 
 		            		<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >
-		            		<button id="whos">↫ Share <?php echo count($cshare);?></button>
+		            		<button id="whos"> SHARE <?php echo count($cshare);?></button>
 		            		</td>
 		            	</tr>
 		         
@@ -803,8 +810,24 @@ a{
 		            	
 		            </div>
 
-		             <div class="jumbotron" id="feed_comment" style="border-bottom-right-radius:5px;border-bottom-left-radius:5px;">
-		   				
+		             <style type="text/css">
+
+		             #feed_comment<?php echo $feed->id;?>{
+
+						border-radius: 0px;
+						background-color: #FAFAFA;
+						margin: 0px;
+						border: solid 1px #DDDDDD;
+						padding: 10px;
+						
+						}
+
+		             </style>
+
+		             <div class="jumbotron" id="feed_comment<?php echo $feed->id;?>" style="display:none;">
+
+
+		   			<div id="comment_div<?php echo $feed->id;?>">	
 		             <table width="100%" border="0">
 
 		             <?php
@@ -816,7 +839,7 @@ a{
 		           		foreach ($com as $comment){  ?>
 
 		           		<tr>
-		             	<td rowspan="2" width="6%">
+		             	<td rowspan="2" width="6%" class="comment_list<?php echo $comment->id;?>">
 
 		             	<?php
 
@@ -830,16 +853,18 @@ a{
 		             	<img src="<?php echo base_url();?>profile_photo/<?php echo $comp->photo;?>" width="30px" height="30px" class="img-circle">
 
 		             	</td>
-		             	<td>
+		             	<td class="comment_list<?php echo $comment->id;?>">
 		             	<b id="mini_name"><a href="<?php echo base_url();?>profile/userProfile/<?php echo ucfirst($comment->added_by);?>"><?php echo ucfirst($comment->added_by);?></a></b>
+		             	<small style="color:rgb(204,214,221)">@<?php echo ucfirst($comment->added_by);?></small> 
+		             	 <small id="com_mini"><?php echo humanTiming(strtotime($comment->date_added));?></small>
 
 		             	<input type="hidden" value="<?php echo $comment->id;?>" id="comm_id">
-		             	<button id="delete_com">X </button>
+		             	<button id="delete_com"><span class="glyphicon glyphicon-remove"></span></button>
 
 		             	</td>
 		             	</tr>
 		             	<tr>
-		             	<td>
+		             	<td class="comment_list<?php echo $comment->id;?>">
 
 		             	<span id="origin<?php echo $comment->id;?>" class="origin"><?php echo $comment->body;?></span>	
 
@@ -851,28 +876,45 @@ a{
 
 		             	<button class="btn btn-danger btn-xs" id="cancel_e">Cancel</button>
 		             	</div>
-             
+             			
 		             
 		             	</td>
 		             	</tr>
 		              	<tr>
 		              	<td width="6%"></td>
-		             	<td>
-		             	<span class="glyphicon glyphicon-time" style="font-size:10px;"></span><small id="com_mini"> About <?php echo humanTiming(strtotime($comment->date_added));?> ago</small>
-
+		             	<td class="comment_list<?php echo $comment->id;?>">
+		             	</td>
+		             	<tr>
+		             		<td height="5px;"></td>
+		             	</tr>
+		             	<tr>
+		             	<td width="6%"></td>
+		             		<td class="comment_list<?php echo $comment->id;?>">
 		             	<?php
 
 			          		$com_like  =  $this->db->get_where('comment_likes',array('comm_id' => $comment->id))->result();
 			          
 		             	?>
 
-		             	<input type="hidden" value="<?php echo $comment->id;?>" id="comm_id">
-		             	<button id="like_c"><span class="glyphicon glyphicon-thumbs-up" ></span> Like <?php echo count($com_like) ;?></button>
+		             	<div class="row">
+		             		<div class="col-md-2">
+		             		<input type="hidden" value="<?php echo $comment->id;?>" id="reply_to">
+		             	    <button id="like_c"><span class="glyphicon glyphicon-share-alt" style="font-size:15px;color:rgb(204,214,221);" ></span></button>
+	
+		             		</div>
+		             		<div class="col-md-2">
+		             		<input type="hidden" value="<?php echo $comment->id;?>" id="comm_id">
+		             		<button id="like_c"><span class="glyphicon glyphicon-upload" style="font-size:15px;color:rgb(204,214,221);" ><span id="count_like<?php echo $comment->id;?>"> <?php echo count($com_like) ;?></span></span> </button>	
+		             		</div>
 
-		             	<input type="hidden" value="<?php echo $comment->id;?>" id="comm_id">
-		             	<button id="edit_c"><span class="glyphicon glyphicon-pencil" ></span> edit </button>
+		             		<div class="col-md-2">
+		             		<input type="hidden" value="<?php echo $comment->id;?>" id="comm_id">
+		             		<button id="edit_c"><span class="glyphicon glyphicon-pencil" style="font-size:15px;color:rgb(204,214,221);" ></span> </button></td>	
+		             		</div>
+		             	</div>
 
-		             	</td>
+		             	</div>
+		             	</tr>
 		             </tr>		         
 
 		           	<?php	}
@@ -882,15 +924,36 @@ a{
 		             	
 		               	
 		             </table>
+		            </div>
+		            </div>
+
+		             <style type="text/css">
+
+		             #comment_spot<?php echo $feed->id;?>{
+
+						border-radius: 0px;
+						background-color: #FAFAFA;
+						margin: 0px;
+						border: solid 1px #DDDDDD;
+						padding: 10px;
+						border-top: none;
+						
+						}
+
+		             </style>
+
+		            <div class="jumbotron" id="comment_spot<?php echo $feed->id;?>" style="display:none;">
 		             </p>
 		             <textarea rows="1" style="width:100%;" id="comment"></textarea>
-
 		             <input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >
-		             <button id="submit" class="btn btn-success">Reply</button>
-		             <button id="cancel" class="btn btn-danger">Cancel</button>
+
+		             <button id="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
+		             <button id="cancel" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+
 		            </div>
 		            <br>
 		            </div>
+		           
 		           
 		            <?php } ?>
 
@@ -905,6 +968,7 @@ a{
 		    	<div class="btn-group-vertical jumbotron" id="filter">
 				  <button type="button" class="btn btn-default style" style="width:280px;" id="a_p"><span class="glyphicon glyphicon-list-alt" style="float:left;"></span>Newsfeed</button>
 				  <button type="button" class="btn btn-default style" id="f_p"><span class="glyphicon glyphicon-user" style="float:left;"></span>Following</button>
+				  <button type="button" class="btn btn-default style" id="#"><span class="glyphicon glyphicon-star-empty" style="float:left;"></span>Popular</button>
 				  <button type="button" class="btn btn-default style" id="p_p"><span class="glyphicon glyphicon-picture" style="float:left;"></span>Photo</button>
 				  <button type="button" class="btn btn-default style" id="m_p"><span class="glyphicon glyphicon-volume-up" style="float:left;"></span>Music</button>
 				  <button type="button" class="btn btn-default style" id="v_p"><span class="glyphicon glyphicon-film" style="float:left;"></span>Video</button>

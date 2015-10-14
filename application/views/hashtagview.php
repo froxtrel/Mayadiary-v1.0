@@ -82,6 +82,7 @@ a{
 
    <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas"><span class="hamb-top"></span> <span class="hamb-middle"></span> <span class="hamb-bottom"></span></button>
     <div class="container" style="margin-top:-30px;">
+    <div class="jumbotron" id="hashtag_banner"><center><h3 class="style">#<?php echo $tagged;?></h3></center></div>
       <div class="row">
       <div class="col-md-3">
         
@@ -106,35 +107,34 @@ a{
 
             </div>    
 
-            <div class="jumbotron" id="on_off">
-              <div class="jumbotron" id="zoom_head"><center><small class="style">Zoom Effect</small></center></div>
-              <div class="jumbotron" id="zoom_body">
-                <div class="row">
-                  <div class="col-md-6">
-                    <button class="btn btn-success btn-sm" id="zoom" style="width:100%;">Active</button>
-                  </div>
-                  <div class="col-md-6">
-                     <button class="btn btn-primary btn-sm toggle" data-active="true" style="width:100%;">Switch off</button>
-                  </div>
-                </div>
+            <div class="jumbotron" id="double">
+                 <div class="jumbotron" id="split_body">
+                    <button class="btn btn-success btn-sm style" id="f_photo" style="width:100%;">Photo</button>                          
               </div>             
             </div>
+      
 
             <div class="jumbotron" id="double">
-              <div class="jumbotron" id="split_head"><center><small class="style">Split Image</small></center></div>
                  <div class="jumbotron" id="split_body">
-
-                    <button class="btn btn-success btn-sm" id="split" style="width:100%;">Active</button>                          
-                
+                    <button class="btn btn-success btn-sm style" id="f_video" style="width:100%;">Video</button>                                          
               </div>             
             </div>
 
-             <div class="jumbotron" id="normal_p">
-              <div class="jumbotron" id="normal_head"><center><small class="style">Reset All</small></center></div>
+             <div class="jumbotron" id="double">
                  <div class="jumbotron" id="normal_body">
+                    <button class="btn btn-success btn-sm style" id="f_music" style="width:100%;">Music</button>                                        
+              </div>             
+            </div>
 
-                    <button class="btn btn-success btn-sm" id="default" style="width:100%;">Default</button>                          
-                
+             <div class="jumbotron" id="double">
+                 <div class="jumbotron" id="normal_body">
+                    <button class="btn btn-success btn-sm style" id="f_music" style="width:100%;">Status</button>                                        
+              </div>             
+            </div>
+
+             <div class="jumbotron" id="double">
+                 <div class="jumbotron" id="normal_body">
+                    <button class="btn btn-success btn-sm style" id="f_music" style="width:100%;">Other</button>                                        
               </div>             
             </div>
           

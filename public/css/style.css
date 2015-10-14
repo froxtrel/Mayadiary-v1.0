@@ -11,6 +11,10 @@ body {
 	padding: 0px;
 }
 
+button:focus {
+    outline: none;
+}
+
 #maya {
 
 	font-family: 'Oleo Script', cursive;
@@ -414,11 +418,12 @@ body {
 
 }
 
-#sharez,#like,#whos,#whol,#option,#edit_c,#like_c,#delete_com{
+#sharez,#like,#whos,#whol,#option,#edit_c,#like_c,#delete_com,#reply,#cancel,#submit{
 
 	background:none;
 	border: none;
 	font-size: 12px;
+	color: black;
 }
 
 #edit_c,#like_c{
@@ -440,6 +445,9 @@ body {
 #comment{
 
 	resize:none;
+	border:1px solid #1BA39C;
+	border-radius: 3px;
+	outline: none;
 }
 
 .extra_m{
@@ -651,10 +659,7 @@ body {
 
 #mini_photo{
 
-	position: absolute;
-	margin-top: -50px;
-	margin-left: -25px;
-	border:2px solid #fff;
+	/*border:2px solid #1BA39C;*/
 }
 
 #privacy_set,#email_set,#web_set{
@@ -774,6 +779,14 @@ body {
 	height: 200px;
 }
 
+#hashtag_banner{
+
+	border-radius: 0px;
+	background-color: #1BA39C;
+	padding: 5px;
+	margin-top: -20px;
+	color: #fff;
+}
 
 /*END*/
 

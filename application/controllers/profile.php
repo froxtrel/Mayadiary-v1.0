@@ -100,8 +100,9 @@ class Profile extends CI_Controller {
 
 		 $user = $this->session->userdata('username');
 
-		 $data['user'] =  $this->model_profile->getData($user);	
-		 $data['post'] =  $this->model_profile->getTag($tag);	
+		 $data['user']   =  $this->model_profile->getData($user);	
+		 $data['post']   =  $this->model_profile->getTag($tag);
+		 $data['tagged'] =  $tag;		
 
 		 $this->load->view('header');
 		 $this->load->view('hashtagview',$data);
