@@ -6,6 +6,8 @@ class Model_post extends CI_Model {
  public function __construct(){
         
         parent::__construct();
+        $this->updateTag();
+
     }
 
  public function insertPost($body,$from,$to,$mood,$feel,$music,$video,$map,$link,$type){
@@ -25,7 +27,24 @@ class Model_post extends CI_Model {
           $this->db->set('added_by',$from);
           $this->db->set('user_posted_to',$to);
           $this->db->set('date_added',$date);
+
+          function gethashtags($text){
+              //Match the hashtags
+              preg_match_all('/(^|[^a-z0-9_])#([a-z0-9_]+)/i', $text, $matchedHashtags);
+              $hashtag = '';
+              // For each hashtag, strip all characters but alpha numeric
+              if(!empty($matchedHashtags[0])) {
+                  foreach($matchedHashtags[0] as $match) {
+                      $hashtag .= preg_replace("/[^a-z0-9]+/i", "", $match).',';
+                  }
+              }
+                //to remove last comma in a string
+            return rtrim($hashtag, ',');
+            }
+
+          $this->db->set('tag', gethashtags($body));
           $this->db->insert('post');  
+
 
           if(!empty($music)){
 
@@ -101,6 +120,55 @@ class Model_post extends CI_Model {
 
           }
 
+
+   }
+
+   public function updateTag(){
+
+          $tags = $this->db->query("SELECT tag FROM post WHERE tag != ''")->result();
+            foreach($tags as $tag){
+
+              $taglist[] =  $tag->tag;
+
+            } 
+
+            foreach($taglist as $n_tag){
+
+              $newz = explode(',', $n_tag);
+              foreach($newz as $st){
+
+                $this->db->select('tag');
+                $this->db->where('tag',$st);
+                $check = $this->db->get('tag')->num_rows();
+
+                if($check > 0 ){
+
+                $this->db->select('total');
+                $this->db->where('tag',$st);
+                $t = $this->db->get('tag')->result();
+                foreach($t as $val){
+
+                $date = date('Y/m/d H:i:s'); 
+                $this->db->set('date',$date);
+                $this->db->set('tag',$st);
+                $this->db->set('total',$val->total + 1);
+                $this->db->where('tag',$st);
+                $this->db->update('tag');
+
+                } 
+
+                }else{
+
+                $date = date('Y/m/d H:i:s'); 
+                $this->db->set('date',$date);
+                $this->db->set('tag',$st);
+                $this->db->set('total',1);
+                $this->db->insert('tag'); 
+
+                }
+
+              }
+        }
 
    }
       

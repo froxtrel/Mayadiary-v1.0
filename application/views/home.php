@@ -323,7 +323,31 @@ a{
 
 			        ?>
 
+			         <?php
 
+			          function hashtag($string){
+			          $htag = "#";
+			          $arr =  explode(" ", $string);
+			          $arrc = count($arr);
+			          $i = 0;
+
+			          while($i < $arrc){
+
+			          if(substr($arr[$i],0,1) === $htag){
+
+			          $link = ltrim($arr[$i],$htag);
+			          $arr[$i] = "<a href='".base_url()."profile/hashtagView/".$link."'>".$arr[$i]."</a>";
+
+		              }
+			            $i++;
+			          }
+
+			          $string = implode(" ", $arr);
+			          return '<span style="font-size: 14px;line-height: 18px;">'.$string.'</span>';
+
+			          }
+
+                      ?>
 
 		           <div class="jumbotron" id="post_feed">
 
@@ -556,7 +580,7 @@ a{
 
 		            <div class="jumbotron" id="feed_body">
 
-		             <?php echo $feed->body;?>
+		             <?php echo hashtag($feed->body);?>
 
 		             <?php if(!empty($feed->mood) && !empty($feed->feel)){ ?>
 
@@ -1016,14 +1040,28 @@ a{
 					</div>
 				</div>
 
+				<div class="jumbotron" id="t_hash"> 
+					<div class="jumbotron" id="hash_head"><center class="style">Trending #</center></div>
+					<div class="jumbotron style" id="hash_body">
+						
+					<?php
+
+					  $this->db->limit(8);
+					  $this->db->order_by('total','desc');
+					  $trend = $this->db->get('tag')->result();
+
+					  foreach($trend as $tag_list){ ?>
+
+					  <a href="<?php echo base_url();?>profile/hashtagView/<?php echo $tag_list->tag;?>">#<?php echo $tag_list->tag;?></a></p>
+
+					  <?php }?>	
+
+					</div>
+				</div>
+
 				<div class="jumbotron" id="other_user"> 
 					<div class="jumbotron" id="ou_head"><center class="style">Other people</center></div>
 					<div class="jumbotron style" id="ou_body"></div>
-				</div>
-
-				<div class="jumbotron" id="t_hash"> 
-					<div class="jumbotron" id="hash_head"><center class="style">Trending #</center></div>
-					<div class="jumbotron style" id="hash_body"></div>
 				</div>
 						         	
 		     </div>
