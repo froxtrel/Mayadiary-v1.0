@@ -37,5 +37,22 @@ class Model_profile extends CI_Model {
       return $this->db->get('post')->result();
 
   }
+
+  public function getTag($tag){
+
+      $post = $this->db->get('post')->result();
+
+      foreach($post as $post){
+
+      $tags = explode(",", $post->tag);
+      if(in_array($tag, $tags)){
+
+        $data[] =  $post;
+      }
+
+      }
+
+      return $data;
+   }
       
 }

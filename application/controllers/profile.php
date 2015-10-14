@@ -96,7 +96,18 @@ class Profile extends CI_Controller {
 
 	}
 
+	public function hashtagView($tag){
 
+		 $user = $this->session->userdata('username');
+
+		 $data['user'] =  $this->model_profile->getData($user);	
+		 $data['post'] =  $this->model_profile->getTag($tag);	
+
+		 $this->load->view('header');
+		 $this->load->view('hashtagview',$data);
+		 $this->load->view('footer');	
+
+	}
 
 
 	public function clear_cache(){
