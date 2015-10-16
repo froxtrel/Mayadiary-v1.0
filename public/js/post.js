@@ -139,6 +139,7 @@ $(function(event){
 				var id = $(this).siblings('#feed_id').attr('value');
 				$('#feed_comment'+id).slideToggle();
 				$('#comment_spot'+id).slideToggle();
+				$('#likers'+id).slideToggle();
 			
 		 });
 

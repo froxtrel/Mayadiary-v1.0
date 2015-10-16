@@ -162,10 +162,10 @@ a{
 
 			<div class="jumbotron" id="profile_menu">
 
-				<div class="jumbotron" id="menu_1"><a href=""><center>Post</center></a></div>
-				<div class="jumbotron" id="menu_2"><a href=""><center>Following</center></a></div>
-				<div class="jumbotron" id="menu_3"><a href=""><center>Followers</center></a></div>
-				<div class="jumbotron" id="menu_4"><a href=""><center>Like</center></a></div>
+				<div class="jumbotron" id="menu_1"><a href=""><center>POST</center></a></div>
+				<div class="jumbotron" id="menu_2"><a href=""><center>FOLLOWING</center></a></div>
+				<div class="jumbotron" id="menu_3"><a href=""><center>FOLLOWERS</center></a></div>
+				<div class="jumbotron" id="menu_4"><a href=""><center>LIKE</center></a></div>
 				<div class="jumbotron" id="menu_5">
 
 				<?php   

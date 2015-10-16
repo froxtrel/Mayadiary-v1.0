@@ -5,8 +5,7 @@ body {
 }
 
 * {
-	font-family: 'Abel', sans-serif;
-	font-weight: bold;
+	font-family: 'Source Sans Pro', sans-serif;
 	margin: 0px;
 	padding: 0px;
 }
@@ -304,11 +303,12 @@ button:focus {
 
 #post_header{
 
-	background-color: #F5F5F5;
 	border-radius: 0px;
 	padding: 10px;
 	border: solid 1px #DDDDDD;
 	margin:0px;
+	background-color: #fff;
+	border-bottom: none;
 }
 
 #post_body{
@@ -323,12 +323,13 @@ button:focus {
 
 #post_footer{
 
-	background-color: #F5F5F5;
 	border-radius: 0px;
 	padding: 10px;
 	border: solid 1px #DDDDDD;
 	margin: 0px;
 	margin-top: -10px;
+	background-color: #fff;
+	border-top: none;
 }
 
 #n_post{
@@ -383,6 +384,7 @@ button:focus {
 	margin: 0px;
 	border: solid 1px #DDDDDD;
 	padding: 15px;
+	opacity: 0.8;
 }
 
 #feed_body{
@@ -394,6 +396,7 @@ button:focus {
 	border-top: none;
 	border-bottom: none;
 	padding: 15px;
+	opacity: 0.8;
 
 }
 
@@ -404,7 +407,7 @@ button:focus {
 	margin: 0px;
 	border: solid 1px #DDDDDD;
 	padding: 15px;
-	border-bottom: none;
+	opacity: 0.8;
 
 }
 
@@ -445,7 +448,7 @@ button:focus {
 #comment{
 
 	resize:none;
-	border:1px solid #1BA39C;
+	border:1px solid #52B3D9;
 	border-radius: 3px;
 	outline: none;
 }
@@ -456,7 +459,8 @@ button:focus {
 	border-radius: 0px;
 	border: solid 1px #DDDDDD;
 	position: absolute;
-	margin-left: 47%;
+	margin-left: 30%;
+	margin-top: -25.5%;
 	color: black;
 	padding: 10px;
 	width: 200px;
@@ -598,6 +602,12 @@ button:focus {
 	background-color: #fff;
 	padding: 0px;
 	margin: 0px;
+	border: solid 1px #DDDDDD;
+	-webkit-filter: blur(2px);
+  	-moz-filter: blur(2px);
+  	-o-filter: blur(2px);
+  	-ms-filter: blur(2px);
+  	filter: blur(2px);
 }
 #profile_view{
 
@@ -605,14 +615,21 @@ button:focus {
 	background-color: #fff;
 	padding: 10px;
 	margin: 0px;
-	height: 70px;
+	height: 60px;
 }
 
 #set_photo {
 
 	border:2px solid #fff;
 	position: absolute;
-	margin-top: -30px;
+	margin-top: -100px;
+}
+
+#namev{
+
+	position: absolute;
+	margin-left: 30%;
+	margin-top: -20%;
 }
 
 #d_menu1{
@@ -659,7 +676,8 @@ button:focus {
 
 #mini_photo{
 
-	/*border:2px solid #1BA39C;*/
+	margin-left: -15px;
+	margin-top: -15px;
 }
 
 #privacy_set,#email_set,#web_set{
@@ -690,7 +708,7 @@ button:focus {
 }
 
 #open_chat {
-    background: #f7f7f7;
+    background-color: #fff;
     border-top: 1px solid #ccc;
     border-left: 1px solid #ccc;
     color: #999;
@@ -698,10 +716,10 @@ button:focus {
     position: fixed;
     right: 0;
     bottom: 0;
-    width: 200px;
-    padding: 5px 10px;
+    max-width: 240px;
+    padding: 0px;
     cursor: pointer;
-   /* height: 100%;*/
+    height: 100%;
 }
 
 #tag{
@@ -764,19 +782,21 @@ button:focus {
 	border-radius: 0px;
 	margin: 0px;
 	padding: 10px;
+	
 }
 #ac_body,#ou_body,#hash_body{
 
 	background-color: #fff;
-	min-height: 250px;
+	min-height: 200px;
 	overflow: auto;
 	border-radius: 0px;
 	padding: 10px;
+	border: solid 1px #DDDDDD;
 }
 #ac_body{
 
 	overflow: auto;
-	height: 200px;
+	height: 300px;
 }
 
 #hashtag_banner{
@@ -787,6 +807,80 @@ button:focus {
 	margin-top: -20px;
 	color: #fff;
 }
+
+#banner_menu{
+
+	border-radius: 0px;
+	background-color: #fff;
+	padding: 15px;
+}
+
+#banner_bot{
+
+	border-radius: 0px;
+	border: solid 1px #DDDDDD; 
+	background-color: #fff;
+	margin-top: -50px;
+	padding: 10px;
+}
+
+
+/*END*/
+
+/*BUTTON*/
+
+
+/***********************
+  OUTLINE BUTTONS
+************************/
+
+.btn.outline {
+    background: none;
+    padding: 12px 12px;
+    /*width: 100%;*/
+    font-size: 15px;
+    float: left;
+    margin-left: 5px;
+    border-radius: 0px;
+}
+.btn-primary.outline {
+    border: 1px solid #1dcaff;
+    color: #0099cc;
+}
+.btn-primary.outline:hover, .btn-primary.outline:focus, .btn-primary.outline:active, .btn-primary.outline.active, .open > .dropdown-toggle.btn-primary {
+    color: #33a6cc;
+    border-color: #33a6cc;
+}
+.btn-primary.outline:active, .btn-primary.outline.active {
+    border-color: #007299;
+    color: #007299;
+    box-shadow: none;
+}
+
+#outline {
+    background: none;
+    padding: 5px 5px;
+    font-size: 12px;  
+    border-radius: 0px;
+    width: 100%;
+}
+#outline {
+    border: 1px solid #1dcaff;
+    color: #0099cc;
+}
+#outline:hover, .#outline:focus, #outline:active, #outline.active, .open > .dropdown-toggle.btn-primary {
+    color: #33a6cc;
+    border-color: #33a6cc;
+}
+#outline:active, #outline.active {
+    border-color: #007299;
+    color: #007299;
+    box-shadow: none;
+}
+/***********************
+  CUSTON BTN VALUES
+************************/
+
 
 /*END*/
 
@@ -912,6 +1006,16 @@ button:focus {
     #feed_body {
 
     	padding: 1px;
+    }
+
+    #open_chat{
+
+    	display: none;
+    }
+
+    #option{
+
+    	display: none;
     }
 }
 		

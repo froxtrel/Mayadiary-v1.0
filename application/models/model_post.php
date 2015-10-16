@@ -43,6 +43,22 @@ class Model_post extends CI_Model {
             }
 
           $this->db->set('tag', gethashtags($body));
+
+          function getmention($text){
+              //Match the hashtags
+              preg_match_all('/(^|[^a-z0-9_])@([a-z0-9_]+)/i', $text, $matchedHashtags);
+              $hashtag = '';
+              // For each hashtag, strip all characters but alpha numeric
+              if(!empty($matchedHashtags[0])) {
+                  foreach($matchedHashtags[0] as $match) {
+                      $hashtag .= preg_replace("/[^a-z0-9]+/i", "", $match).',';
+                  }
+              }
+                //to remove last comma in a string
+            return rtrim($hashtag, ',');
+            }
+
+          $this->db->set('mention', getmention($body)); 
           $this->db->insert('post');  
 
 
@@ -69,8 +85,56 @@ class Model_post extends CI_Model {
           $this->db->set('type',$post_type);
           $this->db->set('from_who',$from);
           $this->db->insert('notification');
+
+          $this->pushMention($uid);
           
     } 
+
+
+  public function pushMention($uid){
+
+      $uid = 67379761;
+
+      $this->db->select('mention');
+      $this->db->where('uid',$uid);
+      $mention = $this->db->get('post')->result();
+
+      foreach($mention as $men){
+
+      $list = explode(",",$men->mention); 
+
+      }
+
+      foreach($list as $user){
+
+        $this->db->where('username',$user);
+        $result = $this->db->get('user')->num_rows();
+
+        if($result > 0 ){
+
+         $this->db->select('added_by');
+         $this->db->where('uid',$uid);
+         $owner = $this->db->get('post')->result(); 
+         foreach($owner as $sender){
+
+         }
+
+         $this->db->set('owner',$user);
+         $this->db->set('post_id',$uid);
+         $this->db->set('type','mention');
+         $this->db->set('from_who',$sender->added_by);
+         $this->db->insert('notification');
+
+        }else{
+
+          // do nothing
+
+        }
+
+      }
+
+  } 
+
 
   public function getAllPost(){
 
