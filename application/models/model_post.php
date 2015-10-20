@@ -93,8 +93,6 @@ class Model_post extends CI_Model {
 
   public function pushMention($uid){
 
-      $uid = 67379761;
-
       $this->db->select('mention');
       $this->db->where('uid',$uid);
       $mention = $this->db->get('post')->result();
@@ -122,6 +120,17 @@ class Model_post extends CI_Model {
          $this->db->set('owner',$user);
          $this->db->set('post_id',$uid);
          $this->db->set('type','mention');
+
+         if($this->session->userdata('username') == $user){
+
+         $this->db->set('noti_to','none');
+
+         }else{
+
+         $this->db->set('noti_to',$user);  
+
+         }
+
          $this->db->set('from_who',$sender->added_by);
          $this->db->insert('notification');
 
@@ -179,6 +188,15 @@ class Model_post extends CI_Model {
           $this->db->set('owner',$owner->added_by);
           $this->db->set('post_id',$id);
           $this->db->set('type','share');
+          if($this->session->userdata('username') == $owner->added_by){
+
+          $this->db->set('noti_to','none');
+
+          }else{
+
+          $this->db->set('noti_to',$owner->added_by);  
+
+          }
           $this->db->set('from_who',$this->session->userdata('username'));
           $this->db->insert('notification');
 

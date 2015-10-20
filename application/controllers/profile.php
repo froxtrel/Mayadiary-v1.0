@@ -98,6 +98,8 @@ class Profile extends CI_Controller {
 
 	public function hashtagView($tag){
 
+		 $tag = str_replace(array("_"), "", $tag);
+
 		 $user = $this->session->userdata('username');
 
 		 $data['user']   =  $this->model_profile->getData($user);	

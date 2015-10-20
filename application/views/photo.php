@@ -18,7 +18,7 @@
   
 body {
 
-    background-image:url('<?php echo $path;?>');  
+    background-image:url('<?php echo base_url();?>themes/default.jpg');   
     background-attachment: <?php echo $row->bg_attach;?>;
     background-color: <?php echo $row->bg_color;?>;
     background-repeat: <?php echo $row->bg_repeat;?>;
@@ -167,7 +167,7 @@ a{
 
 <!-- CHAT PANEL -->
 
-<section id="open_chat"><center>CHAT BOX</center></section>
+<!-- <section id="open_chat"><center>CHAT BOX</center></section> -->
 
 <!-- END -->
 

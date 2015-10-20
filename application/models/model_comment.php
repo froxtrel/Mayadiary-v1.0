@@ -24,6 +24,15 @@ public function insertCom($id,$body){
         $this->db->set('owner',$owner->added_by);
         $this->db->set('post_id',$id);
         $this->db->set('type','comment');
+        if($this->session->userdata('username') == $owner->added_by){
+
+        $this->db->set('noti_to','none');
+
+        }else{
+
+        $this->db->set('noti_to',$owner->added_by);  
+
+        }
         $this->db->set('from_who',$this->session->userdata('username'));
         $this->db->insert('notification');
 

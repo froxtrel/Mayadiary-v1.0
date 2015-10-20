@@ -46,6 +46,11 @@ public function LoginUser(){
 
  public function logout(){
 
+
+ 		$this->db->set('online',0);
+        $this->db->where('username',$this->session->userdata('username'));
+        $this->db->update('user');
+
  		$this->session->sess_destroy();
  		$this->session->unset_userdata('logged_in');
 

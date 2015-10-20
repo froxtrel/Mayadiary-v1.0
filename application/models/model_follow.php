@@ -14,6 +14,17 @@ class Model_follow extends CI_Model {
 
       $this->db->set('from_who',$from);
       $this->db->set('type','follow');
+
+      if($this->session->userdata('username') == $to){
+
+        $this->db->set('noti_to','none');
+
+        }else{
+
+        $this->db->set('noti_to',$to);  
+
+        }
+
       $this->db->set('owner',$to);
       $this->db->set('date_added',$date);
       $this->db->insert('notification');

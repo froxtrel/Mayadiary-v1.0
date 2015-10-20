@@ -62,24 +62,66 @@ a{
     </ul>
   </nav>
   <!-- /#sidebar-wrapper --> 
+  <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:rgba(255,255,255,0.3);border:none;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+      <a class="navbar-brand" href="#"></a>
+    </div>
+     <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="#"></a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+
+         <li><a href=""  style="color:#1dcaff;">
+
+         	<?php
+
+         	  $this->db->where('open','no');
+         	  $this->db->where('owner',$this->session->userdata('username'));
+         	  $n_noti = $this->db->get('notification')->result();
+
+         	 ?>
+
+	         <span class="badge"><?php echo count($n_noti);?></span> 
+	         Notifications <span class="glyphicon glyphicon glyphicon-bell"></span> </a></li>
+
+         <li><a href=""  style="color:#1dcaff;">
+
+         	 <?php
+
+         	  $this->db->where('status','on');
+         	  $this->db->where('user_to',$this->session->userdata('username'));
+         	  $n_msg = $this->db->get('inbox')->result();
+
+         	 ?>
+         	 <span class="badge"><?php echo count($n_msg);?></span> 
+         	 Messages <span class="glyphicon glyphicon glyphicon-comment"></span> </a></li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<script type="text/javascript">
+
+setInterval(function() {
+      
+$("#myNavbar").load(location.href + " #myNavbar");  
+
+}, 2000);
+	
+</script>
   
   <!-- Page Content -->
   <div id="page-content-wrapper">
-
-  <span style="position:fixed;color:#fff;margin-left:15px;font-size:20px;">
-
-  <button id="noti_b"><i class="fa fa-fw fa-bell"><span class="badge">0</span></i></button>
-
-  </span>
-
-  <span style="position:fixed;color:#fff;margin-left:15px;font-size:20px;margin-top:50px;">
-
-  <button id="chat_b"><i class="fa fa-fw fa-comment"><span class="badge">0</span></i></button>
-
-  </span>
-
-   <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas"><span class="hamb-top"></span> <span class="hamb-middle"></span> <span class="hamb-bottom"></span></button>
-    <div class="container" style="margin-top:-60px;">
+   <button style="margin-top:30px;" type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas"><span class="hamb-top"></span> <span class="hamb-middle"></span> <span class="hamb-bottom"></span></button>
+    <div class="container" style="margin-top:-18px;">
       <div class="row">
 		<div class="col-md-10">
 			<div class="jumbotron" id="main_wrap">
@@ -108,33 +150,12 @@ a{
 
 		    <?php  }else{  ?>
 
-	       	<img src="<?php echo base_url();?>cover/<?php echo $row->cover;?>" width="100%" height="220" id="main_cover">
+	       	<img src="<?php echo base_url();?>cover/<?php echo $row->cover;?>" width="100%" height="440" id="main_cover">
 
 		    <?php } ?>
 			
-			</div>
+			</div>			
 
-			<div id="photo_pr">
-			<table width="100%" border="0">
-				<tr>
-
-					<?php
-
-					$this->db->order_by('id','desc');
-					$this->db->limit(5);
-					$this->db->select('photo');
-					$this->db->where('added_by',$row->username);
-					$this->db->where('photo !=',' ');
-					$this->db->where('status','on');
-					$preview = $this->db->get('post')->result();
-					foreach($preview as $photo):?>
-
-					<td width="25%"><img src="<?php echo base_url();?>uploads/<?php echo $photo->photo;?>" width="100%" height="210" id="photo1" class="img"></td>
-
-					<?php endforeach; ?>				
-					
-			</table>
-			</div>
 			</div>
 
 			<div id="photos">
@@ -147,7 +168,7 @@ a{
 
 		    <?php  }else{  ?>
 
-	        <img src="<?php echo base_url();?>profile_photo/<?php echo $row->photo;?>" width="120" height="120" id="profile_photo" class="img-rounded">	
+	        <img src="<?php echo base_url();?>profile_photo/<?php echo $row->photo;?>" width="120" height="120" id="profile_photo" class="img-circle">	
 
 		    <?php } ?>
 		    
@@ -158,15 +179,15 @@ a{
 			<button id="cover_logo" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-camera"></span> Change Cover</button>
 
 
-			<span id="profile_name"><?php echo ucfirst($row->username);?></span>
+			<span id="profile_name" style="color:#1dcaff;"><?php echo ucfirst($row->username);?></span>
 
 			<div class="jumbotron" id="profile_menu">
 
-				<div class="jumbotron" id="menu_1"><a href=""><center>POST</center></a></div>
-				<div class="jumbotron" id="menu_2"><a href=""><center>FOLLOWING</center></a></div>
-				<div class="jumbotron" id="menu_3"><a href=""><center>FOLLOWERS</center></a></div>
-				<div class="jumbotron" id="menu_4"><a href=""><center>LIKE</center></a></div>
-				<div class="jumbotron" id="menu_5">
+				<div class="jumbotron" id="menu_1" style="width:10%;"><a href="" style="color:black;"><center>POST <span style="color:#1dcaff;">11</span> </center></a></div>
+				<div class="jumbotron" id="menu_2" style="width:10%;"><a href="" style="color:black;"><center>FOLLOWING <span style="color:#1dcaff;">11</span> </center></a></div>
+				<div class="jumbotron" id="menu_3" style="width:10%;"><a href="" style="color:black;"><center>FOLLOWERS <span style="color:#1dcaff;">11</span> </center></a></div>
+				<div class="jumbotron" id="menu_4" style="width:10%;"><a href="" style="color:black;"><center>LIKE <span style="color:#1dcaff;">11</span> </center></a></div>
+				<div class="jumbotron" id="menu_5" style="width:60%;">
 
 				<?php   
 
@@ -280,13 +301,13 @@ a{
 
 		            	<div class="jumbotron" id="post_header">
 
-			              <a href="" id="nor_post"><img src="<?php echo base_url();?>public/img/posts.png" width="15" height="15" ><small id="sta"> Status </small></a>	
+			              <a href="" id="nor_post"> <small id="sta"  style="color:#1dcaff;"> <b>STATUS</b></small></a>	
 			              
-			              <a href="" id="pho_post" style="margin-left:10px;"><img src="<?php echo base_url();?>public/img/photo.png" width="19" height="19"> <small id="pho"> Photo </small></a>
+			              <a href="" id="pho_post" style="margin-left:10px;"> <small id="pho"  style="color:#1dcaff;"> <b>PHOTO</b> </small></a>
 
-					      <a href="" id="v_post" style="margin-left:10px;"><img src="<?php echo base_url();?>public/img/video.png" width="15" height="15" > <small id="vi"> Video </small></a>
+					      <a href="" id="v_post" style="margin-left:10px;"> <small id="vi"  style="color:#1dcaff;"> <b>VIDEO</b> </small></a>
 
-					      <a href="" id="mu_post" style="margin-left:10px;"><img src="<?php echo base_url();?>public/img/music.png" width="15" height="15"> <small id="mu"> Music </small></a>
+					      <a href="" id="mu_post" style="margin-left:10px;"> <small id="mu"  style="color:#1dcaff;"> <b>MUSIC</b> </small></a>
 
 
 		            	</div>
@@ -351,11 +372,11 @@ a{
 
 		            	<div class="jumbotron" id="post_footer">
 
-		            		<button type="submit" class="btn btn-success btn-sm" id="ajax_photo">Post</button>
+		            		<button type="submit" class="btn btn-default btn-sm" id="ajax_photo" style="background-color:#1dcaff;color:#fff;border:none;" >Post</button>
 
 		            	    </form>
 
-		            		<button class="btn btn-success btn-sm" id="np_send">Post</button>		
+		            		<button class="btn btn-default btn-sm" id="np_send" style="background-color:#1dcaff;color:#fff;border:none;">Post</button>		
 
 		            		<div class="btn-group">
 
@@ -367,11 +388,11 @@ a{
 						    </button>
 						    <ul class="dropdown-menu" role="menu">
 						      <li><a href="#" id="pub">Public</a></li>
-						      <li><a href="#" id="fr">Friends</a></li>
+						      <li><a href="#" id="fr">Follower</a></li>
 						      <li><a href="#" id="onl">Only me</a></li>
 						      <li><a href="#" id="cus">Custom</a></li>
 						    </ul>
-						    </div>						    
+						    </div>								    
 
 		            		<a href="" id="emotion" style="margin-left:10px" ><img src="<?php echo base_url();?>public/img/smile.png" width="15" height="15"></a>
 		            		
@@ -480,6 +501,57 @@ a{
 
 			        ?>
 
+			         <?php
+
+			          function hashtag($string){
+			          $htag = "#";
+			          $arr =  explode(" ", $string);
+			          $arrc = count($arr);
+			          $i = 0;
+
+			          while($i < $arrc){
+
+			          if(substr($arr[$i],0,1) === $htag){
+
+			          $link = ltrim($arr[$i],$htag);
+			          $arr[$i] = "<a href='".base_url()."profile/hashtagView/".$link."'>".$arr[$i]."</a>";
+
+		              }
+			            $i++;
+			          }
+
+			          $string = implode(" ", $arr);
+			          return $string;
+
+			          }
+
+                      ?>
+
+                      <?php
+
+			          function mention($string){
+			          $htag = "@";
+			          $arr =  explode(" ", $string);
+			          $arrc = count($arr);
+			          $i = 0;
+
+			          while($i < $arrc){
+
+			          if(substr($arr[$i],0,1) === $htag){
+
+			          $link = ltrim($arr[$i],$htag);
+			          $arr[$i] = "<a href='".base_url()."profile/userProfile/".$link."'>".$arr[$i]."</a>";
+
+		              }
+			            $i++;
+			          }
+
+			          $string = implode(" ", $arr);
+			          return $string;
+
+			          }
+
+                      ?>
 
 
 		           <div class="jumbotron" id="post_feed">
@@ -500,11 +572,12 @@ a{
 
 		           $like = $this->db->get_where('likes',array('post_id' => $feed->id,'value' => '1' ))->result_array();
 		           
-		           	?>
+		           ?>
 
-		            <div id="<?php echo $feed->id;?>">
 
-		            <div class="jumbotron" id="feed_head">       
+		            <div id="<?php echo $feed->id;?>" style="margin-top:-10px;">
+
+		            <div class="jumbotron" id="feed_head" style="border-bottom:none;">       
 
 		            <table width="100%" border="0">
 		            	<tr>
@@ -518,111 +591,57 @@ a{
 		            			foreach($add_p as $addp){}	
 
 		            		?>
-		            	   <img src="<?php echo base_url();?>profile_photo/<?php echo $addp->photo;?>" width="48px" height="48px" class="img-circle" id="mini_photo">	
+		            	   <img src="<?php echo base_url();?>profile_photo/<?php echo $addp->photo;?>" width="55px" height="55px" class="#" id="mini_photo">	
 		            	   </td>
 
 		            	   <?php if (!empty($feed->shared_id)){ ?>
 
-		             	   <td><b><a href="<?php echo base_url();?>profile/userProfile/<?php echo ucfirst($feed->added_by);?>"><?php echo ucfirst($feed->added_by);?></a></b> ↫ <small>Shared a post</small> 
+		             	   <td><b><a href="<?php echo base_url();?>profile/userProfile/<?php echo strtoupper($feed->added_by);?>" style="color:#1dcaff;"><?php echo strtoupper($feed->added_by);?></a></b> ↫ <small>Shared a post</small> 
 
 
 		             	   <?php } else if (!empty($feed->profile_picture)){ ?>
 
 
-		             		<td><b><a href="<?php echo base_url();?>profile/userProfile/<?php echo ucfirst($feed->added_by);?>"><?php echo ucfirst($feed->added_by);?></a> </b> ↫ <small>Change profile photo</small> 
+		             		<td><b><a href="<?php echo base_url();?>profile/userProfile/<?php echo strtoupper($feed->added_by);?>" style="color:#1dcaff;" ><?php echo strtoupper($feed->added_by);?></a> </b> ↫ <small>Change profile photo</small> 
 
 
 		             	   <?php } else if (!empty($feed->cover_photo)){ ?>
 
 
-		             	   <td><b><a href="<?php echo base_url();?>profile/userProfile/<?php echo ucfirst($feed->added_by);?>"><?php echo ucfirst($feed->added_by);?> </a></b> ↫ <small>Change cover photo</small> 	
+		             	   <td><b><a href="<?php echo base_url();?>profile/userProfile/<?php echo strtoupper($feed->added_by);?>" style="color:#1dcaff;"><?php echo strtoupper($feed->added_by);?> </a></b> ↫ <small>Change cover photo</small> 	
 
 
 		             	   <?php } else if (!empty($feed->user_posted_to AND $feed->user_posted_to!= $this->session->userdata('username'))){ ?>
 
 
-		             	   <td><b><a href="<?php echo base_url();?>profile/userProfile/<?php echo ucfirst($feed->added_by);?>"><?php echo ucfirst($feed->added_by);?></a> </b> ↪ <small>
-		             	   <b><a href="<?php echo base_url();?>profile/userProfile/<?php echo ucfirst($feed->user_posted_to);?>"><?php echo $feed->user_posted_to;?></a></b></small> 	
+		             	   <td><b><a href="<?php echo base_url();?>profile/userProfile/<?php echo strtoupper($feed->added_by);?>" style="color:#1dcaff;"><?php echo strtoupper($feed->added_by);?></a> </b> ↪ <small>
+		             	   <b><a href="<?php echo base_url();?>profile/userProfile/<?php echo strtoupper($feed->user_posted_to);?>" style="color:#1dcaff;"><?php echo $feed->user_posted_to;?></a></b></small> 	
 
 
 		             	   <?php }else{ ?>
 
-		            		<td><b><a href="<?php echo base_url();?>profile/userProfile/<?php echo ucfirst($feed->added_by);?>"><?php echo ucfirst($feed->added_by);?></a></b> 
+		            		<td><b><a href="<?php echo base_url();?>profile/userProfile/<?php echo strtoupper($feed->added_by);?>" style="color:#1dcaff;"><?php echo strtoupper($feed->added_by);?></a></b> 
+		            			<small style="color:rgb(204,214,221);">@<?php echo strtoupper($feed->added_by);?></small>
 
 		            			<?php
 
 		            			if($feed->type =='onlyme'){ ?>
 
-		            				↪<small> <span class="glyphicon glyphicon-lock"></span> Only me </small>
+		            				. <small> <span class="glyphicon glyphicon-lock"></span> Only me </small>
 
 		            			<?php }else if($feed->type =='public'){ ?>
 
-		            				↪<small> <span class="glyphicon glyphicon-globe"></span> Public </small>
+		            				. <small> <span class="glyphicon glyphicon-globe"></span> Public </small>
 
 		            			<?php }else if($feed->type =='friends'){ ?>
 
-		            				↪<small> <span class="glyphicon glyphicon-user"></span> Friends </small>
+		            				. <small> <span class="glyphicon glyphicon-user"></span> Friends </small>
 
 		            			<?php }else{ ?>
 		            				
-		            				↪<small> <span class="glyphicon glyphicon-cog"></span> Custom </small>
+		            				. <small> <span class="glyphicon glyphicon-cog"></span> Custom </small>
 
 		            	        <?php } };?>
-
-		            		<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >
-		            		<button style="float:right;" id="option"><span class="glyphicon glyphicon-menu-down"></span></button>
-
-		            		<div class="extra_m" id="extra_m<?php echo $feed->id;?>">
-		            		<table width="100%" border="0">
-		            			<tr>
-		            				<td height="10px;"></td>
-		            			</tr>
-		            			<tr>
-		            				<td><button style="width:100%;border:none;border-radius:0px;" class="btn btn-default btn-xs">Report post</button></td>
-		            			</tr>
-		            			<tr>
-		            				<td height="10px;"></td>
-		            			</tr>
-		            			<tr>
-		            				<td><button style="width:100%;border:none;border-radius:0px;" class="btn btn-default btn-xs"> View post</button></td>
-		            			</tr>
-		            			<tr>
-		            				<td height="10px;"></td>
-		            			</tr>
-		            			<tr>
-		            				<td>
-		            				<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >	
-		            				<button style="width:100%;border:none;border-radius:0px;" class="btn btn-default btn-xs" id="edit_post_button"> Edit post</button>
-		            				</td>
-		            			</tr>
-		            			<tr>
-		            				<td height="10px;"></td>
-		            			</tr>
-		            			<tr>
-		            				<td>
-		            				<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >
-		            				<button style="width:100%;border:none;border-radius:0px;" class="btn btn-default btn-xs" id="del_p"> Remove post</button></td>
-		            			</tr>
-		            			<tr>
-		            				<td height="10px;"></td>
-		            			</tr>
-		            			<tr>
-		            				<td><button style="width:100%;border:none;border-radius:0px;" class="btn btn-default btn-xs"> Boost this post</button></td>
-		            			</tr>
-		            			<tr>
-		            				<td height="10px;"></td>
-		            			</tr>
-		            			<tr>
-		            				<td> <button style="width:100%;border:none;border-radius:0px;" class="btn btn-default btn-xs">Off Notification</button></td>
-		            			</tr>
-		            			<tr>
-		            				<td height="15px;"></td>
-		            			</tr>
-		            		</table>
-		            		<!-- <hr> -->
-
-		            		</div>
-
 
 		            		</td>
 		            	</tr>
@@ -634,12 +653,18 @@ a{
 
 		            <div class="jumbotron" id="feed_body">
 
-		             <?php echo $feed->body;?>
+		             <?php 
+
+		             $hashed  = hashtag($feed->body);
+
+		             echo mention($hashed);
+
+		             ?>
 
 		             <?php if(!empty($feed->mood) && !empty($feed->feel)){ ?>
 
 		             </p>
-		            ↪ <img src="<?php echo $feed->mood;?>" width="25" height="25" id="img44"> <small> Feeling <?php echo $feed->feel;?></small>
+		              <center><img src="<?php echo $feed->mood;?>" width="35" height="35" id="img44"> <small> Feeling <?php echo $feed->feel;?></small></center>
 
 		             <?php } ?>
 
@@ -690,7 +715,7 @@ a{
 
                        if(!empty($feed->video)){ ?>
 
-                       <iframe class="embed-responsive-item" width="100%" height="auto" src="https://www.youtube.com/embed/<?php echo $feed->video;?>" frameborder="1" allowfullscreen></iframe> 
+                       <iframe class="embed-responsive-item" width="100%" height="300px;" src="https://www.youtube.com/embed/<?php echo $feed->video;?>" frameborder="1" allowfullscreen></iframe> 
 
                        <?php } ?>
 
@@ -708,7 +733,11 @@ a{
 		             	<button class="btn btn-success btn-xs" id="post_e">Done editing</button>
 
 		             	<button class="btn btn-danger btn-xs" id="cancel_pe">Cancel</button>
+
+
+
 		             	</div>
+
 		             	</p>
 		             	<?php if (!empty($feed->shared_id)){
 
@@ -821,24 +850,91 @@ a{
 
 		            </div>
 
-		            <div class="jumbotron" id="feed_like">
+		            <div class="jumbotron" id="feed_like" style="border-top:none;">
 		            <table width="100%" border="0">
 		            	<tr>
 		            		<td width="10%">
 		            		<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >
-		            		<button id="sharez"><span class="glyphicon glyphicon-retweet"></span> Share</button>
+		            		<button id="sharez"><span class="glyphicon glyphicon-retweet" style="font-size:16px;color:rgb(204,214,221);" ></span> </button>
 		            		</td>
 		            		<td width="10%">
+
+		            		<?php
+
+		            		$this->db->where('likers',$this->session->userdata('username'));
+		            		$this->db->where('post_id',$feed->id);
+		            		$check_like = $this->db->get('likes')->num_rows();
+		            		if($check_like > 0 ){ 
+
+		            		$color = "#F64747";
+		            		$class = "glyphicon glyphicon-download";
+
+		            		}else{ 
+
+		            		$color="rgb(204,214,221)";
+		            		$class = "glyphicon glyphicon-upload";
+
+		            		} ?>
+
 		            		<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >
-		            		<button id="like"><span class="glyphicon glyphicon-heart"></span> Like</button>
+		            		<button id="like"><span class="<?php echo $class;?>" style="font-size:18px;color:<?php echo $color;?>;"></span> </button>
 		            		</td>
 		            		<td>
-		            		<!-- <input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >
-		            		<button id="noti">off notification</button></td> -->
+		            		<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >
+
+		            		<button id="reply"><span class="glyphicon glyphicon-comment" style="font-size:18px;color:rgb(204,214,221);"></span> </button>
+
+
+		            		<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >
+		            		<button style="float:right;" id="option"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+
+		            		<div class="extra_m" id="extra_m<?php echo $feed->id;?>">
+		            		<table width="100%" border="0">
+		            			<tr>
+		            				<td height="10px;"></td>
+		            			</tr>
+		            			<tr>
+		            				<td><button style="width:100%;border:none;border-radius:0px;" class="btn btn-default btn-xs">Report post</button></td>
+		            			</tr>
+		            			<tr>
+		            				<td height="10px;"></td>
+		            			</tr>
+		            			<tr>
+		            				<td><button style="width:100%;border:none;border-radius:0px;" class="btn btn-default btn-xs"> Details</button></td>
+		            			</tr>
+		            			<tr>
+		            				<td height="10px;"></td>
+		            			</tr>
+		            			<tr>
+		            				<td>
+		            				<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >	
+		            				<button style="width:100%;border:none;border-radius:0px;" class="btn btn-default btn-xs" id="edit_post_button"> Edit post</button>
+		            				</td>
+		            			</tr>
+		            			<tr>
+		            				<td height="10px;"></td>
+		            			</tr>
+		            			<tr>
+		            				<td>
+		            				<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >
+		            				<button style="width:100%;border:none;border-radius:0px;" class="btn btn-default btn-xs" id="del_p"> Remove post</button></td>
+		            			</tr>
+		            			<tr>
+		            				<td height="10px;"></td>
+		            			</tr>
+		            			<tr>
+		            				<td height="15px;"></td>
+		            			</tr>
+		            		</table>
+		            		<!-- <hr> -->
+
+		            		</div>
+
+		            		</td>
 		            		<td width="30%"></td>
 		            		<td width="10%">
 		            		<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id">
-		            		<button id="whol">↯ Like <?php echo count($like) ;?></button>
+		            		<button id="whol" style="color:#1dcaff;"> <?php echo count($like) ;?> POINTS </button>
 		            		</td>
 		            		<td width="10%">
 
@@ -849,16 +945,87 @@ a{
 		            		?>
 
 		            		<input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >
-		            		<button id="whos">↫ Share <?php echo count($cshare);?></button>
+		            		<button id="whos" style="color:#1dcaff;" > SHARE <?php echo count($cshare);?></button>
 		            		</td>
 		            	</tr>
 		         
 		            </table>
-		            	
-		            </div>
 
-		             <div class="jumbotron" id="feed_comment">
-		   				
+		            <style type="text/css">
+
+		             #likers<?php echo $feed->id;?>{
+
+						border-top:1px solid #DDDDDD;
+						margin:0px;
+						margin-top: 5px;
+						display:none;
+						
+						}
+
+		             </style>
+	
+		             	<div class="row" id="likers<?php echo $feed->id;?>">
+		             		<div class="col-md-4" style="border-right:1px solid #DDDDDD;">
+		             			<table width="100%" border="0">
+		             				<tr>
+		             					<td style="color:#1dcaff;">POINTS</td>
+		             					<td style="color:#1dcaff;">COMMENTS</td>
+		             				</tr>
+		             				<tr>
+		             					<td><a href=""><?php echo count($like) ;?></a></td>
+		             					<td>
+
+		             					<?php
+
+		             						$com_count = $this->db->get_where('comment',array('post_id' => $feed->id))->result();
+
+		             					?>
+		             					<a href=""><?php echo count($com_count);?></a>
+
+		             					</td>
+		             				</tr>
+		             			</table>
+		             		</div>
+		             		<div class="col-md-8">
+		             			
+		             		<?php 
+
+		             				$gname = $this->db->get_where('likes',array('post_id' => $feed->id))->result();
+		             				foreach($gname as $name){
+
+		             					$this->db->select('photo');
+		             					$this->db->where('username',$name->likers);
+		             					$sphoto = $this->db->get('user')->result();
+		             					foreach($sphoto as $s){ ?>
+
+		             				<img style="margin-top:8px;" src="<?php echo base_url();?>profile_photo/<?php echo $s->photo;?>" width="24px" height="24px" class="img-rounded">
+
+		             		<?php		}
+		             				}
+
+		             			?>
+		             		</div>
+		             	</div>
+		             </div>
+
+		             <style type="text/css">
+
+		             #feed_comment<?php echo $feed->id;?>{
+
+						border-radius: 0px;
+						background-color: #FAFAFA;
+						margin: 0px;
+						border: solid 1px #DDDDDD;
+						padding: 0px;
+						
+						}
+
+		             </style>
+
+		           <div class="jumbotron" id="feed_comment<?php echo $feed->id;?>" style="display:none;">
+
+
+		   			<div id="comment_div<?php echo $feed->id;?>">	
 		             <table width="100%" border="0">
 
 		             <?php
@@ -870,7 +1037,7 @@ a{
 		           		foreach ($com as $comment){  ?>
 
 		           		<tr>
-		             	<td rowspan="2" width="6%">
+		             	<td rowspan="2" width="10%" class="comment_list<?php echo $comment->id;?>">
 
 		             	<?php
 
@@ -881,19 +1048,21 @@ a{
 
 		            	?>
 
-		             	<img src="<?php echo base_url();?>profile_photo/<?php echo $comp->photo;?>" width="30px" height="30px" class="img-circle">
+		             	<center><img src="<?php echo base_url();?>profile_photo/<?php echo $comp->photo;?>" width="30px" height="30px" class="img-rounded"></center>
 
 		             	</td>
-		             	<td>
+		             	<td class="comment_list<?php echo $comment->id;?>">
 		             	<b id="mini_name"><a href="<?php echo base_url();?>profile/userProfile/<?php echo ucfirst($comment->added_by);?>"><?php echo ucfirst($comment->added_by);?></a></b>
+		             	<small style="color:rgb(204,214,221)">@<?php echo ucfirst($comment->added_by);?></small> 
+		             	 <small id="com_mini"><?php echo humanTiming(strtotime($comment->date_added));?></small>
 
 		             	<input type="hidden" value="<?php echo $comment->id;?>" id="comm_id">
-		             	<button id="delete_com">X </button>
+		             	<button id="delete_com"><span class="glyphicon glyphicon-remove"></span></button>
 
 		             	</td>
 		             	</tr>
 		             	<tr>
-		             	<td>
+		             	<td class="comment_list<?php echo $comment->id;?>">
 
 		             	<span id="origin<?php echo $comment->id;?>" class="origin"><?php echo $comment->body;?></span>	
 
@@ -905,28 +1074,45 @@ a{
 
 		             	<button class="btn btn-danger btn-xs" id="cancel_e">Cancel</button>
 		             	</div>
-             
+             			
 		             
 		             	</td>
 		             	</tr>
 		              	<tr>
 		              	<td width="6%"></td>
-		             	<td>
-		             	<span class="glyphicon glyphicon-time" style="font-size:10px;"></span><small id="com_mini"> About <?php echo humanTiming(strtotime($comment->date_added));?> ago</small>
-
+		             	<td class="comment_list<?php echo $comment->id;?>">
+		             	</td>
+		             	<tr>
+		             		<td height="5px;"></td>
+		             	</tr>
+		             	<tr>
+		             	<td width="6%"></td>
+		             		<td class="comment_list<?php echo $comment->id;?>">
 		             	<?php
 
 			          		$com_like  =  $this->db->get_where('comment_likes',array('comm_id' => $comment->id))->result();
 			          
 		             	?>
 
-		             	<input type="hidden" value="<?php echo $comment->id;?>" id="comm_id">
-		             	<button id="like_c"><span class="glyphicon glyphicon-thumbs-up" ></span> Like <?php echo count($com_like) ;?></button>
+		             	<div class="row">
+		             		<div class="col-md-2">
+		             		<input type="hidden" value="<?php echo $comment->id;?>" id="reply_to">
+		             	    <button id="like_c"><span class="glyphicon glyphicon-share-alt" style="font-size:15px;color:rgb(204,214,221);" ></span></button>
+	
+		             		</div>
+		             		<div class="col-md-2">
+		             		<input type="hidden" value="<?php echo $comment->id;?>" id="comm_id">
+		             		<button id="like_c"><span class="glyphicon glyphicon-upload" style="font-size:15px;color:rgb(204,214,221);" ><span id="count_like<?php echo $comment->id;?>"> <?php echo count($com_like) ;?></span></span> </button>	
+		             		</div>
 
-		             	<input type="hidden" value="<?php echo $comment->id;?>" id="comm_id">
-		             	<button id="edit_c"><span class="glyphicon glyphicon-pencil" ></span> edit </button>
+		             		<div class="col-md-2">
+		             		<input type="hidden" value="<?php echo $comment->id;?>" id="comm_id">
+		             		<button id="edit_c"><span class="glyphicon glyphicon-pencil" style="font-size:15px;color:rgb(204,214,221);" ></span> </button></td>	
+		             		</div>
+		             	</div>
 
-		             	</td>
+		             	</div>
+		             	</tr>
 		             </tr>		         
 
 		           	<?php	}
@@ -936,22 +1122,46 @@ a{
 		             	
 		               	
 		             </table>
+		            </div>
+		            </div>
+
+		             <style type="text/css">
+
+		             #comment_spot<?php echo $feed->id;?>{
+
+						border-radius: 0px;
+						background-color: #FAFAFA;
+						margin: 0px;
+						border: solid 1px #DDDDDD;
+						padding: 10px;
+						border-top: none;
+						
+						}
+
+		             </style>
+
+		            <div class="jumbotron" id="comment_spot<?php echo $feed->id;?>" style="display:none;">
 		             </p>
 		             <textarea rows="1" style="width:100%;" id="comment"></textarea>
-
 		             <input type="hidden" value="<?php echo $feed->id;?>" id="feed_id" >
-		             <button id="submit" class="btn btn-success">Reply</button>
-		             <button id="cancel" class="btn btn-danger">Cancel</button>
+
+		             <button id="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
+		             <button id="cancel" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+
 		            </div>
 		            <br>
 		            </div>
+		           
 		           
 		            <?php } ?>
 
 		            <!-- end -->
 		          
 		            </div>
-			  <center><button id="load_more" class="btn btn-warning btn-sm">LOAD MORE</button></center>
+
+		            <div class="jumbotron" id="banner_bot"><center><img src="<?php echo base_url();?>public/img/logo.png" width="40" height="40" class="img-circle"></center></div>
+
+			 		<center><button id="load_more" class="btn btn-warning btn-sm outline" style="color:#1dcaff;border-color:#1dcaff;">LOAD MORE</button></center>
 		     </div>
 
 		     <div class="col-md-4" id="info_side">
@@ -1090,6 +1300,227 @@ a{
 
 <!-- CHAT PANEL -->
 
-<section id="open_chat"><center>CHAT BOX</center></section>
+<section id="open_chat">
+
+<script type="text/javascript">
+
+				setInterval(function(){
+				    $("#user_activity").load(location.href + " #user_activity");
+				}, 25000);
+			     
+				</script>
+
+				<div class="jumbotron" id="user_activity"> 
+					<div class="jumbotron" id="ac_head">
+
+					<center><button class="animate" id="outline">HIDE</button></center>
+					<center><button class="animate2" style="display:none;" id="outline">SHOW</button></center>
+
+					</div>
+					<div class="jumbotron style" id="ac_body">
+						
+					<?php
+
+						$target = $row->username;
+
+		                $this->db->select('following_array');
+		                $follow   =  $this->db->get_where('user',array('username' => $this->session->userdata('username')));
+		                $g_follow =  $follow->result_array();
+
+		                foreach($g_follow as $fol){
+
+		                $old = $fol['following_array'];
+
+		                }
+
+		                $new = explode(',', $old);
+
+		                for ($i = 0; $i < count($new ); ++$i) {
+
+		                $arr[$i] =  $new[$i];
+
+		                }		               
+
+			            $limit = $this->session->userdata('limit');
+			            // $this->db->limit(5);
+			            $this->db->order_by('id','desc');
+
+			            foreach($arr as $fren){
+
+			            $this->db->or_where('owner',$fren);
+			         
+			            }
+
+			            $activity =  $this->db->get('notification')->result();
+
+			            foreach($activity as $active): 
+
+			            if($active->owner == $this->session->userdata('username')){
+
+			            	$from ="You";
+
+			            }else{
+
+			            	$from = $active->from_who;
+			            }
+			            ?>
+
+			            <?php
+
+			            $this->db->select('photo');
+			            $this->db->where('username',$active->from_who);
+			            $sender = $this->db->get('user')->result();
+			            foreach($sender as $gp){}
+
+			            ?>
+
+			            <table width="100%" border="0">
+						<tr>
+							<td width="20%" rowspan="2"><center><img src="<?php echo base_url();?>profile_photo/<?php echo $gp->photo;?>" width="35px" height="35px;"></center></td>
+							<td>
+
+
+							<a href="" style="color:#1dcaff"><b><?php echo ucfirst($from);?></b></a>
+
+							<!-- <small><?php echo $active->type;?></small> -->
+							<small style="float:right;"><?php echo humanTiming(strtotime($active->date_added));?> ago</small>
+
+							</td>
+						</tr>
+						<tr>
+
+							<?php
+
+							  if($active->type == 'photo'){ ?>
+
+							  <td> added a new <a href="<?php echo base_url();?>profile/statusView/<?php echo $row->username;?>/<?php echo $active->post_id;?>">photo</a></td>
+
+							  <?php }else if($active->type == 'video'){?>
+
+							  <td> added a new <a href="<?php echo base_url();?>profile/statusView/<?php echo $row->username;?>/<?php echo $active->post_id;?>">video</a></td>
+								
+							  <?php }else if($active->type == 'music'){?>
+
+							  <td> added a new <a href="<?php echo base_url();?>profile/statusView/<?php echo $row->username;?>/<?php echo $active->post_id;?>">music</a></td>
+
+							  <?php }else if($active->type == 'link'){?>
+
+							  <td style="font-size:13px;">like <a href=""><?php echo ucfirst($active->owner);?></a> posted <a href="<?php echo base_url();?>profile/statusView/<?php echo $row->username;?>/<?php echo $active->post_id;?>">links</a></td>
+
+							  <?php }else if($active->type == 'comment'){?>
+
+							  <td style="font-size:13px;">commented on <a href=""><?php echo ucfirst($active->owner);?></a> <a href="<?php echo base_url();?>profile/activityView/<?php echo $row->username;?>/<?php echo $active->post_id;?>">post</a></td>
+
+							  <?php }else if($active->type == 'likes'){?>
+
+							  <td style="font-size:13px;">like <a href=""><?php echo ucfirst($active->owner);?></a> <a href="<?php echo base_url();?>profile/activityView/<?php echo $row->username;?>/<?php echo $active->post_id;?>">post</a></td>
+
+							  <?php }else if($active->type == 'follow'){?>
+
+							  <td style="font-size:13px;">now following <a href=""><?php echo ucfirst($active->owner);?></a></td>
+
+							  <?php }else if($active->type == 'share'){?>
+
+							  <td style="font-size:13px;"> share <a href=""><?php echo ucfirst($active->owner);?></a> <a href="<?php echo base_url();?>profile/activityView/<?php echo $row->username;?>/<?php echo $active->post_id;?>">post</a></td>
+
+							  <?php }else{?>
+
+
+							  <td style="font-size:13px;"> updated his <a href="<?php echo base_url();?>profile/statusView/<?php echo $row->username;?>/<?php echo $active->post_id;?>">status</a></td>
+
+							  <?php } ?>
+
+						</tr>
+						<tr>
+							<td height="1px" colspan="2"><hr></td>
+						</tr>
+					    </table>
+
+			            <?php endforeach; ?>
+
+					</div>
+				</div>
+
+				<div class="jumbotron" id="online_user">
+					
+				<table width="100%" border="0">
+
+				<?php
+
+	                $this->db->select('following_array');
+	                $follow   =  $this->db->get_where('user',array('username' => $this->session->userdata('username')));
+	                $g_follow =  $follow->result_array();
+
+	                foreach($g_follow as $fol){
+
+	                $old = $fol['following_array'];
+
+	                }
+
+	                $new = explode(',', $old);
+
+	                for ($i = 0; $i < count($new ); ++$i) {
+
+	                $arr[$i] =  $new[$i];
+
+	                }		
+
+	               $this->db->where('username !=',$this->session->userdata('username'));
+		           $this->db->order_by('id','desc');
+
+		           foreach($arr as $fren){
+
+		           $this->db->or_where('username',$fren);
+
+		           }
+
+		           $this->db->where('online','1');
+		           $online =  $this->db->get('user')->result();
+
+		           foreach($online as $chat){ ?>
+
+		            <tr>
+						<td rowspan="2"><img src="<?php echo base_url();?>profile_photo/<?php echo $chat->photo;?>" width="40px" height="40px" class="img-circle"></td>
+						<td width="70%" style="color:#1dcaff"> <div id="on_logo"></div> <?php echo $chat->username;?> <small style="color:black;">@<?php echo $chat->username;?></small></td>
+					</tr>
+					<tr>
+						<td width="70%;">
+
+						<input type="hidden" value="<?php echo $chat->username;?>" id="t_user">
+						<button id="outline" class="send_msg">MESSAGE</button>
+
+						</td>
+					</tr>
+					<tr>
+						<td height="10px;"></td>
+					</tr>	 
+
+		           <?php } ?>
+
+
+				</table>
+
+				</div>
+
+</section>
 
 <!-- END -->
+<script type="text/javascript">
+	
+$(document).on('click','.animate',function(event){
+				
+				$("#open_chat").animate({height: '46px'});
+			    $(this).hide();
+			    $('.animate2').show();
+			
+		 });
+
+$(document).on('click','.animate2',function(event){
+				
+				$("#open_chat").animate({height: '93.5%'});
+			    $(this).hide();
+			    $('.animate').show();
+			
+		 });; 
+
+</script>

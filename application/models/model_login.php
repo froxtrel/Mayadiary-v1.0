@@ -36,6 +36,10 @@ class Model_login extends CI_Model {
                );
 
         $this->session->set_userdata($newdata);
+
+        $this->db->set('online',1);
+        $this->db->where('email',$email);
+        $this->db->update('user');
                 
         return true;
 

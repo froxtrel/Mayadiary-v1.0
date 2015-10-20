@@ -880,6 +880,22 @@ $('#hideinfo')
 
       });
 
+    $(document).on('click','.send_msg',function(event){
+        
+        var target = $(this).siblings('#t_user').attr('value');
+        $('#to').val(target);
+        $('#sms_to').html(target);
+        $('#click_me').click();
+      
+     });
+
+     $(document).on('click','#notis_v',function(event){
+        
+        event.preventDefault();
+        $('#notis').click();
+      
+     });
+
 
 });
 
