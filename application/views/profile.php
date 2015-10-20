@@ -78,12 +78,12 @@ a{
       </ul>
       <ul class="nav navbar-nav navbar-right">
 
-         <li><a href=""  style="color:#1dcaff;">
+         <li><a href=""  style="color:#1dcaff;" id="notis_v">
 
          	<?php
 
          	  $this->db->where('open','no');
-         	  $this->db->where('owner',$this->session->userdata('username'));
+         	  $this->db->where('noti_to',$this->session->userdata('username'));
          	  $n_noti = $this->db->get('notification')->result();
 
          	 ?>
@@ -91,7 +91,7 @@ a{
 	         <span class="badge"><?php echo count($n_noti);?></span> 
 	         Notifications <span class="glyphicon glyphicon glyphicon-bell"></span> </a></li>
 
-         <li><a href=""  style="color:#1dcaff;">
+         <li><a href=""  style="color:#1dcaff;" id="misij_v">
 
          	 <?php
 
@@ -103,7 +103,6 @@ a{
          	 <span class="badge"><?php echo count($n_msg);?></span> 
          	 Messages <span class="glyphicon glyphicon glyphicon-comment"></span> </a></li>
 
-      </ul>
     </div>
   </div>
 </nav>
@@ -1239,6 +1238,8 @@ $("#myNavbar").load(location.href + " #myNavbar");
 	
 			<a class="js-open-modal" href="#" data-modal-id="popup"  id="click_me"></a>
 			<a class="js-open-modal" href="#" data-modal-id="popup2" id="success"></a>
+			<a class="js-open-modal" href="#" data-modal-id="popup3" id="notis"></a>
+			<a class="js-open-modal" href="#" data-modal-id="popup4" id="misij"></a>
 
 		</div>
 
@@ -1297,6 +1298,151 @@ $("#myNavbar").load(location.href + " #myNavbar");
   <center><a href="#" class="btn btn-small js-modal-close"><button class="btn btn-success btn-sm">Close</button></a></center> 
 </div>
 <!-- END MODAL 2 -->
+
+<!-- MODAL 3 -->
+<div id="popup3" class="modal-box" style="position:fixed;margin-top:-50px;height:500px;">
+  <header> <a href="#" class="js-modal-close close" id="close_box2">×</a>
+    <h3><center>NOTIFICATIONS</center></h3>
+  </header>
+  <div class="modal-body">
+  
+  <?php
+
+  $this->db->where('open','no');
+  $this->db->where('noti_to',$this->session->userdata('username'));
+  $all_n = $this->db->get('notification')->result();
+ 
+
+			            foreach($all_n as $active): 
+		           
+			            	$from = $active->from_who;
+			            
+			            ?>
+
+			            <?php
+
+			            $this->db->select('photo');
+			            $this->db->where('username',$active->from_who);
+			            $sender = $this->db->get('user')->result();
+			            foreach($sender as $gp){}
+
+			            ?>
+
+			            <table width="100%" border="0">
+						<tr>
+							<td width="20%" rowspan="2"><center><img src="<?php echo base_url();?>profile_photo/<?php echo $gp->photo;?>" width="35px" height="35px;"></center></td>
+							<td>
+
+
+							<a href="" style="color:#1dcaff"><b><?php echo ucfirst($from);?></b></a>
+
+							<!-- <small><?php echo $active->type;?></small> -->
+							<small style="float:right;"><?php echo humanTiming(strtotime($active->date_added));?> ago</small>
+
+							</td>
+						</tr>
+						<tr>
+
+							<?php
+
+							  if($active->type == 'photo'){ ?>
+
+							  <td> added a new <a href="<?php echo base_url();?>profile/statusView/<?php echo $row->username;?>/<?php echo $active->post_id;?>">photo</a></td>
+
+							  <?php }else if($active->type == 'video'){?>
+
+							  <td> added a new <a href="<?php echo base_url();?>profile/statusView/<?php echo $row->username;?>/<?php echo $active->post_id;?>">video</a></td>
+								
+							  <?php }else if($active->type == 'music'){?>
+
+							  <td> added a new <a href="<?php echo base_url();?>profile/statusView/<?php echo $row->username;?>/<?php echo $active->post_id;?>">music</a></td>
+
+							  <?php }else if($active->type == 'link'){?>
+
+							  <td style="font-size:13px;">like <a href=""><?php echo ucfirst($active->owner);?></a> posted <a href="<?php echo base_url();?>profile/statusView/<?php echo $row->username;?>/<?php echo $active->post_id;?>">links</a></td>
+
+							  <?php }else if($active->type == 'comment'){?>
+
+							  <td style="font-size:13px;">commented on <a href=""> you <a href="<?php echo base_url();?>profile/activityView/<?php echo $row->username;?>/<?php echo $active->post_id;?>">post</a></td>
+
+							  <?php }else if($active->type == 'likes'){?>
+
+							  <td style="font-size:13px;">like <a href=""> you </a> <a href="<?php echo base_url();?>profile/activityView/<?php echo $row->username;?>/<?php echo $active->post_id;?>">post</a></td>
+
+							  <?php }else if($active->type == 'follow'){?>
+
+							  <td style="font-size:13px;">now following <a href=""> you </a></td>
+
+							  <?php }else if($active->type == 'share'){?>
+
+							  <td style="font-size:13px;"> share you <a href="<?php echo base_url();?>profile/activityView/<?php echo $row->username;?>/<?php echo $active->post_id;?>">post</a></td>
+
+							   <?php }else if($active->type == 'mention'){?>
+
+							  <td style="font-size:13px;"> mention  you in a <a href="<?php echo base_url();?>profile/statusView/<?php echo $row->username;?>/<?php echo $active->post_id;?>">post</a></td>
+
+							  <?php }else{?>
+
+
+							  <td style="font-size:13px;"> updated his <a href="<?php echo base_url();?>profile/statusView/<?php echo $row->username;?>/<?php echo $active->post_id;?>">status</a></td>
+
+							  <?php } ?>
+
+						</tr>
+						<tr>
+							<td height="1px" colspan="2"><hr></td>
+						</tr>
+					    </table>
+
+			            <?php endforeach; ?>
+
+				
+
+  </div>
+  <center><a href="#" class="btn btn-small js-modal-close" id="close_box3"><button class="btn btn-success btn-sm">Close</button></a></center> 
+</div>
+<!-- END MODAL 3 -->
+
+
+<!-- MODAL 4 -->
+<div id="popup4" class="modal-box" style="position:fixed;margin-top:-50px;height:500px;">
+  <header> <a href="#" class="js-modal-close close" id="close_box2">×</a>
+    <h3><center>MESSAGES</center></h3>
+  </header>
+  <div class="modal-body">
+  <table width="100%" border="0">
+  <?php
+
+  $this->db->where('user_to',$this->session->userdata('username'));
+  $all_sms = $this->db->get('inbox')->result();
+
+  foreach($all_sms as $sms){
+
+  $this->db->select('photo');
+  $this->db->where('username',$sms->user_from);
+  $send_f = $this->db->get('user')->result();
+  foreach($send_f as $send_pto){} ?>
+  
+  	<tr>
+  		<td width="10%" rowspan="2"><img src="<?php echo base_url();?>profile_photo/<?php echo $send_pto->photo;?>" class="img-circle" width="50px" height="50px"></td>
+  		<td><a href="" style="color:#1dcaff;font-weight:bold;"><?php echo ucfirst($sms->user_from);?></a></td>
+  		<td width="15%"><?php echo humanTiming(strtotime($sms->date_added));?></td>
+  	</tr>
+  	<tr>
+  		<td><?php echo $sms->body;?></td>
+  		<td width="15%"><button id="outline">REPLY</button></td>
+  	</tr>
+  	<tr>
+  		<td style="height:10px;"></td>
+  	</tr>
+
+ <?php } ?>
+				
+  </table>
+  </div>
+  <center><a href="#" class="btn btn-small js-modal-close" id="close_box3"><button class="btn btn-success btn-sm">Close</button></a></center> 
+</div>
+<!-- END MODAL 4 -->
 
 <!-- CHAT PANEL -->
 
@@ -1505,22 +1651,3 @@ $("#myNavbar").load(location.href + " #myNavbar");
 </section>
 
 <!-- END -->
-<script type="text/javascript">
-	
-$(document).on('click','.animate',function(event){
-				
-				$("#open_chat").animate({height: '46px'});
-			    $(this).hide();
-			    $('.animate2').show();
-			
-		 });
-
-$(document).on('click','.animate2',function(event){
-				
-				$("#open_chat").animate({height: '93.5%'});
-			    $(this).hide();
-			    $('.animate').show();
-			
-		 });; 
-
-</script>

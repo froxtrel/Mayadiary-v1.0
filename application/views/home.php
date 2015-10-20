@@ -87,10 +87,19 @@ a{
 
          	 ?>
 
-	         <span class="badge"><?php echo count($n_noti);?></span> 
+	         <?php 
+
+	         if(!empty($n_noti)){ ?>
+
+	         <span class="badge" style="background-color:red;"><?php echo count($n_noti); ?></span>
+
+	         <?php }
+
+	         ?>
+
 	         Notifications <span class="glyphicon glyphicon glyphicon-bell"></span> </a></li>
 
-         <li><a href=""  style="color:#1dcaff;">
+            <li><a href=""  style="color:#1dcaff;" id="misij_v">
 
          	 <?php
 
@@ -99,7 +108,15 @@ a{
          	  $n_msg = $this->db->get('inbox')->result();
 
          	 ?>
-         	 <span class="badge"><?php echo count($n_msg);?></span> 
+         	 <?php 
+
+	         if(!empty($n_msg)){ ?>
+
+	         <span class="badge" style="background-color:red;"><?php echo count($n_msg); ?></span>
+
+	         <?php }
+
+	         ?>
          	 Messages <span class="glyphicon glyphicon glyphicon-comment"></span> </a></li>
 
       </ul>
@@ -113,7 +130,7 @@ setInterval(function() {
       
 $("#myNavbar").load(location.href + " #myNavbar");  
 
-}, 2000);
+}, 5000);
 	
 </script>
 
@@ -1238,6 +1255,7 @@ $("#myNavbar").load(location.href + " #myNavbar");
 			<a class="js-open-modal" href="#" data-modal-id="popup"  id="click_me"></a>
 			<a class="js-open-modal" href="#" data-modal-id="popup2" id="success"></a>
 			<a class="js-open-modal" href="#" data-modal-id="popup3" id="notis"></a>
+			<a class="js-open-modal" href="#" data-modal-id="popup4" id="misij"></a>
 
 		</div>
 
@@ -1305,15 +1323,15 @@ $("#myNavbar").load(location.href + " #myNavbar");
 <!-- END MODAL 2 -->
 
 <!-- MODAL 3 -->
-<div id="popup3" class="modal-box" style="position:fixed;margin-top:-50px;">
+<div id="popup3" class="modal-box" style="position:fixed;margin-top:-50px;height:500px;">
   <header> <a href="#" class="js-modal-close close" id="close_box2">×</a>
     <h3><center>NOTIFICATIONS</center></h3>
   </header>
-  <div class="modal-body">
+  <div class="modal-body" id="noti_bodz">
   
   <?php
 
-  $this->db->where('open','no');
+  $this->db->order_by('id','desc');
   $this->db->where('noti_to',$this->session->userdata('username'));
   $all_n = $this->db->get('notification')->result();
  
@@ -1409,17 +1427,51 @@ $("#myNavbar").load(location.href + " #myNavbar");
 <!-- END MODAL 3 -->
 
 
+<!-- MODAL 4 -->
+<div id="popup4" class="modal-box" style="position:fixed;margin-top:-50px;height:500px;">
+  <header> <a href="#" class="js-modal-close close" id="close_box2">×</a>
+    <h3><center>MESSAGES</center></h3>
+  </header>
+  <div class="modal-body" id="sms_bodz">
+  <table width="100%" border="0">
+  <?php
 
-<script type="text/javascript">
+  $this->db->order_by('id','desc');
+  $this->db->where('user_to',$this->session->userdata('username'));
+  $all_sms = $this->db->get('inbox')->result();
 
-$('#close_modal,#close_box,#close_box3,#close_box2').click(function(e) {
-     // do something fancy
-     return false; // prevent default click action from happening!
-     e.preventDefault(); // same thing as above
-});
-	
+  foreach($all_sms as $sms){
 
-</script>
+  $this->db->select('photo');
+  $this->db->where('username',$sms->user_from);
+  $send_f = $this->db->get('user')->result();
+  foreach($send_f as $send_pto){} ?>
+  
+  	<tr>
+  		<td width="10%" rowspan="2"><img src="<?php echo base_url();?>profile_photo/<?php echo $send_pto->photo;?>" class="#" width="35px" height="35px"></td>
+  		<td><a href="" style="color:#1dcaff;font-weight:bold;"><?php echo ucfirst($sms->user_from);?></a></td>
+  		<td width="15%"><?php echo humanTiming(strtotime($sms->date_added));?></td>
+  	</tr>
+  	<tr>
+  		<td><?php echo $sms->body;?></td>
+  		<td width="15%">
+
+  		<input type="hidden" value="<?php echo $sms->user_from;?>" id="rep_id">	
+  		<button id="outline" class="reply">REPLY</button>
+
+  		</td>
+  	</tr>
+  	<tr>
+  		<td style="height:10px;"></td>
+  	</tr>
+
+ <?php } ?>
+				
+  </table>
+  </div>
+  <center><a href="#" class="btn btn-small js-modal-close" id="close_box3"><button class="btn btn-success btn-sm">Close</button></a></center> 
+</div>
+<!-- END MODAL 4 -->
 
 <!-- CHAT PANEL -->
 
@@ -1629,24 +1681,5 @@ $('#close_modal,#close_box,#close_box3,#close_box2').click(function(e) {
 
 <!-- END -->
 
-<script type="text/javascript">
-	
-$(document).on('click','.animate',function(event){
-				
-				$("#open_chat").animate({height: '46px'});
-			    $(this).hide();
-			    $('.animate2').show();
-			
-		 });
-
-$(document).on('click','.animate2',function(event){
-				
-				$("#open_chat").animate({height: '93.5%'});
-			    $(this).hide();
-			    $('.animate').show();
-			
-		 });; 
-
-</script>
 
 

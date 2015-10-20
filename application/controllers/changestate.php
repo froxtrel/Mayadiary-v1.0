@@ -53,6 +53,21 @@ public function videoPost(){
 
 }
 	
+public function clearNoti(){
+
+    $this->db->where('noti_to',$this->session->userdata('username'));
+    $this->db->set('open','yes');
+    $this->db->update('notification');
+
+}
+
+public function clearSms(){
+
+    $this->db->where('user_to',$this->session->userdata('username'));
+    $this->db->set('status','yes');
+    $this->db->update('inbox');
+
+}
   
 
   public function clear_cache(){

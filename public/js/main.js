@@ -892,10 +892,88 @@ $('#hideinfo')
      $(document).on('click','#notis_v',function(event){
         
         event.preventDefault();
-        $('#notis').click();
+
+         $.ajax({
+
+                type:'POST',
+                url :'http://localhost/Mayadiary-v1.0/changestate/clearNoti',
+                data:{},
+                datatype:'json',
+                success: function (data) {
+
+                $('#notis').click();
+                $("#noti_bodz").load(location.href + " #noti_bodz");
+                     
+                },
+
+                error: function (data) {
+                      
+                alert('failed');
+
+                }
+         });
       
      });
 
+     $(document).on('click','#misij_v',function(event){
+        
+        event.preventDefault();
+
+        $.ajax({
+
+                type:'POST',
+                url :'http://localhost/Mayadiary-v1.0/changestate/clearSms',
+                data:{},
+                datatype:'json',
+                success: function (data) {
+
+                $('#misij').click();
+                $("#sms_bodz").load(location.href + " #sms_bodz");
+                     
+                },
+
+                error: function (data) {
+                      
+                alert('failed');
+
+                }
+         });
+      
+     });
+
+     $(document).on('click','.animate',function(event){
+        
+        $("#open_chat").animate({height: '46px'});
+          $(this).hide();
+          $('.animate2').show();
+      
+     });
+
+     $(document).on('click','.animate2',function(event){
+        
+        $("#open_chat").animate({height: '93.5%'});
+          $(this).hide();
+          $('.animate').show();
+      
+     });
+
+     $('#close_modal,#close_box,#close_box3,#close_box2').click(function(e) {
+     // do something fancy
+     return false; // prevent default click action from happening!
+     e.preventDefault(); // same thing as above
+     });
+
+     $(document).on('click','.reply',function(event){
+        
+        var user = $(this).siblings('#rep_id').attr('value');
+
+        $('#to').val(user);
+        $('#sms_to').html(user);
+        $('#close_box2').click();
+        $('#click_me').click();
+      
+     });
+  
 
 });
 
