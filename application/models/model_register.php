@@ -35,7 +35,7 @@ class Model_register extends CI_Model {
         'bg_position'  => 'center center',
         'bg_attach'    =>  'fixed',
         'bg_repeat'    => 'no-repeat',
-        'theme_path'   => 'http://localhost/Mayadiary-v1.0/themes/default.jpg',
+        'theme_path'   => 'http://localhost/Mayadiary-v1.0/themes/default.png',
         'websites'     =>  'www.yousite.com',
         'bio'          =>  'Say something about you here'
  

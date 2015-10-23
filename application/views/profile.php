@@ -39,30 +39,25 @@ a{
 
 </style>
 
-<div id="wrapper">
+<div id="wrapper" style="min-width:1000px;">
   <div class="overlay"></div>
   
   <!-- Sidebar -->
-  <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+   <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation" style="background-color:#fff;">
     <ul class="nav sidebar-nav">
-      <li class="sidebar-brand"> <a href="#"><img src="<?php echo base_url();?>public/img/logo.png" width="40" height="40" class="img-circle" style="border:2px solid #fff;"> <span class="maya">MayaDiary</span></a> </li>
-      <li> <a href="<?php echo base_url();?>home/goHome" class="style"><i class="fa fa-fw fa-home">  		</i> Home  </a> </li>
-      <li> <a href="<?php echo base_url();?>profile/userProfile/<?php echo $this->session->userdata('username');?>" class="style"><i class="fa fa-fw fa-user"></i> Profile </a> </li>
-      <li> <a href="<?php echo base_url();?>profile/photoshow/<?php echo $this->session->userdata('username');?>" class="style"><i class="fa fa-fw fa-picture-o">  		</i> Photos  </a> </li>
-      <li> <a href="<?php echo base_url();?>profile/peopleShow/<?php echo $this->session->userdata('username');?>" class="style"><i class="fa fa-fw fa-users">  	</i> People   </a> </li>
-      <li> <a href="#" class="style"><i class="fa fa-fw fa-video-camera">  	</i> Video   </a> </li>
-      <li> <a href="#" class="style"><i class="fa fa-fw fa-music">     		</i> Music   </a> </li>
-      <li> <a href="#" class="style"><i class="fa fa-fw fa-pencil-square-o">  </i> Blogs   </a> </li>
-      <li> <a href="#" class="style"><i class="fa fa-fw fa-bullhorn"> 		</i> Forums  </a> </li>
-      <li> <a href="#" class="style"><i class="fa fa-fw fa-users">			</i> Groups  </a> </li>
-      <li> <a href="#" class="style"><i class="fa fa-fw fa-gamepad"> 			</i> Games   </a> </li>
-      <li> <a href="#" class="style"><i class="fa fa-fw fa-calendar"> 		</i> Events  </a> </li>
-      <li> <a href="#" class="style"><i class="fa fa-fw fa-wrench"> 		    </i> Settings  </a> </li>
-      <li> <a href="<?php echo base_url();?>login/logout" class="style"><i class="fa fa-fw fa-sign-out"></i> Logout</a> </li>
+      <li> <a href="#"><img src="<?php echo base_url();?>public/img/logo.png" width="40" height="40" class="img-circle" style="border:2px solid #fff;"> <span class="maya">MayaDiary</span></a> </li>
+      <li> <a href="<?php echo base_url();?>home/goHome" ><i class="fa fa-fw fa-home">     </i> Home  </a> </li>
+      <li> <a href="<?php echo base_url();?>profile/userProfile/<?php echo $this->session->userdata('username');?>" ><i class="fa fa-fw fa-user"></i> <?php echo ucfirst($this->session->userdata('username'));?> </a> </li>
+      <li> <a href="<?php echo base_url();?>profile/peopleshow/<?php echo $this->session->userdata('username');?>" ><i class="fa fa-fw fa-users">        </i> People   </a> </li>
+      <li> <a href="<?php echo base_url();?>profile/photoshow/<?php echo $this->session->userdata('username');?>" ><i class="fa fa-fw fa-picture-o">     </i> Photos  </a> </li>
+      <li> <a href="#" ><i class="fa fa-fw fa-video-camera">   </i> Video   </a> </li>
+      <li> <a href="#" ><i class="fa fa-fw fa-music">        </i> Music   </a> </li>
+      <li> <a href="<?php echo base_url();?>profile/profileDesign/<?php echo $this->session->userdata('username');?>" ><i class="fa fa-fw fa-wrench">        </i> Settings  </a> </li>
+      <li> <a href="<?php echo base_url();?>login/logout" ><i class="fa fa-fw fa-sign-out"></i> Logout</a> </li>
     </ul>
   </nav>
   <!-- /#sidebar-wrapper --> 
-  <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:rgba(255,255,255,0.3);border:none;">
+  <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:#fff;border-bottom:1px solid #ddd;min-width:1000px;">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -70,14 +65,13 @@ a{
         <span class="icon-bar"></span>
         <span class="icon-bar"></span> 
       </button>
-      <a class="navbar-brand" href="#"></a>
+      <a class="navbar-brand" href="#"><img src="<?php echo base_url();?>public/img/logo.png" width="25" height="25" class="img-#"></img></a>
     </div>
-     <div class="collapse navbar-collapse" id="myNavbar">
+    <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="#"></a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-
+      <ul class="nav navbar-nav navbar-right">   	 
          <li><a href=""  style="color:#1dcaff;" id="notis_v">
 
          	<?php
@@ -88,10 +82,19 @@ a{
 
          	 ?>
 
-	         <span class="badge"><?php echo count($n_noti);?></span> 
+	         <?php 
+
+	         if(!empty($n_noti)){ ?>
+
+	         <span class="badge" style="background-color:red;"><?php echo count($n_noti); ?></span>
+
+	         <?php }
+
+	         ?>
+
 	         Notifications <span class="glyphicon glyphicon glyphicon-bell"></span> </a></li>
 
-         <li><a href=""  style="color:#1dcaff;" id="misij_v">
+            <li><a href=""  style="color:#1dcaff;" id="misij_v">
 
          	 <?php
 
@@ -100,9 +103,18 @@ a{
          	  $n_msg = $this->db->get('inbox')->result();
 
          	 ?>
-         	 <span class="badge"><?php echo count($n_msg);?></span> 
+         	 <?php 
+
+	         if(!empty($n_msg)){ ?>
+
+	         <span class="badge" style="background-color:red;"><?php echo count($n_msg); ?></span>
+
+	         <?php }
+
+	         ?>
          	 Messages <span class="glyphicon glyphicon glyphicon-comment"></span> </a></li>
 
+      </ul>
     </div>
   </div>
 </nav>
@@ -113,7 +125,13 @@ setInterval(function() {
       
 $("#myNavbar").load(location.href + " #myNavbar");  
 
-}, 2000);
+}, 5000);
+
+// setInterval(function() {
+      
+// $("#mini_gallery").load(location.href + " #mini_gallery");  
+
+// }, 20000);
 	
 </script>
   
@@ -139,7 +157,7 @@ $("#myNavbar").load(location.href + " #myNavbar");
 					
 			<div class="jumbotron" id="cover_photo">
 
-			<div id="covers">
+			<div id="covers" style="border:1px solid #ddd;">
 
 			<?php if(empty($row->cover)){ ?>
 
@@ -149,7 +167,27 @@ $("#myNavbar").load(location.href + " #myNavbar");
 
 		    <?php  }else{  ?>
 
-	       	<img src="<?php echo base_url();?>cover/<?php echo $row->cover;?>" width="100%" height="440" id="main_cover">
+
+	       	<img src="<?php echo base_url();?>cover/<?php echo $row->cover;?>" width="80%" height="429" id="main_cover">
+
+	       	<div id="mini_gallery">
+
+	       	<?php
+
+	       	$this->db->order_by('id','random');
+	       	$this->db->where('photo !=','');
+	       	$this->db->where('added_by',$row->username);
+	       	$this->db->limit(4);
+	        $p_pre = $this->db->get('post')->result();
+
+	        foreach($p_pre as $prev){ ?>
+	        	
+	        <a href="<?php echo base_url();?>profile/postview/<?php echo $this->session->userdata('username');?>/<?php echo $prev->id;?>">
+	        <img src="<?php echo base_url();?>uploads/<?php echo $prev->photo;?>" width="20%" height="107.5" id="main_cover" class="img"></a>
+
+	       <?php } ?>
+
+	       </div>
 
 		    <?php } ?>
 			
@@ -178,14 +216,97 @@ $("#myNavbar").load(location.href + " #myNavbar");
 			<button id="cover_logo" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-camera"></span> Change Cover</button>
 
 
-			<span id="profile_name" style="color:#1dcaff;"><?php echo ucfirst($row->username);?></span>
+			<span id="profile_name" >
+
+			<?php echo ucfirst($row->username);?>
+
+			</span>
+
+			<span id="profile_mini" >
+
+			<a href="">@<?php echo ucfirst($row->username);?></a>
+
+			</span>
+
+			<span id="tagline">
+
+			<?php echo $row->tagline;?>
+
+			</span>
 
 			<div class="jumbotron" id="profile_menu">
 
-				<div class="jumbotron" id="menu_1" style="width:10%;"><a href="" style="color:black;"><center>POST <span style="color:#1dcaff;">11</span> </center></a></div>
-				<div class="jumbotron" id="menu_2" style="width:10%;"><a href="" style="color:black;"><center>FOLLOWING <span style="color:#1dcaff;">11</span> </center></a></div>
-				<div class="jumbotron" id="menu_3" style="width:10%;"><a href="" style="color:black;"><center>FOLLOWERS <span style="color:#1dcaff;">11</span> </center></a></div>
-				<div class="jumbotron" id="menu_4" style="width:10%;"><a href="" style="color:black;"><center>LIKE <span style="color:#1dcaff;">11</span> </center></a></div>
+				<div class="jumbotron" id="menu_1" style="width:10%;"><a href="" style="color:black;" id="post_list"><center>POST <span style="color:#1dcaff;"> 
+
+				<?php
+
+		         $this->db->where('added_by',$row->username);
+		         $c_post = $this->db->get('post')->result();
+
+		         ?>
+				<?php echo count($c_post);?>	
+				</span> </center></a></div>
+
+				<div class="jumbotron" id="menu_2" style="width:10%;"><a href="" style="color:black;" id="following_list"><center>FOLLOWING <span style="color:#1dcaff;">
+				
+				<?php								
+
+					                $this->db->select('following_array');
+					                $follow   =  $this->db->get_where('user',array('username' => $row->username));
+					                $g_follow =  $follow->result_array();
+
+					                foreach($g_follow as $fol){
+
+					                $old = $fol['following_array'];
+
+					                }
+
+					                $new = explode(',', $old);
+
+					                for ($i = 0; $i < count($new ); ++$i) {
+
+					                $arr[$i] =  $new[$i];
+
+					                }		               
+				?>	
+				<?php echo count($arr) -1 ;?>
+				</span> </center></a></div>
+
+				<div class="jumbotron" id="menu_3" style="width:10%;"><a href="" style="color:black;" id="follower_list"><center>FOLLOWERS <span style="color:#1dcaff;">
+					
+				<?php								
+
+					                $this->db->select('follower_array');
+					                $follow   =  $this->db->get_where('user',array('username' => $row->username));
+					                $g_follow =  $follow->result_array();
+
+					                foreach($g_follow as $fol){
+
+					                $old = $fol['follower_array'];
+
+					                }
+
+					                $new = explode(',', $old);
+
+					                for ($i = 0; $i < count($new ); ++$i) {
+
+					                $arrx[$i] =  $new[$i];
+
+					                }		               
+				?>
+				<?php echo count($arrx) -1 ;?>
+				</span> </center></a></div>
+
+				<div class="jumbotron" id="menu_4" style="width:10%;"><a href="" style="color:black;" id="like_list"><center>LIKE <span style="color:#1dcaff;">
+				<?php
+
+				$this->db->where('likers',$row->username);
+				$co_like = $this->db->get('likes')->result();
+
+				?>
+				<?php echo count($co_like);?>
+				</span> </center></a></div>
+
 				<div class="jumbotron" id="menu_5" style="width:60%;">
 
 				<?php   
@@ -260,7 +381,166 @@ $("#myNavbar").load(location.href + " #myNavbar");
 			</div>
 			<div class="clearfix"></div>
 
-		  <div class="row">
+		 <div class="jumbotron" id="following_area" style="display:none;">
+
+		 <?php
+
+		 $this->db->select('following_array');
+		 $this->db->where('username',$row->username);
+		 $fl_list = $this->db->get('user')->result();
+
+		 foreach($fl_list as $flist){
+
+		 	$listz =  $flist->following_array;
+		 	
+		 }
+
+		 	$n_listz = explode(",",$listz);
+		 	array_shift($n_listz);
+
+		 	foreach($n_listz as $me){
+
+		 	$user =  $me;		
+
+			$this->db->where('username',$user);
+			$get_user = $this->db->get('user')->result();
+
+			foreach($get_user as $users){
+
+		?>
+
+		<div class="jumbotron" id="user_f">
+		 <br>
+		 	 <div class="jumbotron" id="user_cover">
+		          <img src="<?php echo base_url();?>cover/<?php echo $users->cover;?>" width="100%" height="110" id="#">
+		     </div>
+
+		     <div class="jumbotron" id="user_body">
+		     	<img src="<?php echo base_url();?>profile_photo/<?php echo $users->photo;?>" id="user_photo" width="74" height="74" class="img-circle">
+
+		     <table width="100%" border="0">
+		     	<tr>
+		     	 	<td height="20px;" colspan="2"></td>
+		     	</tr>
+		     	<tr>
+		     		<td><center><b><a href="<?php echo base_url();?>profile/userProfile/<?php echo ucfirst($users->username);?>"><?php echo ucfirst($users->username);?></a></b></center></td>
+		     	</tr>
+		     	<tr>
+		     		<td><center><small>@<?php echo ucfirst($users->username);?></small></center></td>
+		     	</tr>
+		     	<tr>
+		     		<td height="60px;">
+		     			<?php echo substr($users->bio,0,100);?>
+		     		</td>
+		     	</tr>
+		     	<tr>
+		     		<td>
+
+		     	    <?php if($row->username == $this->session->userdata('username')){ ?>
+
+		     	    <button id="outline">UNFOLLOW</button>
+
+		     	   <?php  }else{ ?>
+
+		     	    <button id="outline">DROP BY</button>
+
+		     	   <?php }
+		     	    ?>
+
+		     		</td>
+		     	</tr>
+		     </table>	
+
+		     </div>
+
+		 </div>
+	
+		 		
+		<?php } }?>
+
+
+		 <div class="clearfix"></div>
+		 <br>
+		 <button id="outline">LOAD MORE <span class="glyphicon glyphicon-refresh" ></span></button>
+		 </div>
+
+
+		 <div class="jumbotron" id="follower_area" style="display:none;">
+
+		 <?php
+
+		 $this->db->select('follower_array');
+		 $this->db->where('username',$row->username);
+		 $fl_list = $this->db->get('user')->result();
+
+		 foreach($fl_list as $flist){
+
+		 	$listz =  $flist->follower_array;
+		 	
+		 }
+
+		 	$n_listz = explode(",",$listz);
+		 	array_shift($n_listz);
+
+		 	foreach($n_listz as $me){
+
+		 	$user =  $me;		
+
+			$this->db->where('username',$user);
+			$get_user = $this->db->get('user')->result();
+
+			foreach($get_user as $users){
+
+		?>
+
+		<div class="jumbotron" id="user_f">
+		 <br>
+		 	 <div class="jumbotron" id="user_cover">
+		          <img src="<?php echo base_url();?>cover/<?php echo $users->cover;?>" width="100%" height="110" id="#">
+		     </div>
+
+		     <div class="jumbotron" id="user_body">
+		     	<img src="<?php echo base_url();?>profile_photo/<?php echo $users->photo;?>" id="user_photo" width="74" height="74" class="img-circle">
+
+		     <table width="100%" border="0">
+		     	<tr>
+		     	 	<td height="20px;" colspan="2"></td>
+		     	</tr>
+		     	<tr>
+		     		<td><center><b><a href="<?php echo base_url();?>profile/userProfile/<?php echo ucfirst($users->username);?>"><?php echo ucfirst($users->username);?></a></b></center></td>
+		     	</tr>
+		     	<tr>
+		     		<td><center><small>@<?php echo ucfirst($users->username);?></small></center></td>
+		     	</tr>
+		     	<tr>
+		     		<td height="60px;">
+		     			<?php echo substr($users->bio,0,100);?>
+		     		</td>
+		     	</tr>
+		     	<tr>
+		     		<td>
+
+		     	    <a href="<?php echo base_url();?>profile/userProfile/<?php echo ucfirst($users->username);?>"><button id="outline">DROP BY</button></a>
+
+		     		</td>
+		     	</tr>
+		     </table>	
+
+		     </div>
+
+		 </div>
+	
+		 		
+		<?php } }?>
+
+
+		 <div class="clearfix"></div>
+		 <br>
+		 <button id="outline">LOAD MORE <span class="glyphicon glyphicon-refresh" ></span></button>
+		 </div>
+
+
+		  <div class="row" id="main_post">
 
 		     <div class="col-md-8">
 
@@ -296,7 +576,13 @@ $("#myNavbar").load(location.href + " #myNavbar");
 
 		     		</div>
 
-		            <div class="jumbotron" id="post">
+		     		<div class="jumbotron" id="post_skin">
+		     		<center><a href="#" id="new_post"><img src="<?php echo base_url();?>img/add.png" width="30px" height="30px"></a>
+		     		<span style="color:#fff"> Compose New Post</span>
+		     		</center>
+		     		</div>
+
+		            <div class="jumbotron" id="post" style="display:none;">
 
 		            	<div class="jumbotron" id="post_header">
 
@@ -388,8 +674,8 @@ $("#myNavbar").load(location.href + " #myNavbar");
 						    <ul class="dropdown-menu" role="menu">
 						      <li><a href="#" id="pub">Public</a></li>
 						      <li><a href="#" id="fr">Follower</a></li>
-						      <li><a href="#" id="onl">Only me</a></li>
-						      <li><a href="#" id="cus">Custom</a></li>
+						      <!-- <li><a href="#" id="onl">Only me</a></li> -->
+						      <!-- <li><a href="#" id="cus">Custom</a></li> -->
 						    </ul>
 						    </div>								    
 
@@ -552,12 +838,12 @@ $("#myNavbar").load(location.href + " #myNavbar");
 
                       ?>
 
-
+                   <br>
 		           <div class="jumbotron" id="post_feed">
-
-		            <!-- post -->
 		            
 		           <?php 
+
+		           if($this->session->userdata('p_post') == 'A'){
 
 		           $limit = $this->session->userdata('limit');
 		           $this->db->limit($limit);
@@ -567,6 +853,37 @@ $("#myNavbar").load(location.href + " #myNavbar");
 		           $post =  $this->db->get('post')->result();
 		           // echo $this->db->last_query();
 
+
+		           }else{
+
+		           $this->db->select('post_id');
+		           $this->db->where('likers',$row->username);
+		           $p_likers = $this->db->get('likes')->result();
+
+		           foreach($p_likers as $likers){
+
+		           $all_like[] =  $likers->post_id;
+
+		           }
+
+		           $limit = $this->session->userdata('limit');
+			       $this->db->limit($limit);
+			       $this->db->order_by('id','desc');		   
+
+		           foreach($all_like as $likes){
+
+			         $this->db->or_where('id',$likes);  
+
+
+		          	}
+
+		               $this->db->where('status','on'); 
+			           $post =  $this->db->get('post')->result();
+			           // echo $this->db->last_query();	
+
+		          }
+
+
 		           foreach ($post as $feed){ 
 
 		           $like = $this->db->get_where('likes',array('post_id' => $feed->id,'value' => '1' ))->result_array();
@@ -574,7 +891,7 @@ $("#myNavbar").load(location.href + " #myNavbar");
 		           ?>
 
 
-		            <div id="<?php echo $feed->id;?>" style="margin-top:-10px;">
+		            <div id="<?php echo $feed->id;?>" style="margin-top:-30px;">
 
 		            <div class="jumbotron" id="feed_head" style="border-bottom:none;">       
 
@@ -714,7 +1031,7 @@ $("#myNavbar").load(location.href + " #myNavbar");
 
                        if(!empty($feed->video)){ ?>
 
-                       <iframe class="embed-responsive-item" width="100%" height="300px;" src="https://www.youtube.com/embed/<?php echo $feed->video;?>" frameborder="1" allowfullscreen></iframe> 
+                       <iframe class="embed-responsive-item" width="100%" height="300px;" src="https://www.youtube.com/embed/<?php echo $feed->video;?>" frameborder="0" allowfullscreen></iframe> 
 
                        <?php } ?>
 
@@ -1015,6 +1332,7 @@ $("#myNavbar").load(location.href + " #myNavbar");
 						background-color: #FAFAFA;
 						margin: 0px;
 						border: solid 1px #DDDDDD;
+						border-top: none;
 						padding: 0px;
 						
 						}
@@ -1158,9 +1476,10 @@ $("#myNavbar").load(location.href + " #myNavbar");
 		          
 		            </div>
 
+		            <br>
 		            <div class="jumbotron" id="banner_bot"><center><img src="<?php echo base_url();?>public/img/logo.png" width="40" height="40" class="img-circle"></center></div>
 
-			 		<center><button id="load_more" class="btn btn-warning btn-sm outline" style="color:#1dcaff;border-color:#1dcaff;">LOAD MORE</button></center>
+			 		<center><button id="load_more" class="btn btn-default btn-sm" style="color:#1dcaff;border-color:#1dcaff;width:100%;">LOAD MORE</button></center>
 		     </div>
 
 		     <div class="col-md-4" id="info_side">
@@ -1171,7 +1490,7 @@ $("#myNavbar").load(location.href + " #myNavbar");
 		     			<div class="col-md-6"><button class="btn btn-success" id="update_info">Save Changes</button></div>
 		     		</div>
 		     		</p>
-		     		<input type="text" class="form-control" value="<?php echo $row->username;?>" id="username"></p>  
+		     		<!-- <input type="text" class="form-control" value="<?php echo $row->username;?>" id="username"></p>   -->
 		     		<input type="text" class="form-control" value="<?php echo $row->bio;?>" placeholder="Bio" id="bio"></p>   
 		     		<input type="text" class="form-control" value="<?php echo $row->location;?>" placeholder="Location" id="location"></p>  
 		     		<input type="text" class="form-control" value="<?php echo $row->websites;?>" placeholder="Website" id="websites"></p>  
@@ -1228,7 +1547,62 @@ $("#myNavbar").load(location.href + " #myNavbar");
 
 		           </div>
 
-		           </div>		
+		           </div>	
+
+		           <div class="jumbotron style" id="hash_body">
+						
+					<?php
+
+					  $this->db->limit(8);
+					  $this->db->order_by('total','desc');
+					  $trend = $this->db->get('tag')->result();
+
+					  foreach($trend as $tag_list){ ?>
+
+					  <a href="<?php echo base_url();?>profile/hashtagView/<?php echo $tag_list->tag;?>"><button type="button" class="btn btn-primary btn-sm outline"><b>#<?php echo $tag_list->tag;?></b></button></a></p>
+
+					  <?php }?>	
+
+					</div>
+
+				  <div class="jumbotron" id="other_user"> 
+					<div class="jumbotron" id="ou_head" style="display:none;"><center>Other people</center></div>
+					<div class="jumbotron style" id="ou_body">
+					
+					<table width="100%" border="0">
+
+					<tr>
+						<td colspan="3"><hr></td>
+					</tr>
+
+					<?php
+
+					$this->db->limit(2);
+					$this->db->where('username !=',$this->session->userdata('username'));
+					$other = $this->db->get('user')->result();
+					foreach ($other as $g_other){ ?>
+
+					<tr>
+						<td rowspan="2" width="25%"><img src="<?php echo base_url();?>profile_photo/<?php echo $g_other->photo;?>" width="50px" height="50px"></td>
+						<td style="color:#1dcaff"><?php echo strtoupper($g_other->username);?></td>
+						<td><span class="glyphicon glyphicon-remove" style="float:right;font-size:8px;"></span></td>
+					</tr>
+					<tr>
+						<td width="33.3%">@<?php echo $g_other->username;?></td>
+						<td width="33.3%"><a href="<?php echo base_url();?>profile/userProfile/<?php echo $g_other->username;?>"><button id="outline">DROP BY</button></a></td>
+							
+					</tr>
+					<tr>
+						<td colspan="3"><hr></td>
+					</tr>
+
+					<?php }?>
+
+					</table>
+
+					</div>
+				</div>
+
 		     </div>
 		
 	    </div>
@@ -1271,11 +1645,18 @@ $("#myNavbar").load(location.href + " #myNavbar");
   </div>
 <!-- END PHOTO UPLOAD -->
 
+<!-- RECIEVER -->
+<input type="hidden" value="" id="to">
+<input type="hidden" value="<?php echo $this->session->userdata('username');?>" id="from">
+
+<!-- END -->
+
+
 <!-- MESSAGE MODEL BOX -->
-<div id="popup" class="modal-box">  
+<div id="popup" class="modal-box" style="position:fixed">  
   <header style="background-color:#f7f7f7;">
-    <a href="#" class="js-modal-close close">×</a>
-    <h3>Send Message to : <?php echo $row->username;?></h3>
+    <a href="#" class="js-modal-close close" id="close_box">×</a>
+    <h3>Send Message to : <span id="sms_to"><?php echo $row->username;?></span></h3>
   </header>
   <div class="modal-body">
     <p><textarea rows="4" id="sms_box" placeholder="Write a message"></textarea></p>
@@ -1288,14 +1669,14 @@ $("#myNavbar").load(location.href + " #myNavbar");
 <!-- END MODAL -->
 
 <!-- MODAL 2 -->
-<div id="popup2" class="modal-box">
-  <header> <a href="#" class="js-modal-close close">×</a>
+<div id="popup2" class="modal-box" style="position:fixed">
+  <header> <a href="#" class="js-modal-close close" id="close_box2">×</a>
     <h3><center>Message sent successfully</center></h3>
   </header>
   <div class="modal-body">
   <!-- empty -->
   </div>
-  <center><a href="#" class="btn btn-small js-modal-close"><button class="btn btn-success btn-sm">Close</button></a></center> 
+  <center><a href="#" class="btn btn-small js-modal-close" id="close_box3"><button class="btn btn-success btn-sm">Close</button></a></center> 
 </div>
 <!-- END MODAL 2 -->
 
@@ -1304,11 +1685,11 @@ $("#myNavbar").load(location.href + " #myNavbar");
   <header> <a href="#" class="js-modal-close close" id="close_box2">×</a>
     <h3><center>NOTIFICATIONS</center></h3>
   </header>
-  <div class="modal-body">
+  <div class="modal-body" id="noti_bodz">
   
   <?php
 
-  $this->db->where('open','no');
+  $this->db->order_by('id','desc');
   $this->db->where('noti_to',$this->session->userdata('username'));
   $all_n = $this->db->get('notification')->result();
  
@@ -1409,10 +1790,11 @@ $("#myNavbar").load(location.href + " #myNavbar");
   <header> <a href="#" class="js-modal-close close" id="close_box2">×</a>
     <h3><center>MESSAGES</center></h3>
   </header>
-  <div class="modal-body">
+  <div class="modal-body" id="sms_bodz">
   <table width="100%" border="0">
   <?php
 
+  $this->db->order_by('id','desc');
   $this->db->where('user_to',$this->session->userdata('username'));
   $all_sms = $this->db->get('inbox')->result();
 
@@ -1424,13 +1806,18 @@ $("#myNavbar").load(location.href + " #myNavbar");
   foreach($send_f as $send_pto){} ?>
   
   	<tr>
-  		<td width="10%" rowspan="2"><img src="<?php echo base_url();?>profile_photo/<?php echo $send_pto->photo;?>" class="img-circle" width="50px" height="50px"></td>
+  		<td width="10%" rowspan="2"><img src="<?php echo base_url();?>profile_photo/<?php echo $send_pto->photo;?>" class="#" width="35px" height="35px"></td>
   		<td><a href="" style="color:#1dcaff;font-weight:bold;"><?php echo ucfirst($sms->user_from);?></a></td>
   		<td width="15%"><?php echo humanTiming(strtotime($sms->date_added));?></td>
   	</tr>
   	<tr>
   		<td><?php echo $sms->body;?></td>
-  		<td width="15%"><button id="outline">REPLY</button></td>
+  		<td width="15%">
+
+  		<input type="hidden" value="<?php echo $sms->user_from;?>" id="rep_id">	
+  		<button id="outline" class="reply">REPLY</button>
+
+  		</td>
   	</tr>
   	<tr>
   		<td style="height:10px;"></td>
@@ -1651,3 +2038,6 @@ $("#myNavbar").load(location.href + " #myNavbar");
 </section>
 
 <!-- END -->
+
+
+

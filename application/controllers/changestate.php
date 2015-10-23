@@ -52,6 +52,19 @@ public function videoPost(){
     $this->session->set_userdata('post','V');
 
 }
+
+public function normalPost(){
+
+    $this->session->set_userdata('p_post','A');
+
+}
+
+public function likePost(){
+
+    $this->session->set_userdata('p_post','L');
+
+}
+
 	
 public function clearNoti(){
 

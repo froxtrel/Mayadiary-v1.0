@@ -31,7 +31,8 @@ class Model_login extends CI_Model {
                    'logged_in' => TRUE,
                    'limit'     =>  '10',
                    'photo'     =>  'A',
-                   'post'      =>  'A'
+                   'post'      =>  'A',
+                   'p_post'    =>  'A'
 
                );
 

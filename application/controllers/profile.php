@@ -100,6 +100,8 @@ class Profile extends CI_Controller {
 
 		 $tag = str_replace(array("_"), "", $tag);
 
+		 $tag = trim($tag);
+
 		 $user = $this->session->userdata('username');
 
 		 $data['user']   =  $this->model_profile->getData($user);	

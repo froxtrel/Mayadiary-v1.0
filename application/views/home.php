@@ -39,7 +39,7 @@ a{
 
 </style>
 
-<div id="wrapper">
+<div id="wrapper" style="min-width:1000px;">
   <div class="overlay"></div>
   
   <!-- Sidebar -->
@@ -47,21 +47,17 @@ a{
     <ul class="nav sidebar-nav">
       <li class="sidebar-brand"> <a href="#"><img src="<?php echo base_url();?>public/img/logo.png" width="40" height="40" class="img-circle" style="border:2px solid #fff;"> <span class="maya">MayaDiary</span></a> </li>
       <li> <a href="<?php echo base_url();?>home/goHome" class="style"><i class="fa fa-fw fa-home">  		</i> Home  </a> </li>
-      <li> <a href="<?php echo base_url();?>profile/userProfile/<?php echo $this->session->userdata('username');?>" class="style"><i class="fa fa-fw fa-user"></i> Profile </a> </li>
+      <li> <a href="<?php echo base_url();?>profile/userProfile/<?php echo $this->session->userdata('username');?>" class="style"><i class="fa fa-fw fa-user"></i> <?php echo ucfirst($this->session->userdata('username'));?> </a> </li>
+      <li> <a href="<?php echo base_url();?>profile/peopleshow/<?php echo $this->session->userdata('username');?>" class="style"><i class="fa fa-fw fa-users">     		</i> People   </a> </li>
       <li> <a href="<?php echo base_url();?>profile/photoshow/<?php echo $this->session->userdata('username');?>" class="style"><i class="fa fa-fw fa-picture-o">  		</i> Photos  </a> </li>
       <li> <a href="#" class="style"><i class="fa fa-fw fa-video-camera">  	</i> Video   </a> </li>
       <li> <a href="#" class="style"><i class="fa fa-fw fa-music">     		</i> Music   </a> </li>
-      <li> <a href="#" class="style"><i class="fa fa-fw fa-pencil-square-o">  </i> Blogs   </a> </li>
-      <li> <a href="#" class="style"><i class="fa fa-fw fa-bullhorn"> 		</i> Forums  </a> </li>
-      <li> <a href="#" class="style"><i class="fa fa-fw fa-users">			</i> Groups  </a> </li>
-      <li> <a href="#" class="style"><i class="fa fa-fw fa-gamepad"> 			</i> Games   </a> </li>
-      <li> <a href="#" class="style"><i class="fa fa-fw fa-calendar"> 		</i> Events  </a> </li>
-      <li> <a href="#" class="style"><i class="fa fa-fw fa-wrench"> 		    </i> Settings  </a> </li>
+      <li> <a href="<?php echo base_url();?>profile/profileDesign/<?php echo $this->session->userdata('username');?>" class="style"><i class="fa fa-fw fa-wrench"> 		    </i> Settings  </a> </li>
       <li> <a href="<?php echo base_url();?>login/logout" class="style"><i class="fa fa-fw fa-sign-out"></i> Logout</a> </li>
     </ul>
   </nav>
   <!-- /#sidebar-wrapper --> 
-  <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:rgba(255,255,255,0.3);border:none;">
+  <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:rgba(255,255,255,0.3);border:none;min-width:1000px;">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -76,7 +72,6 @@ a{
         <li><a href="#"></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-
          <li><a href=""  style="color:#1dcaff;" id="notis_v">
 
          	<?php
@@ -147,7 +142,14 @@ $("#myNavbar").load(location.href + " #myNavbar");
     		  <div class="row">
 
 		         <div class="col-md-8">
-		            <div class="jumbotron" id="post">
+
+					<div class="jumbotron" id="post_skin">
+		     		<center><a href="#" id="new_post"><img src="<?php echo base_url();?>img/add.png" width="30px" height="30px"></a>
+		     		<span style="color:#fff"> Compose New Post</span>
+		     		</center>
+		     		</div>
+
+		            <div class="jumbotron" id="post" style="display:none;">
 
 		            	<div class="jumbotron" id="post_header">
 
@@ -239,8 +241,8 @@ $("#myNavbar").load(location.href + " #myNavbar");
 						    <ul class="dropdown-menu" role="menu">
 						      <li><a href="#" id="pub">Public</a></li>
 						      <li><a href="#" id="fr">Follower</a></li>
-						      <li><a href="#" id="onl">Only me</a></li>
-						      <li><a href="#" id="cus">Custom</a></li>
+						    <!--   <li><a href="#" id="onl">Only me</a></li>
+						      <li><a href="#" id="cus">Custom</a></li> -->
 						    </ul>
 						    </div>						    
 
@@ -403,7 +405,7 @@ $("#myNavbar").load(location.href + " #myNavbar");
 
                       ?>
 
-
+                   <br>
 		           <div class="jumbotron" id="post_feed">
 
 		            <!-- post -->
@@ -504,7 +506,7 @@ $("#myNavbar").load(location.href + " #myNavbar");
 		           ?>
 
 
-		            <div id="<?php echo $feed->id;?>" style="margin-top:-10px;">
+		            <div id="<?php echo $feed->id;?>" style="margin-top:-30px;">
 
 		            <div class="jumbotron" id="feed_head" style="border-bottom:none;">       
 
@@ -619,7 +621,7 @@ $("#myNavbar").load(location.href + " #myNavbar");
 
 			         if(!empty($feed->photo)){ ?>
 		  
-			         <img class="img-responsive" src="<?php echo base_url();?>uploads/<?php echo $feed->photo;?>" width="100%" height="300px;">
+			         <a href="<?php echo base_url();?>profile/postview/<?php echo $this->session->userdata('username');?>/<?php echo $feed->id;?>"><img class="img-responsive" src="<?php echo base_url();?>uploads/<?php echo $feed->photo;?>" width="100%" height="300px;"></a>
 			       
 			         <?php } ?>		       
 
@@ -1090,7 +1092,7 @@ $("#myNavbar").load(location.href + " #myNavbar");
 
 		            <div class="jumbotron" id="banner_bot"><center><img src="<?php echo base_url();?>public/img/logo.png" width="40" height="40" class="img-circle"></center></div>
 
-			 		<center><button id="load_more" class="btn btn-warning btn-sm outline" style="color:#1dcaff;border-color:#1dcaff;">LOAD MORE</button></center>
+			 		<center><button id="load_more" class="btn btn-warning btn-sm " style="color:#1dcaff;border-color:#1dcaff;">LOAD MORE</button></center>
 		     </div>
 
 		     <div class="col-md-4" id="info_side">
@@ -1106,7 +1108,7 @@ $("#myNavbar").load(location.href + " #myNavbar");
 		          <div class="jumbotron" id="part_2">
 
 		                <div class="jumbotron" id="profile_cover">
-		                    <img src="<?php echo base_url();?>cover/<?php echo $row->cover;?>" width="100%" height="110" id="main_cover">
+		                    <img src="<?php echo base_url();?>cover/<?php echo $row->cover;?>" width="100%" height="110" id="#">
 		                </div>
 
 		                <div class="jumbotron" id="profile_view">

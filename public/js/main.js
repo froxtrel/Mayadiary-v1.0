@@ -973,6 +973,85 @@ $('#hideinfo')
         $('#click_me').click();
       
      });
+
+     $('#new_post').click(function(event){
+
+      event.preventDefault();
+      $('#post').slideToggle('slow'); 
+
+
+     });
+
+     $('#following_list').click(function(event){
+
+      event.preventDefault();
+      
+      $('#main_post').hide(); 
+      $('#following_area').show(); 
+      $('#follower_area').hide();
+
+     });
+
+     $('#post_list').click(function(event){
+
+      event.preventDefault();
+
+       $.ajax({
+
+                type:'POST',
+                url :'http://localhost/Mayadiary-v1.0/changestate/normalPost',
+                data:{},
+                datatype:'json',
+                success: function (data) {
+
+                location.reload();
+                     
+                },
+
+                error: function (data) {
+                      
+                alert('failed');
+
+                }
+         });
+
+     });
+
+      $('#like_list').click(function(event){
+
+      event.preventDefault();
+
+       $.ajax({
+
+                type:'POST',
+                url :'http://localhost/Mayadiary-v1.0/changestate/likePost',
+                data:{},
+                datatype:'json',
+                success: function (data) {
+
+                location.reload();
+                     
+                },
+
+                error: function (data) {
+                      
+                alert('failed');
+
+                }
+         });
+
+     });
+
+
+     $('#follower_list').click(function(event){
+
+      event.preventDefault();
+      
+      $('#main_post').hide(); 
+      $('#following_area').hide(); 
+      $('#follower_area').show();
+
+     });
   
 
 });
