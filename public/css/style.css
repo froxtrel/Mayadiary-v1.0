@@ -165,6 +165,7 @@ button:focus {
 	width: 100%;
 	height: 430px;
 	padding: 0px;
+	border: 1px solid #ddd;
 }
 
 #profile_menu{
@@ -352,6 +353,7 @@ button:focus {
 	border-radius: 0px;
 	padding: 0px;
 	border: solid 1px #DDDDDD;
+	border-bottom: none;
 	
 }
 
@@ -373,6 +375,7 @@ button:focus {
 	margin: 0px;
 	border-left: solid 1px #DDDDDD;
 	border-right: solid 1px #DDDDDD;
+	border-top: solid 1px #DDDDDD;
 }
 
 #post_footer{
@@ -477,12 +480,21 @@ button:focus {
 
 }
 
-#sharez,#like,#whos,#whol,#option,#edit_c,#like_c,#delete_com,#reply,#cancel,#submit{
+#sharez,#like,#whos,#whol,#option,#edit_c,#like_c,#delete_com,#reply,#cancel{
 
 	background:none;
 	border: none;
 	font-size: 12px;
 	color: black;
+}
+
+#media {
+
+	background:none;
+	border: none;
+	font-size: 18px;
+	color: black;
+
 }
 
 #edit_c,#like_c{
@@ -497,9 +509,6 @@ button:focus {
 	font-size: 12px;
 }
 
-#delete_com{
-	float: right;
-}
 
 #comment{
 
@@ -516,7 +525,7 @@ button:focus {
 	border: solid 1px #DDDDDD;
 	position: absolute;
 	margin-left: 30%;
-	margin-top: -25.5%;
+	margin-top: -20.5%;
 	color: black;
 	padding: 10px;
 	width: 200px;
@@ -625,6 +634,7 @@ button:focus {
 	background-color: #fff;
 	padding: 15px;
 	display: none;
+	border: 1px solid #ddd;
 
 }
 #part_1,#part_2{
@@ -637,6 +647,8 @@ button:focus {
 	color: black;
 	padding: 10px;
 	font-weight: bold;
+	background-color:  #fff;
+	border-bottom: 1px solid #ddd;
 }
 
 #design_body{
@@ -659,11 +671,7 @@ button:focus {
 	padding: 0px;
 	margin: 0px;
 	border: solid 1px #DDDDDD;
-	-webkit-filter: blur(2px);
-  	-moz-filter: blur(2px);
-  	-o-filter: blur(2px);
-  	-ms-filter: blur(2px);
-  	filter: blur(2px);
+	
 }
 
 #user_cover{
@@ -690,14 +698,17 @@ button:focus {
 	background-color: #fff;
 	padding: 10px;
 	margin: 0px;
-	height: 60px;
+	height: 102px;
+	border:1px solid #ddd;
+	border-top: none;
+	border-bottom: none;
 }
 
 #set_photo {
 
 	border:2px solid #fff;
 	position: absolute;
-	margin-top: -100px;
+	margin-top: -40px;
 }
 
 #user_photo {
@@ -713,7 +724,8 @@ button:focus {
 
 	position: absolute;
 	margin-left: 30%;
-	margin-top: -20%;
+	margin-top: -2%;
+	font-size: 17px;
 }
 
 #d_menu1{
@@ -738,10 +750,11 @@ button:focus {
 }
 
 #acc_head,#privacy_head,#email_head,#web_head,#verify_head,#block_head,#find_head{
-	background-color: #ECF0F1;
+	background-color: #fff;
 	border-radius: 0px;
 	padding: 10px;
 	margin: 0px;
+	border-bottom: 1px solid #ddd;
 }
 #acc_body{
 	background-color: #fff;
@@ -760,8 +773,8 @@ button:focus {
 
 #mini_photo{
 
-	margin-left: -15px;
-	margin-top: -15px;
+	margin-left: 5px;
+	margin-top: 5px;
 }
 
 #privacy_set,#email_set,#web_set{
@@ -830,10 +843,11 @@ button:focus {
 }
 #zoom_head,#split_head,#normal_head{
 
-	background-color: #ddd;
+	background-color: #fff;
 	border-radius: 0px;
 	padding: 10px;
 	margin: 0px;
+	border-bottom: 1px solid #ddd;
 }
 #zoom_body,#split_body,#normal_body{
 
@@ -853,6 +867,27 @@ button:focus {
 #filter{
 
 	padding: 0px;
+	margin-top: -30px;
+	border: 1px solid #ddd;
+	padding-top: 10px;
+	padding-bottom: 30px;
+	border-radius: 0px;
+	background-color: #fff;
+
+}
+
+#filter > button {
+
+	border-radius: 0px;
+	border: none;
+	width: 282.5px;
+	color: #8899a6;
+}
+
+#filter > button:hover {
+
+	background-color: #BF55EC;
+	color: #fff;
 }
 
 #user_activity,#other_user,#t_hash{
@@ -878,6 +913,12 @@ button:focus {
 	border-radius: 0px;
 	padding: 10px;
 	border: solid 1px #DDDDDD;
+}
+
+#hash_body,#ou_body {
+
+	margin-top: -30px;
+	border-top: none
 }
 #ac_body{
 
@@ -930,7 +971,7 @@ button:focus {
 
 #post_skin{
 
-	background-color: #1dcaff;
+	background-color: #BFE0EC;
 	border-radius: 0px;
 	padding: 10px;
 }
@@ -969,6 +1010,21 @@ button:focus {
 	background-color: transparent;
 }
 
+#more_ping{
+
+	background-color: #fff;
+	border:1px solid #ddd;
+	border-radius: 0px;
+	margin-top: -30px;
+	padding: 15px;
+	border-top: none;
+}
+
+#misij_v:hover,#notis_v:hover,#home_v:hover {
+
+	border-bottom: 5px solid #BF55EC;
+} 
+
 /*END*/
 
 /*BUTTON*/
@@ -988,8 +1044,8 @@ button:focus {
     border-radius: 0px;
 }
 .btn-primary.outline {
-    border: 1px solid #1dcaff;
-    color: #0099cc;
+    border: 1px solid #BF55EC;
+    color: black;
 }
 .btn-primary.outline:hover, .btn-primary.outline:focus, .btn-primary.outline:active, .btn-primary.outline.active, .open > .dropdown-toggle.btn-primary {
     color: #33a6cc;
@@ -1009,8 +1065,8 @@ button:focus {
     width: 100%;
 }
 #outline {
-    border: 1px solid #1dcaff;
-    color: #0099cc;
+    border: 1px solid #BF55EC;
+    color: black;
 }
 #outline:hover, .#outline:focus, #outline:active, #outline.active, .open > .dropdown-toggle.btn-primary {
     color: #33a6cc;

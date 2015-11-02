@@ -17,7 +17,7 @@
   
 body {
 
-    background-image:url('<?php echo base_url();?>themes/default.jpg');  
+    background-image:url('<?php echo base_url();?>themes/default.png');  
     background-attachment: <?php echo $row->bg_attach;?>;
     background-color: <?php echo $row->bg_color;?>;
     background-repeat: <?php echo $row->bg_repeat;?>;
@@ -43,21 +43,21 @@ a{
   <div class="overlay"></div>
   
   <!-- Sidebar -->
-  <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+   <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation" style="background-color:#8E44AD;">
     <ul class="nav sidebar-nav">
-      <li class="sidebar-brand"> <a href="#"><img src="<?php echo base_url();?>public/img/logo.png" width="40" height="40" class="img-circle" style="border:2px solid #fff;"> <span class="maya">MayaDiary</span></a> </li>
+      <li> <a href="#"><img src="<?php echo base_url();?>public/img/logo.png" width="40" height="40" class="img-circle" style="border:2px solid #fff;"> <span class="maya">MayaDiary</span></a> </li>
       <li> <a href="<?php echo base_url();?>home/goHome" ><i class="fa fa-fw fa-home">     </i> Home  </a> </li>
       <li> <a href="<?php echo base_url();?>profile/userProfile/<?php echo $this->session->userdata('username');?>" ><i class="fa fa-fw fa-user"></i> <?php echo ucfirst($this->session->userdata('username'));?> </a> </li>
       <li> <a href="<?php echo base_url();?>profile/peopleshow/<?php echo $this->session->userdata('username');?>" ><i class="fa fa-fw fa-users">        </i> People   </a> </li>
-      <li> <a href="<?php echo base_url();?>profile/photoshow/<?php echo $this->session->userdata('username');?>" ><i class="fa fa-fw fa-picture-o">     </i> Photos  </a> </li>
-      <li> <a href="#" ><i class="fa fa-fw fa-video-camera">   </i> Video   </a> </li>
-      <li> <a href="#" ><i class="fa fa-fw fa-music">        </i> Music   </a> </li>
+      <li> <a href="<?php echo base_url();?>profile/photoshow/<?php echo $this->session->userdata('username');?>" ><i class="fa fa-fw fa-camera">     </i> Photos  </a> </li>
+      <li> <a href="#" ><i class="fa fa-fw fa-youtube">   </i> Video   </a> </li>
+      <li> <a href="#" ><i class="fa fa-fw fa-soundcloud">        </i> Music   </a> </li>
       <li> <a href="<?php echo base_url();?>profile/profileDesign/<?php echo $this->session->userdata('username');?>" ><i class="fa fa-fw fa-wrench">        </i> Settings  </a> </li>
       <li> <a href="<?php echo base_url();?>login/logout" ><i class="fa fa-fw fa-sign-out"></i> Logout</a> </li>
     </ul>
   </nav>
   <!-- /#sidebar-wrapper --> 
-  <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:rgba(255,255,255,0.3);border:none;">
+  <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:#8E44AD;border-bottom:1px solid #ddd;padding-right:100px;">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -65,15 +65,26 @@ a{
         <span class="icon-bar"></span>
         <span class="icon-bar"></span> 
       </button>
-      <a class="navbar-brand" href="#"></a>
+      <a class="navbar-brand" href="#"><img style="margin-top:-5px;" src="<?php echo base_url();?>public/img/logo.png" width="30" height="30" class="img-circle"></img></a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="#"></a></li>
+        <li><a href="#" style="color:#fff;"><span class="glyphicon glyphicon-search"></span></a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right">   
+         <li>
+           <?php 
 
-         <li><a href=""  style="color:#1dcaff;" id="notis_v">
+              $this->db->select('photo');
+              $this->db->where('username',$this->session->userdata('username'));
+              $mphoto = $this->db->get('user')->result();
+              foreach($mphoto as $mp){}
+
+         ?>
+     <a href="<?php echo base_url();?>profile/userProfile/<?php echo $this->session->userdata('username');?>"><img src="<?php echo base_url();?>profile_photo/<?php echo $mp->photo;?>" width="20px" height="20px"></a>
+         </li>
+         <li><a href="<?php echo base_url();?>home/goHome"  style="color:#fff;" id="home_v"><!-- <span class="glyphicon glyphicon-home"></span> --> Home</a>   
+         <li><a href=""  style="color:#fff;" id="notis_v">
 
           <?php
 
@@ -93,9 +104,9 @@ a{
 
            ?>
 
-           Notifications <span class="glyphicon glyphicon glyphicon-bell"></span> </a></li>
+           <span class="glyphicon glyphicon glyphicon-bell"></span> </a></li>
 
-            <li><a href=""  style="color:#1dcaff;" id="misij_v">
+            <li><a href=""  style="color:#fff;" id="misij_v">
 
            <?php
 
@@ -113,7 +124,7 @@ a{
            <?php }
 
            ?>
-           Messages <span class="glyphicon glyphicon glyphicon-comment"></span> </a></li>
+           <span class="glyphicon glyphicon glyphicon-envelope"></span>   </a></li>
 
       </ul>
     </div>
@@ -133,7 +144,7 @@ $("#myNavbar").load(location.href + " #myNavbar");
 
   <!-- Page Content -->
   <div id="page-content-wrapper" >
-    <button style="margin-top:30px;" type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas"> <span class="hamb-top"></span> <span class="hamb-middle"></span> <span class="hamb-bottom"></span> </button>
+    <button id="burger" style="margin-top:40px;" type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas"> <span class="hamb-top"></span> <span class="hamb-middle"></span> <span class="hamb-bottom"></span> </button>
        <div class="container" style="margin-top:-18px;">
       
 
@@ -148,106 +159,38 @@ $("#myNavbar").load(location.href + " #myNavbar");
         
             <div class="row">
             <div class="col-md-1"></div>
-            <div class="col-md-3"  style="background-color:rgba(255,255,255,0.3);min-height:720px;" >
+            <div class="col-md-3"  style="min-height:720px;" >
                 
-            <div class="jumbotron" id="part_2">
+            <div class="jumbotron" id="part_2" style="margin-top:20px;">
 
                     <div class="jumbotron" id="profile_cover">
                         <img src="<?php echo base_url();?>cover/<?php echo $row->cover;?>" width="100%" height="110" id="#">
                     </div>
 
-                    <div class="jumbotron" id="profile_view">
-                        <img src="<?php echo base_url();?>profile_photo/<?php echo $youp->photo;?>" id="set_photo" width="74" height="74" class="img-circle">
-                        <center style="color:#1dcaff" id="namev"><?php echo ucfirst($row->username);?> <small style="color:#fff;">@<?php echo ucfirst($row->username);?></small></center>
-
-                        <table width="100%" border="0">
-                          <tr>
-                            <td style="font-weight:bold" width="33%"><center>POST</center></td>
-                            <td style="font-weight:bold" width="33%"><center>FOLLOWING</center></td>
-                            <td style="font-weight:bold" width="33%"><center>FOLLOWERS</center></td>
-                          </tr>
-                          <tr>
-                            <td style="color:#1dcaff">
-                            <?php
-
-                              $this->db->where('added_by',$this->session->userdata('username'));
-                              $c_post = $this->db->get('post')->result();
-
-                            ?>
-                            <center><?php echo count($c_post);?></center>
-                            </td>
-
-                            <td style="color:#1dcaff">
-                            <?php               
-
-                          $this->db->select('following_array');
-                          $follow   =  $this->db->get_where('user',array('username' => $this->session->userdata('username')));
-                          $g_follow =  $follow->result_array();
-
-                          foreach($g_follow as $fol){
-
-                          $old = $fol['following_array'];
-
-                          }
-
-                          $new = explode(',', $old);
-
-                          for ($i = 0; $i < count($new ); ++$i) {
-
-                          $arr[$i] =  $new[$i];
-
-                          }                  
-                          ?>
-                            <center><?php echo count($arr)-1;?></center>
-                            </td>
-
-
-                            <td style="color:#1dcaff">
-                            <?php               
-
-                          $this->db->select('follower_array');
-                          $follow   =  $this->db->get_where('user',array('username' => $this->session->userdata('username')));
-                          $g_follow =  $follow->result_array();
-
-                          foreach($g_follow as $fol){
-
-                          $old = $fol['follower_array'];
-
-                          }
-
-                          $new = explode(',', $old);
-
-                          for ($i = 0; $i < count($new ); ++$i) {
-
-                          $arrx[$i] =  $new[$i];
-
-                          }                  
-                          ?>
-                            <center><?php echo count($arrx)-1;?></center>
-                            </td>
-                          </tr>
-                        </table>
+                    <div class="jumbotron" id="profile_view" style="height:55px;border-bottom:1px solid #ddd;">
+                        <img src="<?php echo base_url();?>profile_photo/<?php echo $youp->photo;?>" id="set_photo" width="74" height="74" class="img-#">
+                        <center style="color:black" id="namev"><?php echo ucfirst($row->username);?> <small style="color:#ddd;">@<?php echo ucfirst($row->username);?></small></center>
                     </div>
 
                </div>    
 
             <div class="jumbotron" id="d_menu1">
 
-            <button class="btn btn-default" id="acc" style="width:100%"><span style="float:left;" class="style">Account</span> <span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
+            <button class="btn btn-default" id="acc" style="width:100%"><span style="float:left;" >Account</span> <span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
 
-            <button class="btn btn-default" id="pri" style="width:100%"><span style="float:left;" class="style">Privacy</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
+            <button class="btn btn-default" id="pri" style="width:100%"><span style="float:left;" >Privacy</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
 
-            <button class="btn btn-default" id="em" style="width:100%"><span style="float:left;"  class="style">Email notification</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
+            <button class="btn btn-default" id="em" style="width:100%"><span style="float:left;"  >Email notification</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
 
-            <button class="btn btn-default" id="web" style="width:100%"><span style="float:left;"  class="style">Web notification</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
+            <button class="btn btn-default" id="web" style="width:100%"><span style="float:left;"  >Web notification</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
 
-            <button class="btn btn-default" id="find" style="width:100%"><span style="float:left;" class="style">Find Friends</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
+            <button class="btn btn-default" id="find" style="width:100%"><span style="float:left;" >Find Friends</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
 
-            <button class="btn btn-default" id="veri" style="width:100%"><span style="float:left;"  class="style">Verify accounts</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
+            <button class="btn btn-default" id="veri" style="width:100%"><span style="float:left;"  >Verify accounts</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
 
-            <button class="btn btn-default" id="block" style="width:100%"><span style="float:left;" class="style">Blocked accounts</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
+            <button class="btn btn-default" id="block" style="width:100%"><span style="float:left;" >Blocked accounts</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
 
-            <button class="btn btn-default" id="part" style="width:100%"><span style="float:left;"  class="style">Design</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
+            <button class="btn btn-default" id="part" style="width:100%"><span style="float:left;"  >Design</span><span style="float:right;" class="glyphicon glyphicon-menu-right"></span></button>
             </div> 
 
             <script type="text/javascript">
@@ -263,12 +206,12 @@ $("#myNavbar").load(location.href + " #myNavbar");
 
             </div>
 
-            <div class="col-md-6"  style="background-color:rgba(255,255,255,0.3);min-height:720px;">
+            <div class="col-md-6"  style="min-height:720px;">
 
             <!-- ACCOUNT SETTINGS -->
-            <div class="jumbotron" id="account_set" style="margin-top:0px;display:#;">
+            <div class="jumbotron" id="account_set" style="margin-top:20px;display:#;">
                 <div class="jumbotron" id="acc_head">
-                    <center class="style">Account</center>
+                    <center style="font-weight:bold">Account</center>
                 </div>
                 <div class="jumbotron" id="acc_body">
                     <table width="100%" border="0">
@@ -303,7 +246,7 @@ $("#myNavbar").load(location.href + " #myNavbar");
                         </tr>
                     </table>
                     <hr>
-                    <center class="style" >Content</center>
+                    <center style="font-weight:bold" >Content</center>
                     <table width="100%" border="0">                     
                         <tr>
                             <td height="25px;"></td>
@@ -468,7 +411,7 @@ $("#myNavbar").load(location.href + " #myNavbar");
 
             <!-- PRIVACY SETTINGS -->
             <div class="jumbotron menu" id="privacy_set" style="margin-top:25px;display:none;">
-            <div class="jumbotron" id="privacy_head"><center class="style" >Privacy and confidentiality</center></div>
+            <div class="jumbotron" id="privacy_head"><center style="font-weight:bold" >Privacy and confidentiality</center></div>
             <br>
             <div class="jumbotron" id="privacy_body">
              <table width="90%" border="0">
@@ -595,7 +538,7 @@ $("#myNavbar").load(location.href + " #myNavbar");
 
             <!-- EMAIL NOTIFICATION -->
             <div class="jumbotron menu" id="email_set" style="margin-top:25px;display:none;">
-            <div class="jumbotron" id="email_head"><center class="style">Email notification</center></div>
+            <div class="jumbotron" id="email_head"><center style="font-weight:bold" >Email notification</center></div>
             <center>Receive email notifications for:</center>
             <div class="jumbotron" id="email_body">
                 <table width="90%" border="0">
@@ -669,7 +612,7 @@ $("#myNavbar").load(location.href + " #myNavbar");
 
             <!-- WEB NOTIFICATION -->
             <div class="jumbotron menu" id="web_set" style="margin-top:25px;display:none;">
-            <div class="jumbotron" id="web_head"><center class="style">Site notification</center></div>
+            <div class="jumbotron" id="web_head"><center style="font-weight:bold" >Site notification</center></div>
             <center>Receive site notifications for:</center>
             <div class="jumbotron" id="web_body">
                 <table width="90%" border="0">
@@ -755,7 +698,7 @@ $("#myNavbar").load(location.href + " #myNavbar");
 
             <!-- FIND FRIENDS -->
             <div class="jumbotron menu" id="find_set" style="margin-top:25px;display:none;min-height:400px;">
-            <div class="jumbotron" id="find_head"><center class="style">Find Friends</center></div>
+            <div class="jumbotron" id="find_head"><center style="font-weight:bold">Find Friends</center></div>
              <div class="jumbotron" id="find_body"></div>
             </div>
             <!-- END FIND FRIENDS -->
@@ -763,7 +706,7 @@ $("#myNavbar").load(location.href + " #myNavbar");
             <!-- VERIFY ACCOUNTS -->
             <div class="jumbotron menu" id="verify_set" style="margin-top:25px;display:none;">
 
-            <div class="jumbotron" id="verify_head"><center>Get Verified</center></div>
+            <div class="jumbotron" id="verify_head"><center style="font-weight:bold">Get Verified</center></div>
             <div class="jumbotron" id="verify_body">
                 <table width="90%" border="0">
                     <tr>
@@ -805,7 +748,7 @@ $("#myNavbar").load(location.href + " #myNavbar");
 
             <!-- BLOCKED ACCOUNTS -->
             <div class="jumbotron menu" id="blocked_set" style="margin-top:25px;display:none;min-height:400px;">
-            <div class="jumbotron" id="block_head"><center class="style">Blocked user</center></div>
+            <div class="jumbotron" id="block_head"><center style="font-weight:bold" >Blocked user</center></div>
             <div class="jumbotron" id="block_body"></div>
             </div>
             <!-- END LOCKED ACCOUNTS -->
@@ -814,7 +757,7 @@ $("#myNavbar").load(location.href + " #myNavbar");
             <!-- PROFILE DESIGN -->
             <div class="jumbotron menu" id="part_1" style="margin-top:25px;display:none;">
 
-                <div class="jumbotron" id="design_head"><center class="style">Design your page</center></div>
+                <div class="jumbotron" id="design_head"><center >Design your page</center></div>
                 <div class="jumbotron" id="design_body">
                    <!--  Choose from themes
                     <hr>
@@ -851,11 +794,11 @@ $("#myNavbar").load(location.href + " #myNavbar");
 
        <hr>
  -->
-        <center>Custom Style</center>
+        <!-- <center>Custom Style</center>
         <center><small>Your changes are not saved until you click  "Save changes."</small></center>
-        <hr>
+        <hr> -->
         <table width="85%" border="0">
-            <tr>
+           <!--  <tr>
                 <td width="30%;"><b><small>Enable Design</small></b></td>
                 <td>
 
@@ -869,7 +812,7 @@ $("#myNavbar").load(location.href + " #myNavbar");
             </tr>
             <tr>
                 <td height="30px;"></td>
-            </tr>
+            </tr> -->
 
             <tr>
                 <td width="30%;"><b><small>Background Image</small></b></td>
@@ -1213,10 +1156,25 @@ $("#myNavbar").load(location.href + " #myNavbar");
         </script>
 
         <div class="jumbotron" id="user_activity"> 
-          <div class="jumbotron" id="ac_head">
+          <div class="jumbotron" id="ac_head" style="border-top:1px solid #ddd;">
 
-          <center><button class="animate" id="outline">HIDE</button></center>
-          <center><button class="animate2" style="display:none;" id="outline">SHOW</button></center>
+          <center><button id="down" class="animate btn btn-default btn-xs"><i class="fa fa-arrow-down"></i></button></center>
+          <center><button class="animate2 btn btn-default btn-xs" style="display:none;"><i class="fa fa-arrow-up"></i></button></center>
+
+          <script type="text/javascript">
+
+          $(function(){
+
+            $('#burger').click(function(){
+
+            $('#down').click(); 
+
+            });
+
+            // $('#down').click();
+          });
+
+          </script>
 
           </div>
           <div class="jumbotron style" id="ac_body">
@@ -1282,7 +1240,7 @@ $("#myNavbar").load(location.href + " #myNavbar");
               <td>
 
 
-              <a href="" style="color:#1dcaff"><b><?php echo ucfirst($from);?></b></a>
+              <a href="" style="color:black"><b><?php echo ucfirst($from);?></b></a>
 
               <!-- <small><?php echo $active->type;?></small> -->
               <small style="float:right;"><?php echo humanTiming(strtotime($active->date_added));?> ago</small>
@@ -1344,7 +1302,6 @@ $("#myNavbar").load(location.href + " #myNavbar");
         </div>
 
         <div class="jumbotron" id="online_user">
-          
         <table width="100%" border="0">
 
         <?php
@@ -1383,13 +1340,13 @@ $("#myNavbar").load(location.href + " #myNavbar");
 
                 <tr>
             <td rowspan="2"><img src="<?php echo base_url();?>profile_photo/<?php echo $chat->photo;?>" width="40px" height="40px" class="img-circle"></td>
-            <td width="70%" style="color:#1dcaff"> <div id="on_logo"></div> <?php echo $chat->username;?> <small style="color:black;">@<?php echo $chat->username;?></small></td>
+            <td width="70%" style="color:black"> <div id="on_logo"></div> <?php echo ucfirst($chat->username);?> <small style="color:rgb(204,214,221);">@<?php echo $chat->username;?></small></td>
           </tr>
           <tr>
             <td width="70%;">
 
             <input type="hidden" value="<?php echo $chat->username;?>" id="t_user">
-            <button id="outline" class="send_msg">MESSAGE</button>
+            <button class="send_msg btn btn-default btn-xs"><i class="fa fa-envelope"></i></button>
 
             </td>
           </tr>

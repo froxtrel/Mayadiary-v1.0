@@ -166,18 +166,22 @@ $(function(event){
 
 		$(document).on('click','#submit',function(event){
 				
-				var id  = $(this).siblings('#feed_id').attr('value');
+				var id   = $(this).siblings('#feed_id').attr('value');
 				var body = $(this).siblings('#comment').val();
+				var img  = $('#img_src').val();
 				
 				$.ajax({
 
 				type:'POST',
 				url :'http://localhost/Mayadiary-v1.0/comment/insertComment',
-				data:{'body':body,'id':id},
+				data:{'body':body,'id':id,'img':img},
 				datatype:'json',
 				success: function (data) {
 
 				 // $("#post_feed").load(location.href + " #post_feed");
+				 var x = $('#current_id').val();
+
+                 $('#media_preview'+x).hide();
 				 $("#comment_div"+id).load(location.href + " #comment_div"+id);
 	                 
 	              },
@@ -193,7 +197,7 @@ $(function(event){
 
 		$(document).on('click','#comment',function(event){
 				
-				$(this).attr('rows', '2');
+				$(this).attr('rows', '4');
 
 				// $(this).mouseleave('rows', '1');
 			

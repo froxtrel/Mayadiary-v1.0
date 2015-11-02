@@ -8,7 +8,7 @@ class Model_comment extends CI_Model {
         parent::__construct();
     }
 
-public function insertCom($id,$body){
+public function insertCom($id,$body,$img){
 
         $date = date('Y/m/d H:i:s');
 
@@ -16,6 +16,7 @@ public function insertCom($id,$body){
         $this->db->set('added_by', $this->session->userdata('username'));
         $this->db->set('date_added',$date);
         $this->db->set('body',$body);
+        $this->db->set('img',$img);
         $this->db->insert('comment');
 
         $get = $this->db->get_where('post',array('id' => $id ))->result();

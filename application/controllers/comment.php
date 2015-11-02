@@ -15,15 +15,16 @@ public function __construct(){
 
  	   $id   = $this->input->post('id');
  	   $body = $this->input->post('body');
+     $img = $this->input->post('img');
 
- 	   $this->model_comment->insertCom($id,$body);
+ 	   $this->model_comment->insertCom($id,$body,$img);
 
     }
 
 
   public function updateComment(){
 
-  	   $id   = $this->input->post('id');
+  	 $id   = $this->input->post('id');
  	   $body = $this->input->post('body');
 
  	   $this->model_comment->updateCom($id,$body);

@@ -1,10 +1,9 @@
 
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>people/css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>people/fonts/font-awesome-4.3.0/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>people/css/style2.css" />
     <!--<script src="<?php echo base_url();?>people/js/modernizr.custom.js"></script>-->
 
-    <?php 
+<?php 
     
     if($this->session->userdata('logged_in') != 1 ){
 
@@ -23,7 +22,7 @@
   
 body {
 
-    background-image:url('<?php echo base_url();?>themes/default.jpg');  
+    background-image:url('<?php echo base_url();?>themes/default.png');  
     background-attachment: <?php echo $row->bg_attach;?>;
     background-color: <?php echo $row->bg_color;?>;
     background-repeat: <?php echo $row->bg_repeat;?>;
@@ -49,21 +48,21 @@ a{
   <div class="overlay"></div>
   
   <!-- Sidebar -->
-   <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+   <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation" style="background-color:#8E44AD;">
     <ul class="nav sidebar-nav">
-      <li class="sidebar-brand"> <a href="#"><img src="<?php echo base_url();?>public/img/logo.png" width="40" height="40" class="img-circle" style="border:2px solid #fff;"> <span class="maya">MayaDiary</span></a> </li>
-      <li> <a href="<?php echo base_url();?>home/goHome" class="style"><i class="fa fa-fw fa-home">     </i> Home  </a> </li>
-      <li> <a href="<?php echo base_url();?>profile/userProfile/<?php echo $this->session->userdata('username');?>" class="style"><i class="fa fa-fw fa-user"></i> <?php echo ucfirst($this->session->userdata('username'));?> </a> </li>
-      <li> <a href="<?php echo base_url();?>profile/peopleshow/<?php echo $this->session->userdata('username');?>" class="style"><i class="fa fa-fw fa-users">        </i> People   </a> </li>
-      <li> <a href="<?php echo base_url();?>profile/photoshow/<?php echo $this->session->userdata('username');?>" class="style"><i class="fa fa-fw fa-picture-o">     </i> Photos  </a> </li>
-      <li> <a href="#" class="style"><i class="fa fa-fw fa-video-camera">   </i> Video   </a> </li>
-      <li> <a href="#" class="style"><i class="fa fa-fw fa-music">        </i> Music   </a> </li>
-      <li> <a href="<?php echo base_url();?>profile/profileDesign/<?php echo $this->session->userdata('username');?>" class="style"><i class="fa fa-fw fa-wrench">        </i> Settings  </a> </li>
-      <li> <a href="<?php echo base_url();?>login/logout" class="style"><i class="fa fa-fw fa-sign-out"></i> Logout</a> </li>
+      <li> <a href="#"><img src="<?php echo base_url();?>public/img/logo.png" width="40" height="40" class="img-circle" style="border:2px solid #fff;"> <span class="maya">MayaDiary</span></a> </li>
+      <li> <a href="<?php echo base_url();?>home/goHome" ><i class="fa fa-fw fa-home">     </i> Home  </a> </li>
+      <li> <a href="<?php echo base_url();?>profile/userProfile/<?php echo $this->session->userdata('username');?>" ><i class="fa fa-fw fa-user"></i> <?php echo ucfirst($this->session->userdata('username'));?> </a> </li>
+      <li> <a href="<?php echo base_url();?>profile/peopleshow/<?php echo $this->session->userdata('username');?>" ><i class="fa fa-fw fa-users">        </i> People   </a> </li>
+      <li> <a href="<?php echo base_url();?>profile/photoshow/<?php echo $this->session->userdata('username');?>" ><i class="fa fa-fw fa-camera">     </i> Photos  </a> </li>
+      <li> <a href="#" ><i class="fa fa-fw fa-youtube">   </i> Video   </a> </li>
+      <li> <a href="#" ><i class="fa fa-fw fa-soundcloud">        </i> Music   </a> </li>
+      <li> <a href="<?php echo base_url();?>profile/profileDesign/<?php echo $this->session->userdata('username');?>" ><i class="fa fa-fw fa-wrench">        </i> Settings  </a> </li>
+      <li> <a href="<?php echo base_url();?>login/logout" ><i class="fa fa-fw fa-sign-out"></i> Logout</a> </li>
     </ul>
   </nav>
   <!-- /#sidebar-wrapper --> 
-  <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:rgba(255,255,255,0.3);border:none;">
+  <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:#8E44AD;border-bottom:1px solid #ddd;padding-right:100px;">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -71,15 +70,26 @@ a{
         <span class="icon-bar"></span>
         <span class="icon-bar"></span> 
       </button>
-      <a class="navbar-brand" href="#"></a>
+      <a class="navbar-brand" href="#"><img style="margin-top:-5px;" src="<?php echo base_url();?>public/img/logo.png" width="30" height="30" class="img-circle"></img></a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="#"></a></li>
+        <li><a href="#" style="color:#fff;"><span class="glyphicon glyphicon-search"></span></a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right">   
+         <li>
+           <?php 
 
-         <li><a href=""  style="color:#1dcaff;" id="notis_v">
+              $this->db->select('photo');
+              $this->db->where('username',$this->session->userdata('username'));
+              $mphoto = $this->db->get('user')->result();
+              foreach($mphoto as $mp){}
+
+         ?>
+     <a href="<?php echo base_url();?>profile/userProfile/<?php echo $this->session->userdata('username');?>"><img src="<?php echo base_url();?>profile_photo/<?php echo $mp->photo;?>" width="20px" height="20px"></a>
+         </li>
+         <li><a href="<?php echo base_url();?>home/goHome"  style="color:#fff;" id="home_v"><!-- <span class="glyphicon glyphicon-home"></span> --> Home</a>   
+         <li><a href=""  style="color:#fff;" id="notis_v">
 
           <?php
 
@@ -99,9 +109,9 @@ a{
 
            ?>
 
-           Notifications <span class="glyphicon glyphicon glyphicon-bell"></span> </a></li>
+           <span class="glyphicon glyphicon glyphicon-bell"></span> </a></li>
 
-            <li><a href=""  style="color:#1dcaff;" id="misij_v">
+            <li><a href=""  style="color:#fff;" id="misij_v">
 
            <?php
 
@@ -119,7 +129,7 @@ a{
            <?php }
 
            ?>
-           Messages <span class="glyphicon glyphicon glyphicon-comment"></span> </a></li>
+           <span class="glyphicon glyphicon glyphicon-envelope"></span>   </a></li>
 
       </ul>
     </div>
@@ -138,7 +148,7 @@ $("#myNavbar").load(location.href + " #myNavbar");
   
   <!-- Page Content -->
   <div id="page-content-wrapper">
-   <button style="margin-top:30px;" type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas"><span class="hamb-top"></span> <span class="hamb-middle"></span> <span class="hamb-bottom"></span></button>
+   <button style="margin-top:40px;" type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas"><span class="hamb-top"></span> <span class="hamb-middle"></span> <span class="hamb-bottom"></span></button>
     <div class="container" style="margin-top:0px;">
       <div class="row">
         <div class="col-md-12">
@@ -173,13 +183,15 @@ $("#myNavbar").load(location.href + " #myNavbar");
          </style>
 
          <div class="grid__item" href="<?php echo base_url();?>profile/userProfile/<?php echo $user->username;?>" style="text-decoration:none;" id="user<?php echo $user->id;?>">
+            <!-- <div class="loader"></div> -->
+            <h2 class="title title--preview" style="font-size:15px;"><span class="glyphicon glyphicon-star-empty"></span><?php echo ucfirst($user->bio);?><span class="glyphicon glyphicon-star-empty"></span></h2>
             <div class="loader"></div>
-            <h2 class="title title--preview" style="font-size:15px;"><?php echo ucfirst($user->bio);?></h2>
-            <div class="loader"></div>
-            <span class="category"><a href="<?php echo base_url();?>profile/userProfile/<?php echo ucfirst($user->username);?>" class="style"><?php echo ucfirst($user->username);?></a></span>
+            <span class="category" style="font-weight:bold;"><a href="<?php echo base_url();?>profile/userProfile/<?php echo ucfirst($user->username);?>"><?php echo ucfirst($user->username);?></a>
+            <span style="color:#ddd;">@<?php echo ucfirst($user->username);?></span>
+            </span>
             <div class="meta meta--preview">
               <img class="meta__avatar" src="<?php echo base_url();?>profile_photo/<?php echo $user->photo;?>" width="60px" height="60px;" /> 
-              <span class="meta__date"><button class="btn btn-warning btn-sm"><i class="fa fa-cog"></i> Option </button></span>
+              <span class="meta__date"><button class="btn btn-default btn-sm"><i class="fa fa-cog"></i> Option </button></span>
 
 
                <?php
@@ -207,7 +219,7 @@ $("#myNavbar").load(location.href + " #myNavbar");
                   if (in_array($target, $arr)){ ?>
 
                   <span class="meta__reading-time"><button id="off<?php echo $user->id;?>" class="btn btn-danger btn-sm" onclick="javascript:rem<?php echo $user->id;?>()"><i class="fa fa-user-plus"></i> Unfollow</button></span>
-                  <span class="meta__reading-time"><button id="on<?php echo $user->id;?>" class="btn btn-success btn-sm" style="display:none;" onclick="javascript:add<?php echo $user->id;?>()"><i class="fa fa-user-plus"></i> Follow</button></span>
+                  <span class="meta__reading-time"><button id="on<?php echo $user->id;?>" class="btn btn-default btn-sm" style="display:none;" onclick="javascript:add<?php echo $user->id;?>()"><i class="fa fa-user-plus"></i> Follow</button></span>
                   <input type="hidden" value="<?php echo $user->username;?>" id="to<?php echo $user->id;?>">
                   <input type="hidden" value="<?php echo $this->session->userdata('username');?>" id="from<?php echo $user->id;?>">
   
@@ -270,7 +282,7 @@ $("#myNavbar").load(location.href + " #myNavbar");
 
                   <?php }else{ ?>
                  
-                  <span class="meta__reading-time"><button id="on<?php echo $user->id;?>" class="btn btn-success btn-sm" onclick="javascript:add<?php echo $user->id;?>()"><i class="fa fa-user-plus"></i> Follow</button></span>
+                  <span class="meta__reading-time"><button id="on<?php echo $user->id;?>" class="btn btn-default btn-sm" onclick="javascript:add<?php echo $user->id;?>()"><i class="fa fa-user-plus"></i> Follow</button></span>
                   <span class="meta__reading-time"><button id="off<?php echo $user->id;?>" class="btn btn-danger btn-sm" style="display:none;" onclick="javascript:rem<?php echo $user->id;?>()"><i class="fa fa-user-plus"></i> Unfollow</button></span>
 
                   <input type="hidden" value="<?php echo $user->username;?>" id="to<?php echo $user->id;?>">
@@ -582,10 +594,25 @@ $("#myNavbar").load(location.href + " #myNavbar");
         </script>
 
         <div class="jumbotron" id="user_activity"> 
-          <div class="jumbotron" id="ac_head">
+          <div class="jumbotron" id="ac_head" style="border-top:1px solid #ddd;">
 
-          <center><button class="animate" id="outline">HIDE</button></center>
-          <center><button class="animate2" style="display:none;" id="outline">SHOW</button></center>
+          <center><button id="down" class="animate btn btn-default btn-xs"><i class="fa fa-arrow-down"></i></button></center>
+          <center><button class="animate2 btn btn-default btn-xs" style="display:none;"><i class="fa fa-arrow-up"></i></button></center>
+
+          <script type="text/javascript">
+
+          $(function(){
+
+            $('#burger').click(function(){
+
+            $('#down').click(); 
+
+            });
+
+            // $('#down').click();
+          });
+
+          </script>
 
           </div>
           <div class="jumbotron style" id="ac_body">
@@ -651,7 +678,7 @@ $("#myNavbar").load(location.href + " #myNavbar");
               <td>
 
 
-              <a href="" style="color:#1dcaff"><b><?php echo ucfirst($from);?></b></a>
+              <a href="" style="color:black"><b><?php echo ucfirst($from);?></b></a>
 
               <!-- <small><?php echo $active->type;?></small> -->
               <small style="float:right;"><?php echo humanTiming(strtotime($active->date_added));?> ago</small>
@@ -713,7 +740,6 @@ $("#myNavbar").load(location.href + " #myNavbar");
         </div>
 
         <div class="jumbotron" id="online_user">
-          
         <table width="100%" border="0">
 
         <?php
@@ -752,13 +778,13 @@ $("#myNavbar").load(location.href + " #myNavbar");
 
                 <tr>
             <td rowspan="2"><img src="<?php echo base_url();?>profile_photo/<?php echo $chat->photo;?>" width="40px" height="40px" class="img-circle"></td>
-            <td width="70%" style="color:#1dcaff"> <div id="on_logo"></div> <?php echo $chat->username;?> <small style="color:black;">@<?php echo $chat->username;?></small></td>
+            <td width="70%" style="color:black"> <div id="on_logo"></div> <?php echo ucfirst($chat->username);?> <small style="color:rgb(204,214,221);">@<?php echo $chat->username;?></small></td>
           </tr>
           <tr>
             <td width="70%;">
 
             <input type="hidden" value="<?php echo $chat->username;?>" id="t_user">
-            <button id="outline" class="send_msg">MESSAGE</button>
+            <button class="send_msg btn btn-default btn-xs"><i class="fa fa-envelope"></i></button>
 
             </td>
           </tr>
@@ -774,6 +800,8 @@ $("#myNavbar").load(location.href + " #myNavbar");
         </div>
 
 </section>
+
+
 
 <!-- END -->
 

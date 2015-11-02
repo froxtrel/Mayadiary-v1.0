@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mayadiary</title>
+    <title>Meow!</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
@@ -15,8 +15,7 @@
      <script type="text/javascript" src="<?php echo base_url();?>public/js/emotion.js"></script>
      <script type="text/javascript" src="<?php echo base_url();?>public/js/ajaxfileupload.js"></script>
      <script type="text/javascript" src="<?php echo base_url();?>public/js/photoupload.js"></script>
-
-
+     
 
      <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -202,21 +201,21 @@ body, html {
   color: #ffffff;
 }
 
-.sidebar-nav li:nth-child(2):before { background-color: #1dcaff; }
+.sidebar-nav li:nth-child(2):before { background-color: #BF55EC; }
 
-.sidebar-nav li:nth-child(3):before { background-color: #1dcaff; }
+.sidebar-nav li:nth-child(3):before { background-color: #BF55EC; }
 
-.sidebar-nav li:nth-child(4):before { background-color: #1dcaff; }
+.sidebar-nav li:nth-child(4):before { background-color: #BF55EC; }
 
-.sidebar-nav li:nth-child(5):before { background-color: #1dcaff; }
+.sidebar-nav li:nth-child(5):before { background-color: #BF55EC; }
 
-.sidebar-nav li:nth-child(6):before { background-color: #1dcaff; }
+.sidebar-nav li:nth-child(6):before { background-color: #BF55EC; }
 
-.sidebar-nav li:nth-child(7):before { background-color: #1dcaff; }
+.sidebar-nav li:nth-child(7):before { background-color: #BF55EC; }
 
-.sidebar-nav li:nth-child(8):before { background-color: #1dcaff; }
+.sidebar-nav li:nth-child(8):before { background-color: #BF55EC; }
 
-.sidebar-nav li:nth-child(9):before { background-color: #1dcaff; }
+.sidebar-nav li:nth-child(9):before { background-color: #BF55EC; }
 
 .sidebar-nav li:hover:before {
   -webkit-transition: width 0.2s ease-in;
@@ -225,7 +224,7 @@ body, html {
 }
 
 .sidebar-nav li a {
-  color: #1dcaff;
+  color: #fff;
   display: block;
   padding: 10px 15px 10px 30px;
   text-decoration: none;

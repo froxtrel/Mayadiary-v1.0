@@ -19,7 +19,7 @@ body {
 		<div class="col-md-6" class="nopadding" style="margin-top:40px;">
 
 		<center><img src="<?php echo base_url();?>public/img/logo.png" width="100" height="100" class="img-circle" style="border:2px solid #fff;margin-top:-30px;">
-		<b style="color:#fff;"><span id="maya">MayaDiary</span></b></center>
+		<b style="color:#fff;"><span id="maya">Meow!</span></b></center>
 		</div>
 
 		<div class="col-md-5" class="nopadding" style="margin-top:50px;">

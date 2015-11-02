@@ -65,6 +65,14 @@ public function likePost(){
 
 }
 
+public function comId(){
+
+    $id = $this->input->post('id');
+    $this->session->set_userdata('com_id',$id);
+
+}
+
+
 	
 public function clearNoti(){
 

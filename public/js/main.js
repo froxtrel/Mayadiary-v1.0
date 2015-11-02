@@ -1,6 +1,11 @@
 
 $(function(){
 
+$("#top").click(function() {
+  $("html, body").animate({ scrollTop: 0 }, "slow");
+  return false;
+});
+
 	// VISIBILITY
 
 $('#visib')
@@ -419,6 +424,34 @@ $('#hideinfo')
 
                  }
              });
+             return false;
+         });
+
+
+         $('#upload_com')
+         .submit(function (e) {
+
+             e.preventDefault();
+             $.ajaxFileUpload({
+                 url: "http://localhost/Mayadiary-v1.0/upload/upload_com"
+                 , secureuri: false
+                 , fileElementId: 'usercom'
+                 , dataType: 'JSON'
+                 , success: function (img) {
+
+
+                   var x = $('#current_id').val();
+
+                  $('#media_preview'+x).show();
+                  $('#media_preview'+x)
+                         .html("<img src=\"" + img + "\" ... width='auto' height='auto' style='max-width:120px;max-heigt:75px;'>"); 
+                  $('#img_src')
+                          .val("<img src=\"" + img + "\" ... width='auto' height='auto' style='max-width:95%;max-heigt:285px;>");               
+                           
+
+                 }
+             });
+             e.preventDefault();
              return false;
          });
 
@@ -1053,6 +1086,40 @@ $('#hideinfo')
 
      });
   
+     $(document).on('click','#media',function(event){
+      
+      var id = $(this).siblings('#feed_id').attr('value');  
+
+      event.preventDefault();
+
+       $.ajax({
+
+                type:'POST',
+                url :'http://localhost/Mayadiary-v1.0/changestate/comId',
+                data:{'id':id},
+                datatype:'json',
+                success: function (data) {
+
+                $('#current_id').val(id);
+
+                },
+
+                error: function (data) {
+                      
+                alert('failed');
+
+                }
+         });      
+
+      $('#usercom').click();
+
+     });
+
+     $(document).on('change','#usercom',function(event){
+        
+      $('#com_photo').click();        
+      
+     });
 
 });
 
